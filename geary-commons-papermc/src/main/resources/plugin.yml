@@ -1,0 +1,9 @@
+name: Geary-Commons
+version: ${plugin_version}
+author: Offz
+main: com.mineinabyss.geary.minecraft.GearyCommonsPlugin
+api-version: 1.17
+depend: [Geary]
+
+prefix: Geary Commons
+description: Commonly used components for Geary
