@@ -16,7 +16,7 @@ public class BlockConditions(
     private val GearyEntity.location by get<Location>()
 
     override fun GearyEntity.check(): Boolean =
-        location.add(0.0, -1.0, 0.0).block.type.let {
+        location.block.type.let {
             (allow.isEmpty() || it in allow) && it !in deny
         }
 }
