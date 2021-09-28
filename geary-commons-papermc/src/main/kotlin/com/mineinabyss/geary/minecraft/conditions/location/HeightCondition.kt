@@ -9,7 +9,7 @@ import org.bukkit.Location
 @Serializable
 @SerialName("geary:height")
 public class HeightCondition(
-    private val min: Int = 0,
+    private val min: Int = -256,
     private val max: Int = 256,
 ) : GearyCondition() {
     private val GearyEntity.location by get<Location>()
