@@ -15,6 +15,8 @@ public class LightCondition(
 ) : GearyCondition() {
     private val GearyEntity.location by get<Location>()
 
+    //FIXME adding 1 for mobzy spawn system to work as it otherwise checks inside a block
+    // Figure out better solution there and revert.
     override fun GearyEntity.check(): Boolean =
-        location.block.lightLevel in range
+        location.clone().add(0.0, 1.0, 0.0).block.lightLevel in range
 }

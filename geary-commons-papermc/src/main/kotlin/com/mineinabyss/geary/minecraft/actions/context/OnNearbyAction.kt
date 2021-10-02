@@ -3,7 +3,7 @@ package com.mineinabyss.geary.minecraft.actions.context
 import com.mineinabyss.geary.ecs.api.actions.GearyAction
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
 import com.mineinabyss.geary.ecs.components.Source
-import com.mineinabyss.geary.minecraft.access.geary
+import com.mineinabyss.geary.minecraft.access.toGeary
 import com.mineinabyss.geary.minecraft.properties.AtEntityLocation
 import com.mineinabyss.geary.minecraft.properties.ConfigurableLocation
 import kotlinx.serialization.SerialName
@@ -41,7 +41,7 @@ public class OnNearbyAction(
                 if (max != null) sortedBy { loc.distanceSquared(it.location) }.take(max)
                 else this
             }
-            .map { geary(it) }
+            .map { it.toGeary() }
             .count { target ->
                 target.set(Source(this))
                 run.count { action -> action.runOn(target) } != 0
