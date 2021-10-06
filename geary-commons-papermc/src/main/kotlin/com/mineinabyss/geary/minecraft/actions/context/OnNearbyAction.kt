@@ -44,7 +44,7 @@ public class OnNearbyAction(
             .map { it.toGeary() }
             .count { target ->
                 target.set(Source(this))
-                run.count { action -> action.runOn(target) } != 0
+                run.count { action -> action(target) } != 0
                 target.remove<Source>()
             } != 0
     }

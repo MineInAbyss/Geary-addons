@@ -22,7 +22,7 @@ public class SwitchToParentAction(
     override fun GearyEntity.run(): Boolean {
         val parent = parent ?: return false
 
-        return wrapped.count { it.runOn(parent) } != 0
+        return wrapped.count { it(parent) } != 0
     }
 }
 

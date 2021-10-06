@@ -12,7 +12,7 @@ public object PassiveActionsSystem : TickingSystem(interval = 20) {
 
     override fun QueryResult.tick() {
         actions.wrapped.forEach {
-            it.runOn(entity)
+            it(entity)
         }
     }
 }
