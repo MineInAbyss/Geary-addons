@@ -19,7 +19,7 @@ public class ConditionalAction(
 ) : GearyAction() {
     override fun GearyEntity.run(): Boolean {
         if (conditions.all { it.metFor(this) }) {
-            run.forEach { it.runOn(this) }
+            run.forEach { it(this) }
             return true
         }
         return false

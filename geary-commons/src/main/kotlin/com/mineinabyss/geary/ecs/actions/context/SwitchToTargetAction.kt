@@ -22,7 +22,7 @@ public class SwitchToTargetAction(
     override fun GearyEntity.run(): Boolean {
         val target = get<Target>()?.entity ?: return false
 
-        return wrapped.count { it.runOn(target) } != 0
+        return wrapped.count { it(target) } != 0
     }
 }
 
