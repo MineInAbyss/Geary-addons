@@ -2,6 +2,8 @@ package com.mineinabyss.geary.minecraft
 
 import com.mineinabyss.geary.minecraft.dsl.gearyAddon
 import com.mineinabyss.geary.minecraft.systems.BossBarDisplaySystem
+import com.mineinabyss.geary.minecraft.systems.InventoryListener
+import com.mineinabyss.idofront.plugin.registerEvents
 import org.bukkit.plugin.java.JavaPlugin
 
 class GearyCommonsPlugin : JavaPlugin() {
@@ -10,5 +12,7 @@ class GearyCommonsPlugin : JavaPlugin() {
             systems(BossBarDisplaySystem)
             autoscanAll()
         }
+
+        registerEvents(InventoryListener)
     }
 }
