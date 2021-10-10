@@ -19,6 +19,8 @@ repositories {
 
 dependencies {
     compileOnly(Deps.kotlinx.serialization.json)
+    compileOnly("com.mineinabyss:looty:0.3.28")
+    compileOnly("com.mineinabyss:mobzy:0.11.32")
 
     api(project(":geary-commons"))
     compileOnly("com.mineinabyss:geary-platform-papermc:$gearyVersion")
