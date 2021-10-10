@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 import org.bukkit.Sound
 
 @Serializable
-@SerialName("looty:hat")
+@SerialName("geary:hat")
 @AutoscanComponent
 class Hat(
     val sound: Sound = Sound.ITEM_ARMOR_EQUIP_NETHERITE

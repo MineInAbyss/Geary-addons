@@ -2,6 +2,8 @@ import Com_mineinabyss_conventions_platform_gradle.Deps
 
 val serverVersion: String by project
 val gearyVersion: String by project
+val lootyVersion: String by project
+val mobzyVersion: String by project
 val idofrontVersion: String by project
 
 plugins {
@@ -19,8 +21,8 @@ repositories {
 
 dependencies {
     compileOnly(Deps.kotlinx.serialization.json)
-    compileOnly("com.mineinabyss:looty:0.3.28")
-    compileOnly("com.mineinabyss:mobzy:0.11.32")
+    compileOnly("com.mineinabyss:looty:$lootyVersion")
+    compileOnly("com.mineinabyss:mobzy:$mobzyVersion")
 
     api(project(":geary-commons"))
     compileOnly("com.mineinabyss:geary-platform-papermc:$gearyVersion")
