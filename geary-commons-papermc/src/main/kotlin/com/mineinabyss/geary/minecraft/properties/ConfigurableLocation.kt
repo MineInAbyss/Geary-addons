@@ -19,7 +19,7 @@ import org.bukkit.entity.Player
  * Useful for actions that wish to run at a specific location but want to remain configurable.
  */
 @Serializable
-public sealed class ConfigurableLocation : EntityProperty<Location>()
+sealed class ConfigurableLocation : EntityProperty<Location>()
 
 /**
  * > source.location
@@ -28,7 +28,7 @@ public sealed class ConfigurableLocation : EntityProperty<Location>()
  */
 @Serializable
 @SerialName("source.location")
-public class AtSourceLocation : ConfigurableLocation() {
+class AtSourceLocation : ConfigurableLocation() {
     override fun GearyEntity.read(): Location? =
         get<Source>()?.entity?.toBukkit()?.location
 }
@@ -40,7 +40,7 @@ public class AtSourceLocation : ConfigurableLocation() {
  */
 @Serializable
 @SerialName("entity.location")
-public class AtEntityLocation : ConfigurableLocation() {
+class AtEntityLocation : ConfigurableLocation() {
     override fun GearyEntity.read(): Location? =
         toBukkit()?.location
 }
@@ -52,7 +52,7 @@ public class AtEntityLocation : ConfigurableLocation() {
  */
 @Serializable
 @SerialName("player.location")
-public class AtPlayerLocation : ConfigurableLocation() {
+class AtPlayerLocation : ConfigurableLocation() {
     override fun GearyEntity.read(): Location? =
         toBukkit<Player>()?.location
 }
@@ -67,18 +67,20 @@ public class AtPlayerLocation : ConfigurableLocation() {
  */
 @Serializable
 @SerialName("player.target_block")
-public class AtPlayerTargetBlock(
+class AtPlayerTargetBlock(
     private val maxDist: Int = 3,
     private val allowAir: Boolean = false,
     private val onFace: Boolean = false,
 ) : ConfigurableLocation() {
     override fun GearyEntity.read(): Location? {
         with { player: Player ->
-            val block = if (onFace)
-                player.getLastTwoTargetBlocks(null, maxDist).first()
-            else
-                player.getTargetBlock(maxDist) ?: return null
-            if (!allowAir && block.isEmpty) return null
+            val block =
+                if (onFace) player.getLastTwoTargetBlocks(null, maxDist).first()
+                else player.getTargetBlock(maxDist) ?: return null
+            val secondBlock =
+                if (onFace) player.getLastTwoTargetBlocks(null, maxDist).last()
+                else player.getTargetBlock(maxDist) ?: return null
+            if (!allowAir && block.isEmpty && secondBlock.isEmpty) return null
             return block.location
         }
         return null
