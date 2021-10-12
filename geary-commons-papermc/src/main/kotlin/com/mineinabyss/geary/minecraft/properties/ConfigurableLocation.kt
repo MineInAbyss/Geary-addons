@@ -1,6 +1,7 @@
 package com.mineinabyss.geary.minecraft.properties
 
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
+import com.mineinabyss.geary.ecs.api.entities.with
 import com.mineinabyss.geary.ecs.api.properties.EntityProperty
 import com.mineinabyss.geary.ecs.components.Source
 import com.mineinabyss.geary.minecraft.access.toBukkit
@@ -72,7 +73,7 @@ public class AtPlayerTargetBlock(
     private val onFace: Boolean = false,
 ) : ConfigurableLocation() {
     override fun GearyEntity.read(): Location? {
-        with<Player> { player ->
+        with { player: Player ->
             val block = if (onFace)
                 player.getLastTwoTargetBlocks(null, maxDist).first()
             else

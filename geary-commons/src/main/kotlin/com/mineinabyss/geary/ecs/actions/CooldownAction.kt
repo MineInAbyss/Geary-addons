@@ -38,7 +38,7 @@ public class CooldownAction(
         // restart cooldown if any of the actions ran successfully
         //TODO maybe it's worth storing under hashCode but having a separate field for display name
         return cooldowns.onCooldownIf(name, length.inMillis) {
-            run.count { it.runOn(this) } != 0
+            run.count { it(this) } != 0
         }
     }
 }

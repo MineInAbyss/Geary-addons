@@ -22,7 +22,7 @@ public class SwitchToSourceAction(
     override fun GearyEntity.run(): Boolean {
         val source = get<Source>()?.entity ?: return false
 
-        return wrapped.count { it.runOn(source) } != 0
+        return wrapped.count { it(source) } != 0
     }
 }
 
