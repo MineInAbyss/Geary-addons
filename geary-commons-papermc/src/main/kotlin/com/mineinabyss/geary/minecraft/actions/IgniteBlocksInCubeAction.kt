@@ -1,22 +1,24 @@
-package com.derongan.minecraft.mineinabyss.ecs.actions
+package com.mineinabyss.geary.minecraft.actions
 
 import com.mineinabyss.geary.ecs.api.actions.GearyAction
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
-import jdk.javadoc.internal.doclets.formats.html.markup.HtmlTag
+import com.mineinabyss.geary.minecraft.properties.AtPlayerLocation
+import com.mineinabyss.geary.minecraft.properties.ConfigurableLocation
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.bukkit.Location
 import org.bukkit.Material
-import org.bukkit.entity.Entity
-import org.bukkit.util.Vector
-import kotlin.math.cos
-import kotlin.math.sin
 
 /**
  * Ignites blocks in a cube around a given location
  */
+@Serializable
+@SerialName("geary:ignite_area")
 class IgniteBlocksInCubeAction(
     private val size: Double,
-    private val location: Location
+    private val at: ConfigurableLocation = AtPlayerLocation()
 ) : GearyAction() {
+    private val GearyEntity.loc by at
 
     override fun GearyEntity.run(): Boolean {
         val intSize = size as Int
@@ -24,12 +26,12 @@ class IgniteBlocksInCubeAction(
             for (y in -intSize..intSize) {
                 for (z in -intSize..intSize) {
                     val igniteLocation = Location(
-                        location.world,
-                        location.x + x,
-                        location.y + y,
-                        location.z + z
+                        loc.world,
+                        loc.x + x,
+                        loc.y + y,
+                        loc.z + z
                     )
-                    if (location.block.isEmpty) {
+                    if (loc.block.isEmpty) {
                         val belowLocation = Location(
                             igniteLocation.world,
                             igniteLocation.x,
@@ -37,7 +39,7 @@ class IgniteBlocksInCubeAction(
                             igniteLocation.z
                         )
                         if (!(belowLocation.block.isEmpty || belowLocation.block.isLiquid))
-                            location.block.type = Material.FIRE
+                            loc.block.type = Material.FIRE
                     }
                 }
             }

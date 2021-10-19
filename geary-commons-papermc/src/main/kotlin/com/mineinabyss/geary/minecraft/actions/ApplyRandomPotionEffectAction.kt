@@ -1,7 +1,9 @@
-package com.derongan.minecraft.mineinabyss.ecs.actions
+package com.mineinabyss.geary.minecraft.actions
 
 import com.mineinabyss.geary.ecs.api.actions.GearyAction
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.bukkit.entity.LivingEntity
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
@@ -11,6 +13,8 @@ import kotlin.random.Random
  * Applies a random potion effect to an entity with (respectively) a
  * random (between given min and max) duration and amplifier.
  */
+@Serializable
+@SerialName("geary:random_effect")
 class ApplyRandomPotionEffectAction(
     private val minDuration: Int,
     private val maxDuration: Int,

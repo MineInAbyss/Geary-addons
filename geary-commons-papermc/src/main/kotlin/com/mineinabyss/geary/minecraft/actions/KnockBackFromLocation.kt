@@ -1,7 +1,10 @@
-package com.derongan.minecraft.mineinabyss.ecs.actions
+package com.mineinabyss.geary.minecraft.actions
 
 import com.mineinabyss.geary.ecs.api.actions.GearyAction
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
+import com.mineinabyss.idofront.serialization.VectorSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.bukkit.entity.Entity
 import org.bukkit.util.Vector
 import kotlin.math.cos
@@ -11,9 +14,12 @@ import kotlin.math.cos
  * Primarily made for attacks which want to knock back players in a minecraft-y
  * way.
  */
-class KnockBackFromLocationAction (
+@Serializable
+@SerialName("geary:knockback")
+class KnockBackFromLocationAction(
     private val power: Double,
     private val yAngle: Double,
+    @Serializable(with = VectorSerializer::class)
     private val location: Vector,  // Not sure if this should be a Vector or Location
     private val scaleWithDistance: Boolean,
     private val cancelCurrentVelocity: Boolean
@@ -25,19 +31,18 @@ class KnockBackFromLocationAction (
         velocity.y = 0.0
         velocity = velocity.normalize()
         velocity.y = cos(yAngle)  // Not sure about this, should probably get all of the
-                                  // relevant angles and set the velocity based on those
+        // relevant angles and set the velocity based on those
         var distance = location.distance(entity.location.toVector())
 
         // This is wacky placeholder math, probably change it at some point
         val maxForce = (power * 5.0)
         var scalar: Double
-        if(scaleWithDistance) {
-            if(distance == 0.0) {
+        if (scaleWithDistance) {
+            if (distance == 0.0) {
                 scalar = maxForce
-            }
-            else {
+            } else {
                 scalar = power / (distance * distance * distance)
-                if(scalar > maxForce)
+                if (scalar > maxForce)
                     scalar = maxForce
             }
         } else
@@ -45,7 +50,7 @@ class KnockBackFromLocationAction (
 
         velocity.multiply(scalar)
 
-        if(cancelCurrentVelocity)
+        if (cancelCurrentVelocity)
             entity.velocity = velocity
         else
             entity.velocity.add(velocity)

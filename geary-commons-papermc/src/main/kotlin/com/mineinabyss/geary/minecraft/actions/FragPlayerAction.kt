@@ -1,11 +1,11 @@
-package com.derongan.minecraft.mineinabyss.ecs.actions
+package com.mineinabyss.geary.minecraft.actions
 
-import com.derongan.minecraft.mineinabyss.mineInAbyss
 import com.mineinabyss.geary.ecs.api.actions.GearyAction
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
+import com.mineinabyss.geary.minecraft.gearyCommonsPlugin
 import com.okkero.skedule.schedule
-import org.bukkit.Effect
-import org.bukkit.Location
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.bukkit.Sound
 import org.bukkit.entity.Creeper
 import org.bukkit.entity.EntityType
@@ -16,6 +16,8 @@ import kotlin.random.Random
 /**
  * Spawns a bunch of powered creepers around a player.
  */
+@Serializable
+@SerialName("geary:frag")
 class FragPlayerAction(
     private val howMuch: Int
 ) : GearyAction() {
@@ -23,9 +25,9 @@ class FragPlayerAction(
 
     override fun GearyEntity.run(): Boolean {
         player.playSound(player.location, Sound.ENTITY_GHAST_SCREAM, 1F, 0.5F)
-        mineInAbyss.schedule {
+        gearyCommonsPlugin.schedule {
             for (i in 0..howMuch) {
-                if(player.isDead)
+                if (player.isDead)
                     break;
                 val creeper = (player.world.spawnEntity(
                     player.location.add(
