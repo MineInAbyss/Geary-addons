@@ -10,5 +10,6 @@ import java.util.*
 @SerialName("geary:soulbound")
 @AutoscanComponent
 class Soulbound(
-    var owner: @Serializable(with = UUIDSerializer::class)UUID
+    var owner: @Serializable(with = UUIDSerializer::class) UUID,
+    var ownerName: String
 )
