@@ -11,7 +11,7 @@ import org.bukkit.entity.TNTPrimed
 
 @Serializable
 @SerialName("geary:explode")
-public class Explode(
+public class ExplodeAcion(
     private val at: ConfigurableLocation = AtPlayerLocation(),
     private val power: Float = 4F,
     private val setFire: Boolean = false,
@@ -25,7 +25,7 @@ public class Explode(
             location.createExplosion(power, setFire, breakBlocks)
         else //only spawn a tnt in if we have a fuse
             location.spawn<TNTPrimed> {
-                fuseTicks = this@Explode.fuseTicks
+                fuseTicks = this@ExplodeAcion.fuseTicks
             }
         return true
     }
