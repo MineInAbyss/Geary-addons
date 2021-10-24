@@ -7,13 +7,12 @@ import com.mineinabyss.looty.tracking.toGearyOrNull
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
-import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
 
 object ItemStackingListener : Listener {
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler
     fun InventoryClickEvent.onCombineItems() {
         val player = inventory.holder as? Player ?: return
         val currItem = currentItem
@@ -22,7 +21,7 @@ object ItemStackingListener : Listener {
         val gearyCurrentItem = currItem?.toGearyOrNull(player)
         val stackable = gearyCurrentItem?.get<Stackable>()
 
-        //isCancelled = true
+        isCancelled = true//
 
         if (gearyCurrentItem?.prefabs != gearyCursor.prefabs && currentItem!!.type != Material.AIR) return
 
@@ -36,6 +35,7 @@ object ItemStackingListener : Listener {
                 currItem.amount += 1
                 view.cursor?.subtract()
             }
+            isCancelled = true
             return
         }
 
@@ -49,6 +49,7 @@ object ItemStackingListener : Listener {
                 currItem.amount += 1
                 view.cursor?.subtract()
             }
+            isCancelled = true
             return
         }
 
@@ -61,8 +62,10 @@ object ItemStackingListener : Listener {
                     it.amount += currentItem!!.amount
                     currentItem?.amount = 0
                 }
-                return
+                return@forEach
             }
+            isCancelled = true
+            return
         }
     }
 }
