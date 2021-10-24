@@ -1,74 +1,71 @@
 package com.mineinabyss.geary.minecraft.systems
 
-import com.mineinabyss.geary.ecs.api.entities.with
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
 import com.mineinabyss.geary.ecs.engine.iteration.QueryResult
-import com.mineinabyss.geary.ecs.entities.parent
-import com.mineinabyss.geary.minecraft.components.DenyStacking
+import com.mineinabyss.geary.ecs.entities.prefabs
 import com.mineinabyss.geary.minecraft.components.Stackable
 import com.mineinabyss.idofront.messaging.broadcast
-import com.mineinabyss.idofront.messaging.broadcastVal
 import com.mineinabyss.looty.tracking.toGearyOrNull
+import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.inventory.ItemStack
 
 object ItemStackingSystem : TickingSystem(), Listener {
     private val QueryResult.stackable by get<Stackable>()
-    private val QueryResult.denyStacking by get<DenyStacking>()
-    private val QueryResult.item by get<ItemStack>()
 
-    override fun QueryResult.tick() {
-        entity.parent?.with { player: Player ->
-            val gearyItem = item.toGearyOrNull(player) ?: return
-            gearyItem.get<DenyStacking>() ?: return
-            gearyItem.remove<DenyStacking>()
-            gearyItem.get<DenyStacking>().broadcastVal("denystacking: ")
-        }
-    }
-
-    @EventHandler
-    fun InventoryClickEvent.onStackingItems() {
-        if (!click.isLeftClick) return
-
+    @EventHandler(priority = EventPriority.LOW)
+    fun InventoryClickEvent.onCombineItems() {
         val player = inventory.holder as? Player ?: return
-        val cursorClone = cursor?.clone() ?: return
-        val gearyCursor = cursor?.toGearyOrNull(player)
-        val gearyCurrentItem = currentItem?.toGearyOrNull(player)
-        val newSize: Int? = cursor?.amount?.plus(currentItem!!.amount)
-        val newStack = gearyCurrentItem?.get<Stackable>() ?: return
-        gearyCursor?.get<Stackable>() ?: return
+        val currItem = currentItem
+        val cursor = cursor ?: return
+        val gearyCursor = cursor.toGearyOrNull(player) ?: return
+        val gearyCurrentItem = currItem?.toGearyOrNull(player)
+        val stackable = gearyCurrentItem?.get<Stackable>()
 
+        //isCancelled = true
 
-        if (newSize!! <= newStack.stackSize) {
-            cursor?.amount.broadcastVal("cursor1: ")
-            //currentItem!!.amount -= 1
-            //cursor!!.amount += 1
-            broadcast("allowed")
-            newSize.broadcastVal("newsize: ")
-            isCancelled = true
-            view.cursor = null
-            //currentItem = clone
-            while (currentItem!!.amount < newStack.stackSize && cursor?.amount != 0) {
-                currentItem!!.amount += 1
-                cursor?.amount = cursor?.amount?.minus(1)!!
+        if (gearyCurrentItem?.prefabs != gearyCursor.prefabs && currentItem!!.type != Material.AIR) return
+
+        if (isLeftClick) {
+            if (currentItem?.type == Material.AIR) {
+                currentItem = cursor.clone()
+                view.cursor = null
+                return
             }
-            //cursor = null
-
-            currentItem?.amount.broadcastVal("curr1: ")
+            while (currItem!!.amount < stackable!!.stackSize && view.cursor?.amount!! > 0) {
+                currItem.amount += 1
+                view.cursor?.subtract()
+            }
             return
         }
-//        if (newSize > cursor?.amount!!){
-//            while (currentItem!!.amount < newStack.stackSize){
-//                currentItem!!.amount += 1
-//                cursor?.amount = cursor?.amount?.minus(1)!!
-//            }
-//        }
-        if (currentItem!!.amount == newStack.stackSize) {
-            broadcast("ultra deny")
+
+        if (isRightClick) {
+            if (currentItem?.type == Material.AIR) {
+                currentItem = cursor.clone()
+                currentItem?.amount = 1
+                view.cursor?.subtract()
+            }
+            if (currItem!!.amount < stackable!!.stackSize) {
+                currItem.amount += 1
+                view.cursor?.subtract()
+            }
             return
+        }
+
+        if (isShiftClick) {
+            broadcast("bruh")
+            inventory.contents.forEach {
+                val item = it.toGearyOrNull(player)
+                item?.get<Stackable>() ?: return
+                if (currentItem!!.amount + it.amount <= stackable!!.stackSize) {
+                    it.amount += currentItem!!.amount
+                    currentItem?.amount = 0
+                }
+                return
+            }
         }
     }
 }
