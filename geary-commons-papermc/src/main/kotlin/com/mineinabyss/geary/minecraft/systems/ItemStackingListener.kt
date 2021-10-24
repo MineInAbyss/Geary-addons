@@ -1,7 +1,5 @@
 package com.mineinabyss.geary.minecraft.systems
 
-import com.mineinabyss.geary.ecs.api.systems.TickingSystem
-import com.mineinabyss.geary.ecs.engine.iteration.QueryResult
 import com.mineinabyss.geary.ecs.entities.prefabs
 import com.mineinabyss.geary.minecraft.components.Stackable
 import com.mineinabyss.idofront.messaging.broadcast
@@ -13,8 +11,7 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
 
-object ItemStackingSystem : TickingSystem(), Listener {
-    private val QueryResult.stackable by get<Stackable>()
+object ItemStackingListener : Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     fun InventoryClickEvent.onCombineItems() {

@@ -15,7 +15,6 @@ class GearyCommonsPlugin : JavaPlugin() {
                 BossBarDisplaySystem,
                 CooldownDisplaySystem,
                 PassiveActionsSystem,
-                ItemStackingSystem,
             )
             autoscanAll()
         }
@@ -24,6 +23,7 @@ class GearyCommonsPlugin : JavaPlugin() {
             WearableItemListener,
             ItemActionsListener,
             MobActionsListener,
+            ItemStackingListener,
         )
     }
 }
