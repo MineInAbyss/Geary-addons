@@ -6,6 +6,8 @@ import com.mineinabyss.geary.minecraft.systems.*
 import com.mineinabyss.idofront.plugin.registerEvents
 import org.bukkit.plugin.java.JavaPlugin
 
+val gearyCommonsPlugin by lazy { JavaPlugin.getPlugin(GearyCommonsPlugin::class.java) }
+
 class GearyCommonsPlugin : JavaPlugin() {
     override fun onEnable() {
         gearyAddon {
@@ -13,6 +15,7 @@ class GearyCommonsPlugin : JavaPlugin() {
                 BossBarDisplaySystem,
                 CooldownDisplaySystem,
                 PassiveActionsSystem,
+                ItemStackingSystem,
             )
             autoscanAll()
         }
