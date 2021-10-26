@@ -2,6 +2,7 @@ package com.mineinabyss.geary.minecraft.systems
 
 import com.mineinabyss.geary.ecs.entities.prefabs
 import com.mineinabyss.geary.minecraft.components.Stackable
+import com.mineinabyss.idofront.messaging.broadcast
 import com.mineinabyss.idofront.messaging.broadcastVal
 import com.mineinabyss.looty.tracking.toGearyOrNull
 import org.bukkit.Material
@@ -38,9 +39,8 @@ object ItemStackingListener : Listener {
                     val gearyIt = it.toGearyOrNull(player) ?: return@forEach
                     if (gearyIt.prefabs != gearyCursor?.prefabs) return@forEach
                     while (cursor.amount < gearyCursor.get<Stackable>()?.stackSize!! && it.amount > 0) {
-                        cursor.amount += it.amount
-                        it.subtract(it.amount)
-                        return@forEach
+                        cursor.amount += 1
+                        it.subtract()
                     }
                     return@forEach
                 }
@@ -79,20 +79,33 @@ object ItemStackingListener : Listener {
                     view.cursor?.subtract()
                 }
             }
-            //TODO too hard get fucked its 3am i wanna sleep
-//            isShiftClick -> {
-//                broadcast("bruh")
-//                inventory.contents.forEach {
-//                    val item = it.toGearyOrNull(player)
-//                    item?.get<Stackable>() ?: return@forEach
-//                    if (currentItem!!.amount + it.amount <= stackable!!.stackSize) {
-//                        it.amount += currentItem!!.amount
-//                        currentItem?.amount = 0
+
+            isShiftClick -> {
+                gearyCurrentItem ?: return
+                player.inventory.contents.forEach {
+                    if (currentItem == null) return
+                    val gearyIt = it.toGearyOrNull(player) ?: return@forEach
+                    if (gearyIt.prefabs != gearyCurrentItem.prefabs) return@forEach
+
+                    if (it.amount < gearyIt.get<Stackable>()!!.stackSize && currentItem!!.amount > 0) {
+                        broadcast(currentItem!!.amount)
+                        it.amount += 1
+                        currentItem!!.amount -= 1
+                        broadcast(currentItem!!.amount)
+                    }
+
+//                    gearyCommonsPlugin.schedule {
+//                        do {
+//                            broadcast(currentItem?.amount)
+//                            it.amount += 1
+//                            currentItem!!.amount -= 1
+//                            if (currentItem!!.amount == 0) return@schedule
+//
+//                        } while (it.amount < gearyIt.get<Stackable>()?.stackSize!! && currentItem?.amount!! > 0)
 //                    }
-//                    return@forEach
-//                }
-//                return
-//            }
+                }
+                return
+            }
             else -> isCancelled = false
         }
     }
