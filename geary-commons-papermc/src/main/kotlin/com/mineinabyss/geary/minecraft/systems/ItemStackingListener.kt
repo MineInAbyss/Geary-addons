@@ -80,29 +80,24 @@ object ItemStackingListener : Listener {
                 }
             }
 
-            isShiftClick -> {
+            action == InventoryAction.MOVE_TO_OTHER_INVENTORY || isShiftClick -> {//
                 gearyCurrentItem ?: return
-                player.inventory.contents.forEach {
-                    if (currentItem == null) return
-                    val gearyIt = it.toGearyOrNull(player) ?: return@forEach
+                player.inventory.storageContents.forEach {
+                    if (it == null) return@forEach // This fails after repeated attempts?
+                    val gearyIt = it.toGearyOrNull(player) ?: return@forEach // This fails after repeated attempts?
+                    broadcast("cock")
+                    val itStackable = gearyIt.get<Stackable>()?.stackSize ?: return
+                    val itMaxAdd = currItem.amount.coerceAtMost(itStackable - it.amount)
                     if (gearyIt.prefabs != gearyCurrentItem.prefabs) return@forEach
-
-                    if (it.amount < gearyIt.get<Stackable>()!!.stackSize && currentItem!!.amount > 0) {
-                        broadcast(currentItem!!.amount)
-                        it.amount += 1
-                        currentItem!!.amount -= 1
-                        broadcast(currentItem!!.amount)
+                    //if (it.amount > gearyIt.get<Stackable>()!!.stackSize || currItem.amount < 0) return
+                    broadcast("cock2")
+                    currItem.broadcastVal("curr: ")
+                    it.broadcastVal("it: ")
+                    if (it.amount < itStackable && currItem.amount > 0) {
+                        it.amount += itMaxAdd
+                        currItem.amount -= itMaxAdd
                     }
-
-//                    gearyCommonsPlugin.schedule {
-//                        do {
-//                            broadcast(currentItem?.amount)
-//                            it.amount += 1
-//                            currentItem!!.amount -= 1
-//                            if (currentItem!!.amount == 0) return@schedule
-//
-//                        } while (it.amount < gearyIt.get<Stackable>()?.stackSize!! && currentItem?.amount!! > 0)
-//                    }
+                    if (currItem.amount > 0) return@forEach
                 }
                 return
             }
