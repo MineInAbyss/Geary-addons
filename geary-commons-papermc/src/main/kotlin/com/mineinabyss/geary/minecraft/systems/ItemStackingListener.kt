@@ -2,8 +2,6 @@ package com.mineinabyss.geary.minecraft.systems
 
 import com.mineinabyss.geary.ecs.entities.prefabs
 import com.mineinabyss.geary.minecraft.components.Stackable
-import com.mineinabyss.idofront.messaging.broadcast
-import com.mineinabyss.idofront.messaging.broadcastVal
 import com.mineinabyss.looty.tracking.toGearyOrNull
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -16,13 +14,10 @@ object ItemStackingListener : Listener {
 
     @EventHandler
     fun InventoryClickEvent.onCombineItems() {
-        action.broadcastVal("Action: ")
         val player = inventory.holder as? Player ?: return
-        "inv click".broadcastVal()
         val currItem = currentItem
         val cursor = cursor!!
         val gearyCursor = cursor.toGearyOrNull(player)
-        "after cursor".broadcastVal()
         val gearyCurrentItem = currItem?.toGearyOrNull(player)
         val stackable = gearyCurrentItem?.get<Stackable>()
 
@@ -80,27 +75,23 @@ object ItemStackingListener : Listener {
                 }
             }
 
-            action == InventoryAction.MOVE_TO_OTHER_INVENTORY || isShiftClick -> {//
-                gearyCurrentItem ?: return
-                player.inventory.storageContents.forEach {
-                    if (it == null) return@forEach // This fails after repeated attempts?
-                    val gearyIt = it.toGearyOrNull(player) ?: return@forEach // This fails after repeated attempts?
-                    broadcast("cock")
-                    val itStackable = gearyIt.get<Stackable>()?.stackSize ?: return
-                    val itMaxAdd = currItem.amount.coerceAtMost(itStackable - it.amount)
-                    if (gearyIt.prefabs != gearyCurrentItem.prefabs) return@forEach
-                    //if (it.amount > gearyIt.get<Stackable>()!!.stackSize || currItem.amount < 0) return
-                    broadcast("cock2")
-                    currItem.broadcastVal("curr: ")
-                    it.broadcastVal("it: ")
-                    if (it.amount < itStackable && currItem.amount > 0) {
-                        it.amount += itMaxAdd
-                        currItem.amount -= itMaxAdd
-                    }
-                    if (currItem.amount > 0) return@forEach
-                }
-                return
-            }
+//            action == InventoryAction.MOVE_TO_OTHER_INVENTORY || isShiftClick -> {//
+//                gearyCurrentItem ?: return
+//                player.inventory.storageContents.forEach {
+//                    if (it == null) return@forEach // This fails after repeated attempts?
+//                    val gearyIt = it.toGearyOrNull(player) ?: return@forEach // This fails after repeated attempts?
+//                    val itStackable = gearyIt.get<Stackable>()?.stackSize ?: return
+//                    val itMaxAdd = currItem.amount.coerceAtMost(itStackable - it.amount)
+//                    itMaxAdd.broadcastVal("maxAdd: ")
+//                    if (gearyIt.prefabs != gearyCurrentItem.prefabs) return@forEach
+//                    do  {
+//                        it.amount + itMaxAdd
+//                        currItem.amount -= itMaxAdd
+//                    } while (it.amount < itStackable && currentItem?.amount!! > 0)
+//                    if (currItem.amount > 0) return@forEach
+//                }
+//                return
+//            }
             else -> isCancelled = false
         }
     }
