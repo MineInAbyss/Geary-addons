@@ -22,7 +22,7 @@ import org.bukkit.util.Vector
  */
 @Serializable
 @SerialName("geary:meteor")
-public class Meteor(
+public class MeteorAction(
     private val at: ConfigurableLocation = AtPlayerLocation(),
     private val events: Events
 ) : GearyAction() {

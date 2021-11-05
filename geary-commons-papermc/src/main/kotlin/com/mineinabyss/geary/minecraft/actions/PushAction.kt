@@ -32,10 +32,15 @@ public data class PushAction(
 
     override fun GearyEntity.run(): Boolean {
         // Knockback resistance goes from 0 to 1 as a percentage where 1 is fully resisted, default is 0
-        val resistance = 1 - ((bukkitEntity as? LivingEntity)?.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE)?.value ?: 0.0)
+        val resistance =
+            1 - ((bukkitEntity as? LivingEntity)?.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE)?.value ?: 0.0)
 
         bukkitEntity.velocity =
-            (bukkitEntity.location - sourceLoc).toVector().normalize() * (resistance * force) + Vector(0.0, resistance * yOffset, 0.0)
+            (bukkitEntity.location - sourceLoc).toVector().normalize() * (resistance * force) + Vector(
+                0.0,
+                resistance * yOffset,
+                0.0
+            )
 
         return true
     }

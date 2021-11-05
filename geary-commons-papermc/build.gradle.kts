@@ -17,6 +17,7 @@ plugins {
 
 repositories {
     maven("https://repo.mineinabyss.com/releases")
+    maven("https://jitpack.io")
     mavenLocal()
 }
 
@@ -26,6 +27,12 @@ dependencies {
 
     compileOnly("com.mineinabyss:looty:$lootyVersion")
     compileOnly("com.mineinabyss:mobzy:$mobzyVersion")
+
+    // From Geary
+    slim(Deps.kotlinx.serialization.json)
+    slim(Deps.kotlinx.serialization.kaml)
+    slim(Deps.kotlinx.coroutines)
+    slim(Deps.minecraft.skedule)
 
     api(project(":geary-commons"))
     compileOnly("com.mineinabyss:geary-platform-papermc:$gearyVersion")

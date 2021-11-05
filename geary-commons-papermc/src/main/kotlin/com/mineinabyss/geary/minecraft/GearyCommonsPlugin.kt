@@ -7,6 +7,8 @@ import com.mineinabyss.idofront.plugin.registerEvents
 import com.mineinabyss.idofront.slimjar.IdofrontSlimjar
 import org.bukkit.plugin.java.JavaPlugin
 
+val gearyCommonsPlugin by lazy { JavaPlugin.getPlugin(GearyCommonsPlugin::class.java) }
+
 class GearyCommonsPlugin : JavaPlugin() {
     override fun onEnable() {
         IdofrontSlimjar.loadToLibraryLoader(this)
