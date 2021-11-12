@@ -1,3 +1,5 @@
+import Com_mineinabyss_conventions_platform_gradle.Deps
+
 val idofrontVersion: String by project
 val gearyVersion: String by project
 
@@ -8,7 +10,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json")
+    compileOnly(Deps.kotlinx.serialization.json)
 
     implementation("com.mineinabyss:idofront:$idofrontVersion")
     compileOnly("com.mineinabyss:geary-core:$gearyVersion")
