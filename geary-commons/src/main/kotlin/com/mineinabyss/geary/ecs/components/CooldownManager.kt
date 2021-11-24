@@ -1,8 +1,8 @@
 package com.mineinabyss.geary.ecs.components
 
-import com.mineinabyss.idofront.time.TimeSpan
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 /**
  * > geary:cooldowns
@@ -39,10 +39,10 @@ public data class CooldownManager(
      *
      * @return whether [run] was executed.
      */
-    public inline fun onCooldown(key: String, length: TimeSpan, run: () -> Unit): Boolean {
+    public inline fun onCooldown(key: String, length: Duration, run: () -> Unit): Boolean {
         if (isDone(key)) {
             run()
-            start(key, length.inMillis)
+            start(key, length.inWholeMilliseconds)
             return true
         }
         return false
@@ -57,10 +57,10 @@ public data class CooldownManager(
      *
      * @return whether [run] was executed.
      */
-    public inline fun onCooldownIf(key: String, length: TimeSpan, run: () -> Boolean): Boolean {
+    public inline fun onCooldownIf(key: String, length: Duration, run: () -> Boolean): Boolean {
         if (isDone(key))
             if (run()) {
-                start(key, length.inMillis)
+                start(key, length.inWholeMilliseconds)
                 return true
             }
         return false

@@ -2,9 +2,10 @@ package com.mineinabyss.geary.minecraft.actions
 
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
 import com.mineinabyss.geary.ecs.components.CooldownManager
-import com.mineinabyss.idofront.time.TimeSpan
+import com.mineinabyss.idofront.serialization.DurationSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 /**
  * > geary:cooldown
@@ -16,7 +17,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("geary:cooldown")
 class CooldownConfig(
-    val length: TimeSpan,
+    @Serializable(with = DurationSerializer::class)
+    val length: Duration,
     val key: String,
 )
 
