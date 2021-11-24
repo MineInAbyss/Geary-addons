@@ -1,9 +1,9 @@
 package com.mineinabyss.geary.minecraft.systems
 
+import com.mineinabyss.geary.ecs.accessors.ResultScope
 import com.mineinabyss.geary.ecs.api.entities.with
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
 import com.mineinabyss.geary.ecs.components.CooldownManager
-import com.mineinabyss.geary.ecs.engine.iteration.QueryResult
 import com.mineinabyss.geary.ecs.entities.parent
 import com.mineinabyss.looty.ecs.components.inventory.SlotType
 import org.bukkit.ChatColor
@@ -21,12 +21,12 @@ object CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
         has<SlotType.Held>()
     }
 
-    private val QueryResult.cooldownManager by get<CooldownManager>()
+    private val ResultScope.cooldownManager by get<CooldownManager>()
 
     private const val displayLength = 10
     private const val displayChar = '■'
 
-    override fun QueryResult.tick() {
+    override fun ResultScope.tick() {
         entity.parent?.with { player: Player ->
             player.sendActionBar(cooldownManager.incompleteCooldowns.entries.joinToString("\n") { (key, cooldown) ->
                 val length = Duration.milliseconds(cooldown.length)

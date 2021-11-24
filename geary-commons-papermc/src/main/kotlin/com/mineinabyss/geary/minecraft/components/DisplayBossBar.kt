@@ -1,6 +1,5 @@
 package com.mineinabyss.geary.minecraft.components
 
-import com.mineinabyss.geary.ecs.api.autoscan.AutoscanComponent
 import com.mineinabyss.idofront.messaging.color
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -18,7 +17,6 @@ import java.util.*
  */
 @Serializable
 @SerialName("geary:bossbar")
-@AutoscanComponent
 class DisplayBossBar(
     val title: String,
     val color: BarColor,

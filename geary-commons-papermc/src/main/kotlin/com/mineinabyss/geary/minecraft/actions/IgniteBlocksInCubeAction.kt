@@ -1,50 +1,29 @@
 package com.mineinabyss.geary.minecraft.actions
 
-import com.mineinabyss.geary.ecs.api.actions.GearyAction
-import com.mineinabyss.geary.ecs.api.entities.GearyEntity
-import com.mineinabyss.geary.minecraft.properties.AtPlayerLocation
-import com.mineinabyss.geary.minecraft.properties.ConfigurableLocation
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import org.bukkit.Location
 import org.bukkit.Material
 
 /**
- * Ignites blocks in a cube around a given location
+ * Ignites blocks in a cube around a given location with a maximum size of 20
  */
-@Serializable
-@SerialName("geary:ignite_area")
-class IgniteBlocksInCubeAction(
-    private val size: Double,
-    private val at: ConfigurableLocation = AtPlayerLocation()
-) : GearyAction() {
-    private val GearyEntity.loc by at
-
-    override fun GearyEntity.run(): Boolean {
-        val intSize = size as Int
-        for (x in -intSize..intSize) {
-            for (y in -intSize..intSize) {
-                for (z in -intSize..intSize) {
-                    val igniteLocation = Location(
-                        loc.world,
-                        loc.x + x,
-                        loc.y + y,
-                        loc.z + z
-                    )
-                    if (loc.block.isEmpty) {
-                        val belowLocation = Location(
-                            igniteLocation.world,
-                            igniteLocation.x,
-                            igniteLocation.y - 1,
-                            igniteLocation.z
-                        )
-                        if (!(belowLocation.block.isEmpty || belowLocation.block.isLiquid))
-                            loc.block.type = Material.FIRE
-                    }
+fun Location.igniteBlocks(size: Int): Boolean {
+    val coercedSize = size.coerceAtMost(20) // Any bigger and we should start using WorldEdit
+    for (x in -coercedSize..coercedSize) {
+        for (y in -coercedSize..coercedSize) {
+            for (z in -coercedSize..coercedSize) {
+                val igniteLocation = Location(
+                    this.world,
+                    this.x + x,
+                    this.y + y,
+                    this.z + z
+                )
+                if (igniteLocation.block.isEmpty) {
+                    val belowLocation = igniteLocation.clone().subtract(0.0, -1.0, 0.0)
+                    if (!(belowLocation.block.isEmpty || belowLocation.block.isLiquid))
+                        igniteLocation.block.type = Material.FIRE
                 }
             }
         }
-        return true
     }
-
+    return true
 }
