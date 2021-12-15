@@ -10,7 +10,6 @@ plugins {
     id("com.mineinabyss.conventions.kotlin")
     id("com.mineinabyss.conventions.papermc")
     id("com.mineinabyss.conventions.copyjar")
-    id("com.mineinabyss.conventions.slimjar")
     id("com.mineinabyss.conventions.publication")
     kotlin("plugin.serialization")
 }
@@ -22,19 +21,21 @@ repositories {
 }
 
 dependencies {
-    slim(kotlin("stdlib-jdk8"))
-    slim(Deps.kotlinx.serialization.json)
+    // MineInAbyss platform
+    compileOnly(Deps.kotlin.stdlib)
+    compileOnly(Deps.kotlinx.serialization.json)
+    compileOnly(Deps.kotlinx.serialization.json)
+    compileOnly(Deps.kotlinx.serialization.kaml)
+    compileOnly(Deps.kotlinx.coroutines)
+    compileOnly(Deps.minecraft.skedule)
 
+    // Other plugins
     compileOnly("com.mineinabyss:looty:$lootyVersion")
     compileOnly("com.mineinabyss:mobzy:$mobzyVersion")
 
-    // From Geary
-    slim(Deps.kotlinx.serialization.json)
-    slim(Deps.kotlinx.serialization.kaml)
-    slim(Deps.kotlinx.coroutines)
-    slim(Deps.minecraft.skedule)
-
     api(project(":geary-commons"))
     compileOnly("com.mineinabyss:geary-platform-papermc:$gearyVersion")
-    compileOnly("com.mineinabyss:idofront-nms:$idofrontVersion")
+
+    // Shade
+    implementation("com.mineinabyss:idofront-nms:$idofrontVersion")
 }

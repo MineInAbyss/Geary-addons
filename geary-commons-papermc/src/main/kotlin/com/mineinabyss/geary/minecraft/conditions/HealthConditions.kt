@@ -4,10 +4,11 @@
 
 package com.mineinabyss.geary.minecraft.conditions
 
+import com.mineinabyss.geary.ecs.accessors.EventResultScope
 import com.mineinabyss.geary.ecs.accessors.ResultScope
-import com.mineinabyss.geary.ecs.api.systems.GearyHandlerScope
+import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
-import com.mineinabyss.geary.ecs.events.onCheck
+import com.mineinabyss.geary.ecs.events.handlers.CheckHandler
 import com.mineinabyss.idofront.serialization.DoubleRangeSerializer
 import com.mineinabyss.idofront.typealiases.BukkitEntity
 import com.mineinabyss.idofront.util.DoubleRange
@@ -29,19 +30,19 @@ class HealthConditions(
     val withinPercent: DoubleRange? = null,
 )
 
-object HealthConditionChecker : GearyListener() {
+@AutoScan
+class HealthConditionChecker : GearyListener() {
     private val ResultScope.bukkit by get<BukkitEntity>()
     private val ResultScope.health by get<HealthConditions>()
 
-    override fun GearyHandlerScope.register() {
-        onCheck {
-            val living = bukkit as? LivingEntity ?: return@onCheck false
+    private inner class CheckHealth : CheckHandler() {
+        override fun ResultScope.check(event: EventResultScope): Boolean {
+            val living = bukkit as? LivingEntity ?: return false
 
-            (health.within nullOr { living.health in it }
+            return (health.within nullOr { living.health in it }
                     && health.withinPercent nullOr {
-                living.health / (living.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.value ?: return@onCheck false) in it
+                living.health / (living.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.value ?: return false) in it
             })
-
         }
     }
 }

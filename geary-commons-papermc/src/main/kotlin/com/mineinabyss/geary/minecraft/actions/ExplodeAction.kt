@@ -1,8 +1,10 @@
 package com.mineinabyss.geary.minecraft.actions
 
+import com.mineinabyss.geary.ecs.accessors.EventResultScope
 import com.mineinabyss.geary.ecs.accessors.ResultScope
-import com.mineinabyss.geary.ecs.api.systems.GearyHandlerScope
+import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
+import com.mineinabyss.geary.ecs.events.handlers.GearyHandler
 import com.mineinabyss.idofront.spawning.spawn
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -18,16 +20,24 @@ data class Explosion(
     val fuseTicks: Int = 0
 )
 
-class ExplosionHandler(): GearyListener() {
-    private val ResultScope.explosion by get<Explosion>()
-    private val ResultScope.location by get<Location>()
+class Explode
 
-    override fun GearyHandlerScope.register() {
-        on<Explosion> {
+@AutoScan
+class ExplosionSystem() : GearyListener() {
+    private val ResultScope.explosion by get<Explosion>()
+
+    private inner class OnExplosion : GearyHandler() {
+        private val EventResultScope.location by get<Location>()
+
+        init {
+            has<Explode>()
+        }
+
+        override fun ResultScope.handle(event: EventResultScope) {
             if (explosion.fuseTicks <= 0)
-                location.createExplosion(explosion.power, explosion.setFire, explosion.breakBlocks)
+                event.location.createExplosion(explosion.power, explosion.setFire, explosion.breakBlocks)
             else //only spawn a tnt in if we have a fuse
-                location.spawn<TNTPrimed> { fuseTicks = explosion.fuseTicks }
+                event.location.spawn<TNTPrimed> { fuseTicks = explosion.fuseTicks }
         }
     }
 }

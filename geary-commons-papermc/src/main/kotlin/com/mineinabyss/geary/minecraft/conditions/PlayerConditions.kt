@@ -1,9 +1,10 @@
 package com.mineinabyss.geary.minecraft.conditions
 
+import com.mineinabyss.geary.ecs.accessors.EventResultScope
 import com.mineinabyss.geary.ecs.accessors.ResultScope
-import com.mineinabyss.geary.ecs.api.systems.GearyHandlerScope
+import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
-import com.mineinabyss.geary.ecs.events.onCheck
+import com.mineinabyss.geary.ecs.events.handlers.CheckHandler
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.bukkit.entity.Player
@@ -19,16 +20,15 @@ class PlayerConditions(
     val isSprinting: Boolean? = null,
 )
 
-object PlayerConditionsChecker : GearyListener() {
+@AutoScan
+class PlayerConditionsChecker : GearyListener() {
     private val ResultScope.player by get<Player>()
     private val ResultScope.conditions by get<PlayerConditions>()
 
-
-    override fun GearyHandlerScope.register() {
-        onCheck {
+    private inner class CheckPlayer : CheckHandler() {
+        override fun ResultScope.check(event: EventResultScope): Boolean =
             conditions.isSneaking nullOrEquals player.isSneaking &&
                     conditions.isSprinting nullOrEquals player.isSprinting
-        }
     }
 }
 
