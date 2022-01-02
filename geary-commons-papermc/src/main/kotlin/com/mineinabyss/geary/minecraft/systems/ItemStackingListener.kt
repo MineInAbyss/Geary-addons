@@ -2,6 +2,7 @@ package com.mineinabyss.geary.minecraft.systems
 
 import com.mineinabyss.geary.ecs.entities.prefabs
 import com.mineinabyss.geary.minecraft.components.Stackable
+import com.mineinabyss.looty.tracking.toGearyFromUUIDOrNull
 import com.mineinabyss.looty.tracking.toGearyOrNull
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -17,9 +18,10 @@ object ItemStackingListener : Listener {
         val player = inventory.holder as? Player ?: return
         val currItem = currentItem
         val cursor = cursor!!
-        val gearyCursor = cursor.toGearyOrNull(player)
-        val gearyCurrentItem = currItem?.toGearyOrNull(player)
+        val gearyCursor = cursor.toGearyFromUUIDOrNull()
+        val gearyCurrentItem = currItem?.toGearyFromUUIDOrNull()
         val stackable = gearyCurrentItem?.get<Stackable>()
+        val cursorStacksize = gearyCursor?.get<Stackable>()?.stackSize
 
         if (gearyCurrentItem?.has<Stackable>() != true && gearyCursor?.has<Stackable>() != true) return
 
@@ -33,7 +35,7 @@ object ItemStackingListener : Listener {
                     if (it == null) return@forEach
                     val gearyIt = it.toGearyOrNull(player) ?: return@forEach
                     if (gearyIt.prefabs != gearyCursor?.prefabs) return@forEach
-                    while (cursor.amount < gearyCursor.get<Stackable>()?.stackSize!! && it.amount > 0) {
+                    while (cursor.amount < gearyCursor.get<Stackable>()?.stackSize!! && it.amount > 0 && it.amount < cursorStacksize!!) {
                         cursor.amount += 1
                         it.subtract()
                     }
@@ -51,7 +53,7 @@ object ItemStackingListener : Listener {
                     view.cursor = null
                     return
                 }
-                while (currItem!!.amount < stackable!!.stackSize && view.cursor?.amount!! > 0) {
+                while (currItem?.amount!! < stackable!!.stackSize && view.cursor?.amount!! > 0) {
                     currItem.amount += 1
                     view.cursor?.subtract()
                 }
@@ -66,32 +68,14 @@ object ItemStackingListener : Listener {
                 if (currentItem?.type == Material.AIR) {
                     currentItem = cursor.clone()
                     currentItem?.amount = 1
-                    view.cursor!!.subtract()
+                    view.cursor?.subtract()
                     return
                 }
-                if (currItem!!.amount < stackable!!.stackSize) {
+                if (currItem?.amount!! < stackable?.stackSize!!) {
                     currItem.amount += 1
                     view.cursor?.subtract()
                 }
             }
-
-//            action == InventoryAction.MOVE_TO_OTHER_INVENTORY || isShiftClick -> {//
-//                gearyCurrentItem ?: return
-//                player.inventory.storageContents.forEach {
-//                    if (it == null) return@forEach // This fails after repeated attempts?
-//                    val gearyIt = it.toGearyOrNull(player) ?: return@forEach // This fails after repeated attempts?
-//                    val itStackable = gearyIt.get<Stackable>()?.stackSize ?: return
-//                    val itMaxAdd = currItem.amount.coerceAtMost(itStackable - it.amount)
-//                    itMaxAdd.broadcastVal("maxAdd: ")
-//                    if (gearyIt.prefabs != gearyCurrentItem.prefabs) return@forEach
-//                    do  {
-//                        it.amount + itMaxAdd
-//                        currItem.amount -= itMaxAdd
-//                    } while (it.amount < itStackable && currentItem?.amount!! > 0)
-//                    if (currItem.amount > 0) return@forEach
-//                }
-//                return
-//            }
             else -> isCancelled = false
         }
     }

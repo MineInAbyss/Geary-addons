@@ -2,6 +2,7 @@ package com.mineinabyss.geary.minecraft
 
 import com.mineinabyss.geary.minecraft.dsl.gearyAddon
 import com.mineinabyss.geary.minecraft.events.ItemActionsListener
+import com.mineinabyss.geary.minecraft.systems.ItemStackingListener
 import com.mineinabyss.geary.minecraft.systems.MobActionsListener
 import com.mineinabyss.geary.minecraft.systems.WearableItemListener
 import com.mineinabyss.idofront.platforms.IdofrontPlatforms
