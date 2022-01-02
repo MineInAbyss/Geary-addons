@@ -1,8 +1,8 @@
 package com.mineinabyss.geary.ecs.components
 
-import com.mineinabyss.geary.ecs.api.autoscan.AutoscanComponent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 /**
  * > geary:cooldowns
@@ -13,10 +13,10 @@ import kotlinx.serialization.Serializable
  * @property completionTime A map of cooldown keys to the value of [System.currentTimeMillis] when they are complete.
  * @property incompleteCooldowns Calculated map of incomplete cooldowns.
  */
-//TODO persist cooldowns on entity, but dont serialize any cooldowns that are already complete
+// TODO persist cooldowns on entity, but dont serialize any cooldowns that are already complete
+// TODO use relations to accomplish this
 @Serializable
 @SerialName("geary:cooldowns")
-@AutoscanComponent
 public data class CooldownManager(
     private val completionTime: MutableMap<String, Cooldown> = mutableMapOf()
 ) {
@@ -39,10 +39,10 @@ public data class CooldownManager(
      *
      * @return whether [run] was executed.
      */
-    public inline fun onCooldown(key: String, length: Long, run: () -> Unit): Boolean {
+    public inline fun onCooldown(key: String, length: Duration, run: () -> Unit): Boolean {
         if (isDone(key)) {
             run()
-            start(key, length)
+            start(key, length.inWholeMilliseconds)
             return true
         }
         return false
@@ -57,10 +57,10 @@ public data class CooldownManager(
      *
      * @return whether [run] was executed.
      */
-    public inline fun onCooldownIf(key: String, length: Long, run: () -> Boolean): Boolean {
+    public inline fun onCooldownIf(key: String, length: Duration, run: () -> Boolean): Boolean {
         if (isDone(key))
             if (run()) {
-                start(key, length)
+                start(key, length.inWholeMilliseconds)
                 return true
             }
         return false

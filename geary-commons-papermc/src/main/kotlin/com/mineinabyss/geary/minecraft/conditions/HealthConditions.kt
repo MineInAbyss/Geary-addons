@@ -4,15 +4,18 @@
 
 package com.mineinabyss.geary.minecraft.conditions
 
-import com.mineinabyss.geary.ecs.api.conditions.GearyCondition
-import com.mineinabyss.geary.ecs.api.entities.GearyEntity
+import com.mineinabyss.geary.ecs.accessors.EventResultScope
+import com.mineinabyss.geary.ecs.accessors.ResultScope
+import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
+import com.mineinabyss.geary.ecs.api.systems.GearyListener
+import com.mineinabyss.geary.ecs.events.handlers.CheckHandler
 import com.mineinabyss.idofront.serialization.DoubleRangeSerializer
+import com.mineinabyss.idofront.typealiases.BukkitEntity
 import com.mineinabyss.idofront.util.DoubleRange
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
 import org.bukkit.attribute.Attribute
-import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 
@@ -21,19 +24,25 @@ import org.bukkit.entity.Player
  */
 //TODO add more!
 @Serializable
-@SerialName("geary:health")
-public class HealthConditions(
-    public val within: DoubleRange? = null,
-    public val withinPercent: DoubleRange? = null,
-) : GearyCondition() {
-    private val GearyEntity.entity by get<Entity>()
+@SerialName("geary:check.health")
+class HealthConditions(
+    val within: DoubleRange? = null,
+    val withinPercent: DoubleRange? = null,
+)
 
-    override fun GearyEntity.check(): Boolean {
-        val living = entity as? LivingEntity ?: return false
+@AutoScan
+class HealthConditionChecker : GearyListener() {
+    private val ResultScope.bukkit by get<BukkitEntity>()
+    private val ResultScope.health by get<HealthConditions>()
 
-        return within nullOr { living.health in it }
-                && withinPercent nullOr {
-            living.health / (living.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.value ?: return false) in it
+    private inner class CheckHealth : CheckHandler() {
+        override fun ResultScope.check(event: EventResultScope): Boolean {
+            val living = bukkit as? LivingEntity ?: return false
+
+            return (health.within nullOr { living.health in it }
+                    && health.withinPercent nullOr {
+                living.health / (living.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.value ?: return false) in it
+            })
         }
     }
 }

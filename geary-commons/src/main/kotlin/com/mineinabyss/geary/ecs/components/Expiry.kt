@@ -1,10 +1,10 @@
 package com.mineinabyss.geary.ecs.components
 
-import com.mineinabyss.geary.ecs.api.autoscan.AutoscanComponent
-import com.mineinabyss.idofront.time.TimeSpan
+import com.mineinabyss.idofront.serialization.DurationSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import kotlin.time.Duration
 
 /**
  * > geary:expiry
@@ -14,12 +14,12 @@ import kotlinx.serialization.Transient
  */
 @Serializable
 @SerialName("geary:expiry")
-@AutoscanComponent
 public class Expiry(
-    public val duration: TimeSpan
+    @Serializable(with = DurationSerializer::class)
+    public val duration: Duration
 ) {
     @Transient
-    public val endTime: Long = System.currentTimeMillis() + duration.inMillis
+    public val endTime: Long = System.currentTimeMillis() + duration.inWholeMilliseconds
 
     public fun timeOver(): Boolean = System.currentTimeMillis() > endTime
     public operator fun component1(): Long = endTime

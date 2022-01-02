@@ -1,15 +1,12 @@
-@file:UseSerializers(
-    DoubleRangeSerializer::class
-)
-
 package com.mineinabyss.geary.minecraft.conditions
 
-import com.mineinabyss.geary.ecs.api.conditions.GearyCondition
-import com.mineinabyss.geary.ecs.api.entities.GearyEntity
-import com.mineinabyss.idofront.serialization.DoubleRangeSerializer
+import com.mineinabyss.geary.ecs.accessors.EventResultScope
+import com.mineinabyss.geary.ecs.accessors.ResultScope
+import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
+import com.mineinabyss.geary.ecs.api.systems.GearyListener
+import com.mineinabyss.geary.ecs.events.handlers.CheckHandler
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
 import org.bukkit.entity.Player
 
 /**
@@ -17,16 +14,22 @@ import org.bukkit.entity.Player
  */
 //TODO add more!
 @Serializable
-@SerialName("geary:player")
-public class PlayerConditions(
-    public val isSneaking: Boolean? = null,
-    public val isSprinting: Boolean? = null,
-) : GearyCondition() {
-    private val GearyEntity.player by get<Player>()
+@SerialName("geary:check.player")
+class PlayerConditions(
+    val isSneaking: Boolean? = null,
+    val isSprinting: Boolean? = null,
+)
 
-    override fun GearyEntity.check(): Boolean =
-        isSneaking nullOrEquals player.isSneaking &&
-                isSprinting nullOrEquals player.isSprinting
+@AutoScan
+class PlayerConditionsChecker : GearyListener() {
+    private val ResultScope.player by get<Player>()
+    private val ResultScope.conditions by get<PlayerConditions>()
+
+    private inner class CheckPlayer : CheckHandler() {
+        override fun ResultScope.check(event: EventResultScope): Boolean =
+            conditions.isSneaking nullOrEquals player.isSneaking &&
+                    conditions.isSprinting nullOrEquals player.isSprinting
+    }
 }
 
 internal infix fun <T> T?.nullOrEquals(other: T?): Boolean =

@@ -23,7 +23,15 @@ repositories {
 }
 
 dependencies {
+    // MineInAbyss platform
+    compileOnly(Deps.kotlin.stdlib)
     compileOnly(Deps.kotlinx.serialization.json)
+    compileOnly(Deps.kotlinx.serialization.json)
+    compileOnly(Deps.kotlinx.serialization.kaml)
+    compileOnly(Deps.kotlinx.coroutines)
+    compileOnly(Deps.minecraft.skedule)
+
+    // Other plugins
     compileOnly("com.mineinabyss:looty:$lootyVersion")
     compileOnly("com.mineinabyss:mobzy:$mobzyVersion")
 
@@ -35,5 +43,7 @@ dependencies {
 
     api(project(":geary-commons"))
     compileOnly("com.mineinabyss:geary-platform-papermc:$gearyVersion")
-    compileOnly("com.mineinabyss:idofront-nms:$idofrontVersion")
+
+    // Shade
+    implementation("com.mineinabyss:idofront-nms:$idofrontVersion")
 }

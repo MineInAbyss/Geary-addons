@@ -1,9 +1,8 @@
 package com.mineinabyss.geary.minecraft.actions
 
-import com.mineinabyss.geary.ecs.api.actions.GearyAction
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
-import com.mineinabyss.geary.minecraft.access.toBukkit
 import com.mineinabyss.idofront.serialization.DoubleRangeSerializer
+import com.mineinabyss.idofront.typealiases.BukkitEntity
 import com.mineinabyss.idofront.util.DoubleRange
 import com.mineinabyss.idofront.util.randomOrMin
 import kotlinx.serialization.SerialName
@@ -17,15 +16,26 @@ import org.bukkit.entity.LivingEntity
  */
 @Serializable
 @SerialName("geary:deal_damage")
-public data class DealDamageAction(
+data class DealDamageConf(
     val damage: @Serializable(with = DoubleRangeSerializer::class) DoubleRange,
     val minHealth: Double = 0.0,
     val ignoreArmor: Boolean = false,
-) : GearyAction() {
-    override fun GearyEntity.run(): Boolean {
-        val bukkit = toBukkit<LivingEntity>() ?: return false
+)
+
+fun GearyEntity.damage(
+    other: GearyEntity,
+    conf: DealDamageConf,
+    damager: BukkitEntity? = get(),
+    target: BukkitEntity? = other.get(),
+): Boolean {
+    if (damager !is LivingEntity) return false
+    if (target !is LivingEntity) return false
+
+    with(conf) {
+        val chosenDamage = damage.randomOrMin()
         //if true, damage dealt ignores armor, otherwise factors armor into damage calc
-        if (ignoreArmor) bukkit.health = (bukkit.health - damage.randomOrMin()).coerceAtLeast(minHealth) else bukkit.damage(damage.randomOrMin());
-        return true
+        if (ignoreArmor) target.health = (target.health - chosenDamage).coerceAtLeast(minHealth)
+        else target.damage(chosenDamage, damager);
     }
+    return true
 }
