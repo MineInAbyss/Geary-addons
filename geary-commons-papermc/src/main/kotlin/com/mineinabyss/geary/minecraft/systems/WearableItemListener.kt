@@ -79,7 +79,7 @@ object WearableItemListener : Listener {
 
         if (hand != EquipmentSlot.HAND) return
         if (rightClicked.type != EntityType.ARMOR_STAND) return
-        item.toGearyFromUUIDOrNull()?.get<Hat>() ?: return
+        item.toGearyOrNull(player)?.get<Hat>() ?: return
 
         armorstand.equipment.helmet = item
         item.subtract(1)
