@@ -3,12 +3,17 @@ package com.mineinabyss.geary.minecraft.systems
 import com.mineinabyss.geary.minecraft.components.Hat
 import com.mineinabyss.geary.minecraft.hasComponentsEncoded
 import com.mineinabyss.idofront.entities.rightClicked
+import com.mineinabyss.looty.tracking.toGearyFromUUIDOrNull
 import com.mineinabyss.looty.tracking.toGearyOrNull
+import org.bukkit.Sound
+import org.bukkit.entity.ArmorStand
+import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
+import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.EquipmentSlot
 
@@ -33,13 +38,13 @@ object WearableItemListener : Listener {
     fun InventoryClickEvent.clickToWear() {
         if (slotType !== InventoryType.SlotType.ARMOR) return
         if (rawSlot != 5) return
-        val player = inventory.holder as? Player ?: return
+        if (inventory.holder !is Player) return
 
         val cursor = cursor ?: return
 
         if (cursor.itemMeta?.persistentDataContainer?.hasComponentsEncoded == false) return
 
-        val entity = cursor.toGearyOrNull(player)
+        val entity = cursor.toGearyFromUUIDOrNull()
         entity?.get<Hat>() ?: return
 
         val currItem = currentItem?.clone() ?: return // item will not be null, it will be air
@@ -67,4 +72,18 @@ object WearableItemListener : Listener {
         currItem.subtract(1)
     }
 
+    @EventHandler
+    fun PlayerInteractAtEntityEvent.rightClickArmorStand() {
+        val item = player.inventory.itemInMainHand
+        val armorstand = rightClicked as ArmorStand
+
+        if (hand != EquipmentSlot.HAND) return
+        if (rightClicked.type != EntityType.ARMOR_STAND) return
+        item.toGearyOrNull(player)?.get<Hat>() ?: return
+
+        armorstand.equipment.helmet = item
+        item.subtract(1)
+        player.playSound(rightClicked.location, Sound.ITEM_ARMOR_EQUIP_NETHERITE, 1f, 1f)
+
+    }
 }
