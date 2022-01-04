@@ -2,8 +2,9 @@ package com.mineinabyss.geary.minecraft.systems
 
 import com.mineinabyss.geary.ecs.entities.prefabs
 import com.mineinabyss.geary.minecraft.components.Stackable
-import com.mineinabyss.looty.tracking.toGearyFromUUIDOrNull
+import com.mineinabyss.geary.minecraft.gearyCommonsPlugin
 import com.mineinabyss.looty.tracking.toGearyOrNull
+import com.okkero.skedule.schedule
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -18,8 +19,8 @@ object ItemStackingListener : Listener {
         val player = inventory.holder as? Player ?: return
         val currItem = currentItem
         val cursor = cursor!!
-        val gearyCursor = cursor.toGearyFromUUIDOrNull()
-        val gearyCurrentItem = currItem?.toGearyFromUUIDOrNull()
+        val gearyCursor = cursor.toGearyOrNull(player)
+        val gearyCurrentItem = currItem?.toGearyOrNull(player)
         val stackable = gearyCurrentItem?.get<Stackable>()
         val cursorStacksize = gearyCursor?.get<Stackable>()?.stackSize
 
@@ -74,6 +75,27 @@ object ItemStackingListener : Listener {
                 if (currItem?.amount!! < stackable?.stackSize!!) {
                     currItem.amount += 1
                     view.cursor?.subtract()
+                }
+            }
+            action == InventoryAction.MOVE_TO_OTHER_INVENTORY || isShiftClick -> {
+                val gearyCurrent = currItem?.toGearyOrNull(player) ?: return
+                if (currentItem == null) return
+
+                player.inventory.contents.forEach {
+                    if (it == null || it.type == Material.AIR) return@forEach
+
+                    val invItem = it.toGearyOrNull(player) ?: return@forEach
+                    val invItemStack = invItem.get<Stackable>()?.stackSize ?: return@forEach
+
+                    if (invItem.prefabs != gearyCurrent.prefabs) return@forEach
+                    gearyCommonsPlugin.schedule {
+                        while ((currItem.amount > 0) && (it.amount < invItemStack)) {
+                            currItem.amount -= 1
+                            it.amount += 1
+                            waitFor(1)
+                        }
+                    }
+                    if (it.amount == invItemStack && currItem.amount > 0) return@forEach
                 }
             }
             else -> isCancelled = false
