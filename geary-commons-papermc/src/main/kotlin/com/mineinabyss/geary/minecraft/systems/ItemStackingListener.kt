@@ -1,16 +1,20 @@
 package com.mineinabyss.geary.minecraft.systems
 
 import com.mineinabyss.geary.ecs.entities.prefabs
+import com.mineinabyss.geary.minecraft.access.toGearyOrNull
 import com.mineinabyss.geary.minecraft.components.Stackable
 import com.mineinabyss.geary.minecraft.gearyCommonsPlugin
+import com.mineinabyss.looty.ecs.components.PlayerInstancedItem
 import com.mineinabyss.looty.tracking.toGearyOrNull
 import com.okkero.skedule.schedule
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.inventory.InventoryAction
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
 
 object ItemStackingListener : Listener {
 
@@ -28,7 +32,14 @@ object ItemStackingListener : Listener {
 
         isCancelled = true
 
-        if (gearyCurrentItem?.prefabs != gearyCursor?.prefabs && currentItem?.type != Material.AIR && cursor.type != Material.AIR) return
+        if (gearyCurrentItem?.prefabs != gearyCursor?.prefabs) {
+            if (currentItem?.type == Material.AIR && cursor.type == Material.AIR) return
+            else {
+                currentItem = cursor.clone()
+                player.setItemOnCursor(currItem)
+                return
+            }
+        }
 
         when {
             action == InventoryAction.COLLECT_TO_CURSOR -> {
@@ -44,6 +55,7 @@ object ItemStackingListener : Listener {
                 }
             }
             isLeftClick && !isShiftClick -> {
+                if (currentItem == null) return
                 if (cursor.type == Material.AIR) {
                     view.cursor = currentItem?.clone()
                     currentItem = null
@@ -60,6 +72,7 @@ object ItemStackingListener : Listener {
                 }
             }
             isRightClick && !isShiftClick -> {
+                if (currentItem == null) return
                 if (cursor.type == Material.AIR) {
                     val clone = currentItem?.clone()
                     currentItem?.apply { amount /= 2 } // Takes the bigger half on odd-numbers like vanilla
@@ -100,5 +113,24 @@ object ItemStackingListener : Listener {
             }
             else -> isCancelled = false
         }
+    }
+
+    @EventHandler
+    fun InventoryCloseEvent.onPlayerClose() {
+        player.itemOnCursor.toGearyOrNull(player as Player)?.get<Stackable>() ?: return
+        player.inventory.contents.forEach {
+            if (it == null) return
+            if (player.itemOnCursor.toGearyOrNull(player as Player)?.has<PlayerInstancedItem>() == true) {
+                player.world.dropItem(player.location, player.itemOnCursor)
+                return
+            }
+        }
+        player.world.dropItem(player.location, player.itemOnCursor)
+    }
+
+    @EventHandler
+    fun EntityPickupItemEvent.onPickupStackable() {
+        val stackSize = item.toGearyOrNull()?.get<Stackable>()?.stackSize ?: return
+        if (item.toGearyOrNull()!!.has<PlayerInstancedItem>() && item.itemStack.amount > stackSize) return
     }
 }
