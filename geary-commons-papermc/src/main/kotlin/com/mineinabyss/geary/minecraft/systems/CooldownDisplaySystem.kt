@@ -1,6 +1,7 @@
 package com.mineinabyss.geary.minecraft.systems
 
-import com.mineinabyss.geary.ecs.accessors.ResultScope
+import com.mineinabyss.geary.ecs.accessors.TargetScope
+import com.mineinabyss.geary.ecs.accessors.get
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.entities.with
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
@@ -21,10 +22,9 @@ class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
         has<SlotType.Held>()
     }
 
-    private val ResultScope.cooldownManager by get<CooldownManager>()
+    private val TargetScope.cooldownManager by get<CooldownManager>()
 
-
-    override fun ResultScope.tick() {
+    override fun TargetScope.tick() {
         entity.parent?.with { player: Player ->
             player.sendActionBar(cooldownManager.incompleteCooldowns.entries.joinToString("\n") { (key, cooldown) ->
                 val length = cooldown.length.milliseconds

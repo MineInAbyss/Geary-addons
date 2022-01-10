@@ -1,10 +1,11 @@
 package com.mineinabyss.geary.minecraft.conditions.location
 
-import com.mineinabyss.geary.ecs.accessors.EventResultScope
-import com.mineinabyss.geary.ecs.accessors.ResultScope
+import com.mineinabyss.geary.ecs.accessors.EventScope
+import com.mineinabyss.geary.ecs.accessors.TargetScope
+import com.mineinabyss.geary.ecs.accessors.get
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
-import com.mineinabyss.geary.ecs.events.handlers.CheckHandler
+import com.mineinabyss.geary.ecs.api.systems.Handler
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.bukkit.Location
@@ -19,14 +20,13 @@ class BlockConditions(
 
 @AutoScan
 class BlockConditionChecker : GearyListener() {
-    private val ResultScope.conditions by get<BlockConditions>()
+    private val TargetScope.conditions by get<BlockConditions>()
 
-    private inner class Check : CheckHandler() {
-        private val EventResultScope.location by get<Location>()
+    private val EventScope.location by get<Location>()
 
-        override fun ResultScope.check(event: EventResultScope): Boolean =
-            event.location.block.type.let {
-                (conditions.allow.isEmpty() || it in conditions.allow) && it !in conditions.deny
-            }
-    }
+    @Handler
+    fun TargetScope.check(event: EventScope): Boolean =
+        event.location.block.type.let {
+            (conditions.allow.isEmpty() || it in conditions.allow) && it !in conditions.deny
+        }
 }

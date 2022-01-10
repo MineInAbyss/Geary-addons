@@ -1,6 +1,7 @@
 package com.mineinabyss.geary.minecraft.systems
 
-import com.mineinabyss.geary.ecs.accessors.ResultScope
+import com.mineinabyss.geary.ecs.accessors.TargetScope
+import com.mineinabyss.geary.ecs.accessors.get
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
 import com.mineinabyss.geary.minecraft.components.DisplayBossBar
@@ -12,12 +13,12 @@ import com.mineinabyss.idofront.typealiases.BukkitEntity
  */
 @AutoScan
 class BossBarDisplaySystem : TickingSystem(interval = 10) {
-    private val ResultScope.bossbar by get<DisplayBossBar>()
-    private val ResultScope.bukkitentity by get<BukkitEntity>()
+    private val TargetScope.bossbar by get<DisplayBossBar>()
+    private val TargetScope.bukkitentity by get<BukkitEntity>()
 
-    override fun ResultScope.tick() {
+    override fun TargetScope.tick() {
         val location = bukkitentity.location
-        val playersInRange = location.getNearbyPlayers(bossbar.range).map { it.uniqueId }
+        val playersInRange = location.getNearbyPlayers(bossbar.range).mapTo(mutableSetOf()) { it.uniqueId }
 
         // Gets players to add and remove
         val addPlayers = playersInRange - bossbar.playersInRange
