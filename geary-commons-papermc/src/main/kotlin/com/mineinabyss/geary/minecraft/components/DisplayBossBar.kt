@@ -4,10 +4,8 @@ import com.mineinabyss.idofront.messaging.color
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import org.bukkit.Bukkit
-import org.bukkit.boss.BarColor
-import org.bukkit.boss.BarStyle
-import org.bukkit.boss.BossBar
+import net.kyori.adventure.bossbar.BossBar
+import net.kyori.adventure.text.Component
 import java.util.*
 
 /**
@@ -19,12 +17,13 @@ import java.util.*
 @SerialName("geary:bossbar")
 class DisplayBossBar(
     val title: String,
-    val color: BarColor,
-    val style: BarStyle,
+    val color: BossBar.Color,
+    val style: BossBar.Overlay,
+    val flags: Set<BossBar.Flag> = setOf(),
     val range: Double,
 ) {
     @Transient
-    val bossBar: BossBar = Bukkit.createBossBar(title.color(), color, style)
+    val bossBar: BossBar = BossBar.bossBar(Component.text(title.color()), 1f, color, style, flags)
 
     @Transient
     val playersInRange: MutableSet<UUID> = mutableSetOf()

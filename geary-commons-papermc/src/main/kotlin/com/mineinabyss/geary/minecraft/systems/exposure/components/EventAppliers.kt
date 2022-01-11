@@ -1,5 +1,6 @@
 package com.mineinabyss.geary.minecraft.systems.exposure.components
 
+import com.mineinabyss.geary.ecs.api.GearyEntityId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -8,9 +9,9 @@ import kotlinx.serialization.Serializable
 class EventAppend()
 
 @Serializable
-@SerialName("geary:event.run")
-class EventRun(
-    val entity: String
+@SerialName("geary:event.trigger")
+class EventTrigger(
+    val entity: GearyEntityId
 )
 
 @Serializable

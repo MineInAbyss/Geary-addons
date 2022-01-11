@@ -5,14 +5,14 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.bukkit.potion.PotionEffect
 
-class Explode {
-}
+@Serializable
+@SerialName("geary:apply_relation")
+object Apply
 
-class Exposure
-
+@JvmInline
 @Serializable
 @SerialName("geary:apply")
-class Apply
+value class ApplyBuild(val entityExpression: String)
 
 @JvmInline
 @Serializable
