@@ -26,7 +26,7 @@ fun GearyEntity.setBukkitEvent(event: Event) {
 object ItemActionsListener : Listener {
     @EventHandler
     fun PlayerInteractEvent.onClick() {
-        player.toGeary().callEvent(source = player.heldLootyItem) {
+        player.heldLootyItem?.callEvent(source = player.toGeary()) {
             set(Interacted(leftClicked, rightClicked))
             if (leftClicked) set(LeftClicked())
             if (rightClicked) set(RightClicked())
@@ -36,7 +36,7 @@ object ItemActionsListener : Listener {
 
     @EventHandler(ignoreCancelled = true)
     fun PlayerItemBreakEvent.onItemBreak() {
-        player.toGeary().callEvent(source = player.heldLootyItem) {
+        player.heldLootyItem?.callEvent {
             set(ItemBroke())
             setBukkitEvent(this@onItemBreak)
         }
@@ -45,7 +45,7 @@ object ItemActionsListener : Listener {
     //TODO dropping items reloads them in the tracking system even if cancelled
     @EventHandler(ignoreCancelled = true)
     fun PlayerDropItemEvent.onItemDrop() {
-        player.toGeary().callEvent(source = player.heldLootyItem) {
+        player.heldLootyItem?.callEvent(source = player.toGeary()) {
             set(ItemDropped())
             setBukkitEvent(this@onItemDrop)
         }
@@ -65,8 +65,7 @@ object ItemActionsListener : Listener {
 
     @EventHandler(ignoreCancelled = true)
     fun PlayerItemConsumeEvent.onConsume() {
-        val item = player.heldLootyItem
-        player.toGeary().callEvent(source = item) {
+        player.toGeary().callEvent(source = player.heldLootyItem) {
             setAll(setOf(Ingested(), Touched()))
             setBukkitEvent(this@onConsume)
         }

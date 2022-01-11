@@ -22,20 +22,21 @@ class FollowUpEventListener : GearyListener() {
     @Handler
     fun tryFollowUpEvents(source: SourceScope, target: TargetScope, event: EventScope) {
         event.entity.type.forEach { comp: GearyComponentId ->
-            val triggerEntity = source.entity.getRelation(comp and ENTITY_MASK, EventTrigger::class)?.entity?.toGeary()
-                ?: return@forEach
-            val conditionEntity = source.entity.getRelation(triggerEntity.id, EventCondition::class)
-                ?.let { source.entity.parseEntity(it.entity) }
-            if (conditionEntity == null || target.entity.callEvent(
-                    init = {
-                        addPrefab(conditionEntity)
-                        set(RequestCheck)
-                    },
-                    source = source.entity,
-                    result = { !it.has<FailedCheck>() })
-            ) {
-                target.entity.callEvent(triggerEntity, source = source.entity)
-            }
+            source.entity.getRelation(comp and ENTITY_MASK, EventTrigger::class)
+                ?.entities?.map { it.toGeary() }?.forEach { triggerEntity ->
+                    val conditionEntity = source.entity.getRelation(triggerEntity.id, EventCondition::class)
+                        ?.let { source.entity.parseEntity(it.entity) }
+                    if (conditionEntity == null || target.entity.callEvent(
+                            init = {
+                                addPrefab(conditionEntity)
+                                set(RequestCheck)
+                            },
+                            source = source.entity,
+                            result = { !it.has<FailedCheck>() })
+                    ) {
+                        target.entity.callEvent(triggerEntity, source = source.entity)
+                    }
+                }
         }
     }
 }

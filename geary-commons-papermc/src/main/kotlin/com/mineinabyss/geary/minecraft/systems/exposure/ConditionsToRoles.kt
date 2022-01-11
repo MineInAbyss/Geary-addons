@@ -25,7 +25,13 @@ class TriggersToRoles : GearyListener() {
             conditions.expressions.forEach { expression ->
                 val (cause, effect) = expression.replace(" ", "").split("->").takeIf { it.size == 2 }
                     ?: error("Expression needs to be formatted as 'cause -> effect'")
-                entity.setRelation(entity.parseEntity(cause).id, EventTrigger(entity = entity.parseEntity(effect).id))
+                val key = entity.parseEntity(cause).id
+                val value = entity.parseEntity(effect).id
+                val existing = entity.getRelation(key, EventTrigger::class)
+                if (existing != null)
+                    entity.setRelation(key, existing.copy(entities = existing.entities.plus(value)))
+                else
+                    entity.setRelation(key, EventTrigger(entities = setOf(value)))
             }
         } finally {
             entity.remove<EventTriggers>()

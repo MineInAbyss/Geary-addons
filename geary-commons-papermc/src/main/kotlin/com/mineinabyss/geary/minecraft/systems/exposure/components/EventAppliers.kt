@@ -10,8 +10,8 @@ class EventAppend()
 
 @Serializable
 @SerialName("geary:event.trigger")
-class EventTrigger(
-    val entity: GearyEntityId
+data class EventTrigger(
+    val entities: Set<GearyEntityId>
 )
 
 @Serializable
