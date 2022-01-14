@@ -3,6 +3,10 @@ plugins {
     `maven-publish`
 }
 
+val runNumber = System.getenv("GITHUB_RUN_NUMBER") ?: "DEV"
+
+version = "$version.$runNumber"
+
 val gearyVersion: String by project
 val lootyVersion: String by project
 val mobzyVersion: String by project
