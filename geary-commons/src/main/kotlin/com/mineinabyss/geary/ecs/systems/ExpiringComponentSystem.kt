@@ -1,6 +1,7 @@
 package com.mineinabyss.geary.ecs.systems
 
-import com.mineinabyss.geary.ecs.accessors.ResultScope
+import com.mineinabyss.geary.ecs.accessors.TargetScope
+import com.mineinabyss.geary.ecs.accessors.building.relation
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
 import com.mineinabyss.geary.ecs.components.Expiry
@@ -10,11 +11,11 @@ import com.mineinabyss.geary.ecs.components.Expiry
  */
 @AutoScan
 class ExpiringComponentSystem : TickingSystem() {
-    private val ResultScope.expiry by relation<Expiry>()
+    private val TargetScope.expiry by relation<Any?, Expiry>()
 
-    override fun ResultScope.tick() {
-        if (expiry.parentData.timeOver()) {
-            entity.remove(expiry.component.id)
+    override fun TargetScope.tick() {
+        if (expiry.value.timeOver()) {
+            entity.remove(expiry.keyId)
             entity.remove(expiry.relation.id)
         }
     }

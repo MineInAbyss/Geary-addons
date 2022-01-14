@@ -1,4 +1,4 @@
-package com.mineinabyss.geary.minecraft.location
+package com.mineinabyss.geary.minecraft.events.components.location
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

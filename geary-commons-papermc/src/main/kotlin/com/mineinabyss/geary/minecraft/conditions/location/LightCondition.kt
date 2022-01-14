@@ -1,10 +1,11 @@
 package com.mineinabyss.geary.minecraft.conditions.location
 
-import com.mineinabyss.geary.ecs.accessors.EventResultScope
-import com.mineinabyss.geary.ecs.accessors.ResultScope
+import com.mineinabyss.geary.ecs.accessors.EventScope
+import com.mineinabyss.geary.ecs.accessors.TargetScope
+import com.mineinabyss.geary.ecs.accessors.building.get
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
+import com.mineinabyss.geary.ecs.api.autoscan.Handler
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
-import com.mineinabyss.geary.ecs.events.handlers.CheckHandler
 import com.mineinabyss.idofront.serialization.IntRangeSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -18,19 +19,18 @@ class LightCondition(
 
 @AutoScan
 class LightConditionChecker : GearyListener() {
-    private val ResultScope.condition by get<LightCondition>()
+    private val TargetScope.condition by get<LightCondition>()
 
-    private inner class Check : CheckHandler() {
-        private val EventResultScope.location by get<Location>()
+    private val EventScope.location by get<Location>()
 
-        override fun ResultScope.check(event: EventResultScope): Boolean {
-            val block = event.location.block
-            // Check the current block's light level or the one above if this block is solid
-            val check =
-                if (block.isSolid)
-                    event.location.clone().add(0.0, 1.0, 0.0).block
-                else block
-            return check.lightLevel in condition.range
-        }
+    @Handler
+    fun TargetScope.check(event: EventScope): Boolean {
+        val block = event.location.block
+        // Check the current block's light level or the one above if this block is solid
+        val check =
+            if (block.isSolid)
+                event.location.clone().add(0.0, 1.0, 0.0).block
+            else block
+        return check.lightLevel in condition.range
     }
 }
