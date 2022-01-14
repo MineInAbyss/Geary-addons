@@ -26,7 +26,7 @@ rootProject.name = "geary-addons"
 include(
     "geary-commons",
     "geary-commons-papermc",
-    "geary-addons-platform",
+    "geary-platform",
 )
 
 includeBuild("conventions")

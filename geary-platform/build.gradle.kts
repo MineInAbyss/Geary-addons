@@ -1,5 +1,6 @@
 plugins {
     `java-platform`
+    `maven-publish`
 }
 
 val gearyVersion: String by project
@@ -13,5 +14,21 @@ dependencies {
         api("com.mineinabyss:geary-platform-papermc:$gearyVersion")
         api("com.mineinabyss:geary-prefabs:$gearyVersion")
         api("com.mineinabyss:geary-core:$gearyVersion")
+    }
+}
+
+publishing {
+    repositories {
+        maven("https://repo.mineinabyss.com/releases") {
+            credentials {
+                username = project.findProperty("mineinabyssMavenUsername") as String?
+                password = project.findProperty("mineinabyssMavenPassword") as String?
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["javaPlatform"])
+        }
     }
 }

@@ -14,7 +14,7 @@ repositories {
 dependencies {
     // MineInAbyss platform
     compileOnly(Deps.kotlin.stdlib)
-    compileOnly(platform(project(":geary-addons-platform")))
+    compileOnly(platform(project(":geary-platform")))
 
     if (useNMS.toBoolean())
         implementation("com.mineinabyss:idofront-nms:$idofrontVersion")
