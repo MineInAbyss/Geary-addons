@@ -9,6 +9,7 @@ import com.mineinabyss.idofront.entities.toPlayer
 import com.mineinabyss.idofront.typealiases.BukkitEntity
 import org.bukkit.attribute.Attribute
 import org.bukkit.entity.LivingEntity
+import org.bukkit.entity.Player
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -23,15 +24,17 @@ class BossBarDisplaySystem : TickingSystem(interval = 0.5.seconds) {
     override fun TargetScope.tick() {
         val bukkit = bukkitentity as? LivingEntity ?: return
         val location = bukkitentity.location
-        val playersInRange = location.getNearbyPlayers(bossbar.range).mapTo(mutableSetOf()) { it.uniqueId }
+        val playersInRange = bukkitentity.getNearbyEntities(bossbar.range, bossbar.range, bossbar.range)
+            .filterIsInstance<Player>().map { it.uniqueId }
 
         // Gets players to add and remove
         val addPlayers = playersInRange - bossbar.playersInRange
-        val removePlayers = bossbar.playersInRange - playersInRange
+        val removePlayers = bossbar.playersInRange - playersInRange.toSet()
 
         // Removes and adds the necessary players
         bossbar.playersInRange.removeAll(removePlayers)
         bossbar.playersInRange.addAll(addPlayers)
+
         addPlayers.forEach { it.toPlayer()?.showBossBar(bossbar.bossBar) }
         removePlayers.forEach { it.toPlayer()?.hideBossBar(bossbar.bossBar) }
         bossbar.bossBar.progress(

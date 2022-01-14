@@ -7,7 +7,7 @@ val mobzyVersion: String by project
 val idofrontVersion: String by project
 
 plugins {
-    id("com.mineinabyss.conventions.kotlin")
+    id("geary-addons.conventions")
     id("com.mineinabyss.conventions.papermc")
     id("com.mineinabyss.conventions.copyjar")
     id("com.mineinabyss.conventions.publication")
@@ -30,12 +30,9 @@ dependencies {
     compileOnly(Deps.minecraft.skedule)
 
     // Other plugins
-    compileOnly("com.mineinabyss:looty:$lootyVersion")
-    compileOnly("com.mineinabyss:mobzy:$mobzyVersion")
+    compileOnly("com.mineinabyss:looty")
+    compileOnly("com.mineinabyss:mobzy")
 
     api(project(":geary-commons"))
-    compileOnly("com.mineinabyss:geary-platform-papermc:$gearyVersion")
-
-    // Shade
-    implementation("com.mineinabyss:idofront-nms:$idofrontVersion")
+    compileOnly("com.mineinabyss:geary-platform-papermc")
 }

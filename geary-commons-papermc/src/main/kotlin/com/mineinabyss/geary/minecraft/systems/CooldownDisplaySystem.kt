@@ -1,11 +1,11 @@
 package com.mineinabyss.geary.minecraft.systems
 
+import com.mineinabyss.geary.commons.components.CooldownManager
 import com.mineinabyss.geary.ecs.accessors.TargetScope
 import com.mineinabyss.geary.ecs.accessors.building.get
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.entities.with
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
-import com.mineinabyss.geary.ecs.components.CooldownManager
 import com.mineinabyss.geary.ecs.entities.parent
 import com.mineinabyss.looty.ecs.components.inventory.SlotType
 import org.bukkit.ChatColor

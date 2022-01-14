@@ -4,7 +4,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Entity has a certain level of physical power.
+ * `geary:strength`
+ * Denotes that an entity has a certain level of physical power.
  */
 @Serializable
 @SerialName("geary:strength")

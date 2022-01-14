@@ -2,8 +2,9 @@ package com.mineinabyss.geary.minecraft.events.bridge
 
 import com.destroystokyo.paper.event.entity.ProjectileCollideEvent
 import com.mineinabyss.geary.minecraft.access.toGeary
+import com.mineinabyss.geary.minecraft.events.bridge.components.Attacked
 import com.mineinabyss.geary.minecraft.events.bridge.components.Landed
-import com.mineinabyss.geary.minecraft.systems.exposure.components.Touched
+import com.mineinabyss.geary.minecraft.events.bridge.components.Touched
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

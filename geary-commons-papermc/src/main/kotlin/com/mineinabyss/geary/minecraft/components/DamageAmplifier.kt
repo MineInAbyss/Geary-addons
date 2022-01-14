@@ -6,9 +6,8 @@ import org.bukkit.event.entity.EntityDamageEvent
 
 
 /**
- * > geary:damage_amplifier
- *
- * Holds properties
+ * `geary:damage_amplifier`
+ * Multiplies damage from a specific cause by an [amplifier].
  */
 @Serializable
 @SerialName("geary:damage_amplifier")

@@ -9,9 +9,8 @@ import net.kyori.adventure.text.Component
 import java.util.*
 
 /**
- * > geary:bossbar
- *
- * Holds properties of a boss bar (colour, style, range)
+ * `geary:bossbar`
+ * Displays a bossbar to nearby players when added to a bukkit entity.
  */
 @Serializable
 @SerialName("geary:bossbar")

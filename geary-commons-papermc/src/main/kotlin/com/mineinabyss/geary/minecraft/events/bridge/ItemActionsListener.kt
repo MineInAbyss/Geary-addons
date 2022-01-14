@@ -3,8 +3,6 @@ package com.mineinabyss.geary.minecraft.events.bridge
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
 import com.mineinabyss.geary.minecraft.access.toGeary
 import com.mineinabyss.geary.minecraft.events.bridge.components.*
-import com.mineinabyss.geary.minecraft.systems.exposure.components.Ingested
-import com.mineinabyss.geary.minecraft.systems.exposure.components.Touched
 import com.mineinabyss.idofront.entities.leftClicked
 import com.mineinabyss.idofront.entities.rightClicked
 import org.bukkit.entity.Player
