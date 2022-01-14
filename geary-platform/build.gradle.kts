@@ -18,6 +18,9 @@ dependencies {
         api("com.mineinabyss:geary-platform-papermc:$gearyVersion")
         api("com.mineinabyss:geary-prefabs:$gearyVersion")
         api("com.mineinabyss:geary-core:$gearyVersion")
+        rootProject.subprojects.forEach {
+            api("com.mineinabyss:${it.name}:${it.version}")
+        }
     }
 }
 
