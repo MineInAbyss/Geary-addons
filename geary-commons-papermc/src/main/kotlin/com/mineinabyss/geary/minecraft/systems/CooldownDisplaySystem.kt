@@ -1,7 +1,7 @@
 package com.mineinabyss.geary.minecraft.systems
 
 import com.mineinabyss.geary.ecs.accessors.TargetScope
-import com.mineinabyss.geary.ecs.accessors.get
+import com.mineinabyss.geary.ecs.accessors.building.get
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.entities.with
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
@@ -12,9 +12,9 @@ import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.DurationUnit
+import kotlin.time.Duration.Companion.seconds
 
-private const val INTERVAL = 1L
+private val INTERVAL = 1.seconds
 
 @AutoScan
 class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
@@ -30,7 +30,7 @@ class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
                 val length = cooldown.length.milliseconds
                 val timeLeft = (cooldown.endTime - System.currentTimeMillis()).milliseconds
                 val squaresLeft =
-                    if (timeLeft.toDouble(DurationUnit.SECONDS) * 20 < INTERVAL) 0 else (timeLeft / length * displayLength).roundToInt()
+                    if (timeLeft < INTERVAL) 0 else (timeLeft / length * displayLength).roundToInt()
 
                 buildString {
                     append("$key ")
@@ -42,7 +42,7 @@ class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
                     repeat(squaresLeft) {
                         append(displayChar)
                     }
-                    if (timeLeft.toDouble(DurationUnit.MILLISECONDS) < INTERVAL * 1000 / 20) append(
+                    if (timeLeft < INTERVAL) append(
                         ChatColor.GREEN,
                         " [✔]"
                     ) else append(ChatColor.GRAY, " [$timeLeft]")

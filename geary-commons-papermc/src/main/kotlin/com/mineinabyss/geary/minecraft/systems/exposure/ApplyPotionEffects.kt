@@ -2,11 +2,11 @@ package com.mineinabyss.geary.minecraft.systems.exposure
 
 import com.mineinabyss.geary.ecs.accessors.EventScope
 import com.mineinabyss.geary.ecs.accessors.TargetScope
-import com.mineinabyss.geary.ecs.accessors.get
-import com.mineinabyss.geary.ecs.accessors.relation
+import com.mineinabyss.geary.ecs.accessors.building.get
+import com.mineinabyss.geary.ecs.accessors.building.relation
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
+import com.mineinabyss.geary.ecs.api.autoscan.Handler
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
-import com.mineinabyss.geary.ecs.api.systems.Handler
 import com.mineinabyss.geary.minecraft.systems.exposure.components.Apply
 import com.mineinabyss.geary.minecraft.systems.exposure.components.PotionEffects
 import com.mineinabyss.idofront.typealiases.BukkitEntity

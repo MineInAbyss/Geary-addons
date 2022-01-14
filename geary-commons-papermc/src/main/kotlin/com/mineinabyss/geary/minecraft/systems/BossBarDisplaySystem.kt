@@ -1,7 +1,7 @@
 package com.mineinabyss.geary.minecraft.systems
 
 import com.mineinabyss.geary.ecs.accessors.TargetScope
-import com.mineinabyss.geary.ecs.accessors.get
+import com.mineinabyss.geary.ecs.accessors.building.get
 import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
 import com.mineinabyss.geary.minecraft.components.DisplayBossBar
@@ -9,13 +9,14 @@ import com.mineinabyss.idofront.entities.toPlayer
 import com.mineinabyss.idofront.typealiases.BukkitEntity
 import org.bukkit.attribute.Attribute
 import org.bukkit.entity.LivingEntity
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Handles displaying of boss bars to players in range.
  * Uses values from the DisplayBossBar component.
  */
 @AutoScan
-class BossBarDisplaySystem : TickingSystem(interval = 10) {
+class BossBarDisplaySystem : TickingSystem(interval = 0.5.seconds) {
     private val TargetScope.bossbar by get<DisplayBossBar>()
     private val TargetScope.bukkitentity by get<BukkitEntity>()
 
