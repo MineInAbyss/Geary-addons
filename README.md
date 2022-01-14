@@ -10,6 +10,11 @@ This project contains modules that provide new systems, components, and other ty
 
 ## Modules
 
-**geary-commons**: General use behaviours.
+[**`geary-platform`**](https://github.com/MineInAbyss/Geary-addons/tree/master/geary-platform)
+A gradle platform with suggested versions for all geary-related plugins we support.
 
-**geary-papermc-commons**: General use, Spigot-specific behaviours. 
+[**`geary-commons`**](https://github.com/MineInAbyss/Geary-addons/tree/master/geary-commons)
+General use features like extending the event system to configs.
+
+[**`geary-commons-papermc`**](https://github.com/MineInAbyss/Geary-addons/tree/master/geary-commons-papermc)
+Features specific to PaperMC that allow interacting with the Minecraft world.
