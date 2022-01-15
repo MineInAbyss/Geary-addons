@@ -24,7 +24,10 @@ class ConditionsToRoles : GearyListener() {
                 val (cause, condition, effect) = expression.replace(" ", "").split("->").takeIf { it.size == 3 }
                     ?: error("Expression needs to be formatted as 'cause -> condition -> effect'")
                 cause == "any" || error("Only 'any' is currently supported as a cause.")
-                entity.setRelation(entity.parseEntity(effect).id, EventCondition(entity = condition))
+                entity.setRelation(
+                    entity.parseEntity(effect).id,
+                    EventCondition(entity = entity.parseEntity(condition).id)
+                )
             }
         } finally {
             entity.remove<EventConditions>()

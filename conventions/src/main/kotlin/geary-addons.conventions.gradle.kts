@@ -21,3 +21,8 @@ dependencies {
     else
         implementation("com.mineinabyss:idofront:$idofrontVersion")
 }
+
+//TODO i guess the IDE sometimes needs this set as well as toolchain, update idofront
+tasks.compileKotlin {
+    kotlinOptions.jvmTarget = "16"
+}

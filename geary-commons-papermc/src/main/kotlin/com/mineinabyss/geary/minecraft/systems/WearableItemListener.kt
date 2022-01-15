@@ -75,7 +75,7 @@ object WearableItemListener : Listener {
     @EventHandler
     fun PlayerInteractAtEntityEvent.rightClickArmorStand() {
         val item = player.inventory.itemInMainHand
-        val armorstand = rightClicked as ArmorStand
+        val armorstand = rightClicked as? ArmorStand ?: return
 
         if (hand != EquipmentSlot.HAND) return
         if (rightClicked.type != EntityType.ARMOR_STAND) return

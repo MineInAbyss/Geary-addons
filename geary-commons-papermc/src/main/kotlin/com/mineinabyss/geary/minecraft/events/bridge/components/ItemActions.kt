@@ -8,15 +8,15 @@ import org.bukkit.entity.Player
 val Player.heldLootyItem get() = inventory.itemInMainHand.toGearyOrNull(this)
 
 @Serializable
-@SerialName("geary:left_clicked")
+@SerialName("geary:event.left_clicked")
 class LeftClicked
 
 @Serializable
-@SerialName("geary:right_clicked")
+@SerialName("geary:event.right_clicked")
 class RightClicked
 
 @Serializable
-@SerialName("geary:item_interacted")
+@SerialName("geary:event.item_interacted")
 data class Interacted(
     val leftClick: Boolean,
     val rightClick: Boolean,
