@@ -5,6 +5,8 @@ import com.mineinabyss.geary.minecraft.access.toGeary
 import com.mineinabyss.geary.minecraft.events.bridge.components.*
 import com.mineinabyss.idofront.entities.leftClicked
 import com.mineinabyss.idofront.entities.rightClicked
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
@@ -22,12 +24,21 @@ fun GearyEntity.setBukkitEvent(event: Event) {
 }
 
 object ItemActionsListener : Listener {
+    private val rightClickCooldowns = Int2IntOpenHashMap()
+
     @EventHandler
     fun PlayerInteractEvent.onClick() {
         player.heldLootyItem?.callEvent(source = player.toGeary()) {
             set(Interacted(leftClicked, rightClicked))
             if (leftClicked) set(LeftClicked())
-            if (rightClicked) set(RightClicked())
+
+            // Right click gets fired twice, so we manually prevent two right-clicks within several ticks of each other.
+            val currTick = Bukkit.getServer().currentTick
+            val eId = player.entityId
+            if (rightClicked && currTick - rightClickCooldowns[eId] > 3) {
+                rightClickCooldowns[eId] = currTick
+                set(RightClicked())
+            }
             setBukkitEvent(this@onClick)
         }
     }
