@@ -4,18 +4,14 @@ import com.mineinabyss.geary.commons.events.configurable.components.EventConditi
 import com.mineinabyss.geary.commons.events.configurable.components.EventConditions
 import com.mineinabyss.geary.ecs.accessors.TargetScope
 import com.mineinabyss.geary.ecs.accessors.building.get
-import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
-import com.mineinabyss.geary.ecs.api.autoscan.Handler
+import com.mineinabyss.geary.autoscan.AutoScan
+import com.mineinabyss.geary.ecs.api.annotations.Handler
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
 import com.mineinabyss.geary.ecs.serialization.parseEntity
 
 @AutoScan
 class ConditionsToRoles : GearyListener() {
-    val TargetScope.triggers by get<EventConditions>()
-
-    init {
-        allAdded()
-    }
+    val TargetScope.triggers by added<EventConditions>()
 
     @Handler
     fun TargetScope.convert() {

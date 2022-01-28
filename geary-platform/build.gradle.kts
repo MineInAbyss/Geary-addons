@@ -15,9 +15,10 @@ dependencies {
     constraints {
         api("com.mineinabyss:looty:$lootyVersion")
         api("com.mineinabyss:mobzy:$mobzyVersion")
-        api("com.mineinabyss:geary-platform-papermc:$gearyVersion")
+        api("com.mineinabyss:geary-papermc-core:$gearyVersion")
         api("com.mineinabyss:geary-prefabs:$gearyVersion")
         api("com.mineinabyss:geary-core:$gearyVersion")
+        api("com.mineinabyss:geary-autoscan:$gearyVersion")
         rootProject.subprojects.forEach {
             api("com.mineinabyss:${it.name}:${it.version}")
         }

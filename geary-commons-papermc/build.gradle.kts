@@ -34,5 +34,5 @@ dependencies {
     compileOnly("com.mineinabyss:mobzy")
 
     api(project(":geary-commons"))
-    compileOnly("com.mineinabyss:geary-platform-papermc")
+    compileOnly("com.mineinabyss:geary-papermc-core")
 }

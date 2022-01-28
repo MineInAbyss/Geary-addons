@@ -7,8 +7,8 @@ import com.mineinabyss.geary.ecs.accessors.SourceScope
 import com.mineinabyss.geary.ecs.accessors.TargetScope
 import com.mineinabyss.geary.ecs.accessors.building.get
 import com.mineinabyss.geary.ecs.accessors.building.relation
-import com.mineinabyss.geary.ecs.api.autoscan.AutoScan
-import com.mineinabyss.geary.ecs.api.autoscan.Handler
+import com.mineinabyss.geary.autoscan.AutoScan
+import com.mineinabyss.geary.ecs.api.annotations.Handler
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
 import com.mineinabyss.geary.ecs.serialization.parseEntity
 
@@ -24,11 +24,7 @@ class EventRunListener : GearyListener() {
 
 @AutoScan
 class EventRunBuilderToRelation : GearyListener() {
-    val TargetScope.run by get<EventRunBuilder>()
-
-    init {
-        allAdded()
-    }
+    val TargetScope.run by added<EventRunBuilder>()
 
     @Handler
     fun TargetScope.handle() {
