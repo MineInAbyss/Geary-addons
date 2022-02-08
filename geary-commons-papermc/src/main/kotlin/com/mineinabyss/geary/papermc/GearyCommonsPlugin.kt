@@ -1,9 +1,9 @@
 package com.mineinabyss.geary.papermc
 
 import com.mineinabyss.geary.papermc.dsl.gearyAddon
-import com.mineinabyss.geary.papermc.events.ItemActionsListener
+import com.mineinabyss.geary.papermc.events.bridge.ItemActionsListener
+import com.mineinabyss.geary.papermc.events.bridge.MobActionsListener
 import com.mineinabyss.geary.papermc.systems.ItemStackingListener
-import com.mineinabyss.geary.papermc.systems.MobActionsListener
 import com.mineinabyss.geary.papermc.systems.WearableItemListener
 import com.mineinabyss.idofront.platforms.IdofrontPlatforms
 import com.mineinabyss.idofront.plugin.registerEvents

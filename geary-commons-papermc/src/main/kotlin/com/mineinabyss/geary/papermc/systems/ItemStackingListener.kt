@@ -1,9 +1,9 @@
-package com.mineinabyss.geary.minecraft.systems
+package com.mineinabyss.geary.papermc.systems
 
-import com.mineinabyss.geary.ecs.entities.prefabs
-import com.mineinabyss.geary.minecraft.access.toGearyOrNull
 import com.mineinabyss.geary.minecraft.components.Stackable
-import com.mineinabyss.geary.minecraft.gearyCommonsPlugin
+import com.mineinabyss.geary.papermc.access.toGearyOrNull
+import com.mineinabyss.geary.papermc.gearyCommonsPlugin
+import com.mineinabyss.geary.prefabs.helpers.prefabs
 import com.mineinabyss.looty.ecs.components.PlayerInstancedItem
 import com.mineinabyss.looty.tracking.toGearyOrNull
 import com.okkero.skedule.schedule
