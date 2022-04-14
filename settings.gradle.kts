@@ -1,11 +1,12 @@
 pluginManagement {
     val kotlinVersion: String by settings
-    val idofrontConventions: String by settings
+    val idofrontVersion: String by settings
 
     repositories {
         gradlePluginPortal()
         mavenLocal()
         maven("https://repo.mineinabyss.com/releases")
+        maven("https://papermc.io/repo/repository/maven-public/")
     }
 
     plugins {
@@ -16,7 +17,21 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             if (requested.id.id.startsWith("com.mineinabyss.conventions"))
-                useVersion(idofrontConventions)
+                useVersion(idofrontVersion)
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    val idofrontVersion: String by settings
+
+    repositories {
+        maven("https://repo.mineinabyss.com/releases")
+    }
+
+    versionCatalogs {
+        create("idoLibs") {
+            from("com.mineinabyss:catalog:$idofrontVersion")
         }
     }
 }
@@ -26,7 +41,5 @@ rootProject.name = "geary-addons"
 include(
     "geary-commons",
     "geary-commons-papermc",
-    "geary-platform",
+//    "geary-platform",
 )
-
-includeBuild("conventions")

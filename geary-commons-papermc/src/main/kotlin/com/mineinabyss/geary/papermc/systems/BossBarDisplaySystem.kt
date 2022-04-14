@@ -4,14 +4,13 @@ import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.accessors.TargetScope
 import com.mineinabyss.geary.ecs.accessors.building.get
 import com.mineinabyss.geary.ecs.api.annotations.Handler
-import com.mineinabyss.geary.ecs.api.entities.with
 import com.mineinabyss.geary.ecs.api.systems.GearyListener
 import com.mineinabyss.geary.ecs.api.systems.TickingSystem
+import com.mineinabyss.geary.ecs.api.systems.provideDelegate
 import com.mineinabyss.geary.ecs.events.EntityRemoved
 import com.mineinabyss.geary.papermc.components.DisplayBossBar
 import com.mineinabyss.idofront.entities.toPlayer
 import com.mineinabyss.idofront.typealiases.BukkitEntity
-import net.kyori.adventure.bossbar.BossBar
 import org.bukkit.attribute.Attribute
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
@@ -51,20 +50,18 @@ class BossBarDisplaySystem : TickingSystem(interval = 0.5.seconds), Listener {
     @AutoScan
     private class RemoveBossBarOnDeath : GearyListener() {
         //TODO convert to a component remove listener when those get added
-        val TargetScope.bossbar by get<BossBar>()
+        val TargetScope.bossBar by get<DisplayBossBar>()
 
-        init {
+        override fun onStart() {
             event.has<EntityRemoved>()
         }
 
         @Handler
         fun TargetScope.remove() {
-            entity.with { bossBar: DisplayBossBar ->
-                bossBar.playersInRange.forEach {
-                    it.toPlayer()?.hideBossBar(bossBar.bossBar)
-                }
-                bossBar.playersInRange.clear()
+            bossBar.playersInRange.forEach {
+                it.toPlayer()?.hideBossBar(bossBar.bossBar)
             }
+            bossBar.playersInRange.clear()
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.mineinabyss.geary.commons.events.configurable
 
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.commons.events.configurable.components.EventCondition
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenSource
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenTarget
@@ -8,7 +9,6 @@ import com.mineinabyss.geary.ecs.accessors.SourceScope
 import com.mineinabyss.geary.ecs.accessors.TargetScope
 import com.mineinabyss.geary.ecs.api.GearyComponentId
 import com.mineinabyss.geary.ecs.api.GearyEntityId
-import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.ecs.api.annotations.Handler
 import com.mineinabyss.geary.ecs.api.entities.GearyEntity
 import com.mineinabyss.geary.ecs.api.entities.toGeary
@@ -52,7 +52,7 @@ class FollowUpEventListener : GearyListener() {
 
 inline fun GearyEntity.callCheck(
     source: GearyEntity? = null,
-    init: GearyEntity.() -> Unit,
+    crossinline init: GearyEntity.() -> Unit,
 ): Boolean = callEvent(
     init = {
         init()

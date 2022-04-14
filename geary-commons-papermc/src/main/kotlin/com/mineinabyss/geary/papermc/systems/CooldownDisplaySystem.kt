@@ -19,7 +19,7 @@ private val INTERVAL = 1.seconds
 
 @AutoScan
 class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
-    init {
+    override fun onStart() {
         has<SlotType.Held>()
     }
 
