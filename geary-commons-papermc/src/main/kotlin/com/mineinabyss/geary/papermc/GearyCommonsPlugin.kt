@@ -3,6 +3,7 @@ package com.mineinabyss.geary.papermc
 import com.mineinabyss.geary.papermc.dsl.gearyAddon
 import com.mineinabyss.geary.papermc.events.bridge.ItemActionsListener
 import com.mineinabyss.geary.papermc.events.bridge.MobActionsListener
+import com.mineinabyss.geary.papermc.systems.DeathMessageListener
 import com.mineinabyss.geary.papermc.systems.NoEntityInteractionsListener
 import com.mineinabyss.geary.papermc.systems.WearableItemListener
 import com.mineinabyss.idofront.platforms.IdofrontPlatforms
@@ -22,6 +23,7 @@ class GearyCommonsPlugin : JavaPlugin() {
         }
 
         registerEvents(
+            DeathMessageListener,
             WearableItemListener,
             ItemActionsListener,
             MobActionsListener,
