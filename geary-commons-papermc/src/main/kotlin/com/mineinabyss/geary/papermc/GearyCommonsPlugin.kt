@@ -3,6 +3,7 @@ package com.mineinabyss.geary.papermc
 import com.mineinabyss.geary.papermc.dsl.gearyAddon
 import com.mineinabyss.geary.papermc.events.bridge.ItemActionsListener
 import com.mineinabyss.geary.papermc.events.bridge.MobActionsListener
+import com.mineinabyss.geary.papermc.systems.NoEntityInteractionsListener
 import com.mineinabyss.geary.papermc.systems.WearableItemListener
 import com.mineinabyss.idofront.platforms.IdofrontPlatforms
 import com.mineinabyss.idofront.plugin.registerEvents
@@ -16,7 +17,7 @@ class GearyCommonsPlugin : JavaPlugin() {
     }
 
     override fun onEnable() {
-        gearyAddon {
+        gearyAddon(autoscanPackage = "com.mineinabyss") {
             autoScanAll()
         }
 
@@ -24,6 +25,7 @@ class GearyCommonsPlugin : JavaPlugin() {
             WearableItemListener,
             ItemActionsListener,
             MobActionsListener,
+            NoEntityInteractionsListener,
         )
     }
 }
