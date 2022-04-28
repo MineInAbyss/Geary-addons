@@ -1,12 +1,14 @@
 package com.mineinabyss.geary.papermc.systems
 
+import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.commons.components.CooldownManager
-import com.mineinabyss.geary.ecs.accessors.TargetScope
-import com.mineinabyss.geary.ecs.accessors.building.get
-import com.mineinabyss.geary.autoscan.AutoScan
-import com.mineinabyss.geary.ecs.api.entities.with
-import com.mineinabyss.geary.ecs.api.systems.TickingSystem
-import com.mineinabyss.geary.ecs.entities.parent
+import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
+import com.mineinabyss.geary.datatypes.family.family
+import com.mineinabyss.geary.helpers.parent
+import com.mineinabyss.geary.helpers.with
+import com.mineinabyss.geary.systems.TickingSystem
+import com.mineinabyss.geary.systems.accessors.TargetScope
+import com.mineinabyss.geary.systems.accessors.get
 import com.mineinabyss.looty.ecs.components.inventory.SlotType
 import net.kyori.adventure.text.Component
 import org.bukkit.ChatColor
@@ -19,11 +21,8 @@ private val INTERVAL = 1.seconds
 
 @AutoScan
 class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
-    override fun onStart() {
-        has<SlotType.Held>()
-    }
-
     private val TargetScope.cooldownManager by get<CooldownManager>()
+    private val TargetScope.held by family { has<SlotType.Held>() }
 
     override fun TargetScope.tick() {
         entity.parent?.with { player: Player ->

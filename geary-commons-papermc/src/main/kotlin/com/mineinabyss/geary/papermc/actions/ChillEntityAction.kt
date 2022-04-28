@@ -1,6 +1,6 @@
 package com.mineinabyss.geary.papermc.actions
 
-import com.mineinabyss.geary.ecs.api.entities.GearyEntity
+import com.mineinabyss.geary.datatypes.GearyEntity
 import com.mineinabyss.geary.papermc.gearyCommonsPlugin
 import com.mineinabyss.idofront.time.inWholeTicks
 import com.mineinabyss.idofront.typealiases.BukkitEntity

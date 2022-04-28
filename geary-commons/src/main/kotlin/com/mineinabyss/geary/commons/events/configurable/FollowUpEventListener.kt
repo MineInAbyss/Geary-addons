@@ -1,22 +1,22 @@
 package com.mineinabyss.geary.commons.events.configurable
 
-import com.mineinabyss.geary.autoscan.AutoScan
+import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.events.configurable.components.EventCondition
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenSource
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenTarget
-import com.mineinabyss.geary.ecs.accessors.EventScope
-import com.mineinabyss.geary.ecs.accessors.SourceScope
-import com.mineinabyss.geary.ecs.accessors.TargetScope
-import com.mineinabyss.geary.ecs.api.GearyComponentId
-import com.mineinabyss.geary.ecs.api.GearyEntityId
-import com.mineinabyss.geary.ecs.api.annotations.Handler
-import com.mineinabyss.geary.ecs.api.entities.GearyEntity
-import com.mineinabyss.geary.ecs.api.entities.toGeary
-import com.mineinabyss.geary.ecs.api.systems.GearyListener
-import com.mineinabyss.geary.ecs.engine.ENTITY_MASK
-import com.mineinabyss.geary.ecs.events.FailedCheck
-import com.mineinabyss.geary.ecs.events.RequestCheck
+import com.mineinabyss.geary.components.RequestCheck
+import com.mineinabyss.geary.components.events.FailedCheck
+import com.mineinabyss.geary.datatypes.ENTITY_MASK
+import com.mineinabyss.geary.datatypes.GearyComponentId
+import com.mineinabyss.geary.datatypes.GearyEntity
+import com.mineinabyss.geary.datatypes.GearyEntityId
+import com.mineinabyss.geary.helpers.toGeary
 import com.mineinabyss.geary.prefabs.helpers.addPrefab
+import com.mineinabyss.geary.systems.GearyListener
+import com.mineinabyss.geary.systems.accessors.EventScope
+import com.mineinabyss.geary.systems.accessors.SourceScope
+import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class FollowUpEventListener : GearyListener() {

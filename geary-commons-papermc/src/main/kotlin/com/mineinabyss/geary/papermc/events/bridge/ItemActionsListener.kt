@@ -1,6 +1,6 @@
 package com.mineinabyss.geary.papermc.events.bridge
 
-import com.mineinabyss.geary.ecs.api.entities.GearyEntity
+import com.mineinabyss.geary.datatypes.GearyEntity
 import com.mineinabyss.geary.papermc.access.toGeary
 import com.mineinabyss.geary.papermc.events.bridge.components.*
 import com.mineinabyss.idofront.entities.leftClicked

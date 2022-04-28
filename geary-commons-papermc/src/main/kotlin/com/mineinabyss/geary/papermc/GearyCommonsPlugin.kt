@@ -1,5 +1,6 @@
 package com.mineinabyss.geary.papermc
 
+import com.mineinabyss.geary.api.addon.autoscan
 import com.mineinabyss.geary.papermc.dsl.gearyAddon
 import com.mineinabyss.geary.papermc.events.bridge.ItemActionsListener
 import com.mineinabyss.geary.papermc.events.bridge.MobActionsListener
@@ -18,8 +19,10 @@ class GearyCommonsPlugin : JavaPlugin() {
     }
 
     override fun onEnable() {
-        gearyAddon(autoscanPackage = "com.mineinabyss") {
-            autoScanAll()
+        gearyAddon {
+            autoscan("com.mineinabyss") {
+                all()
+            }
         }
 
         registerEvents(

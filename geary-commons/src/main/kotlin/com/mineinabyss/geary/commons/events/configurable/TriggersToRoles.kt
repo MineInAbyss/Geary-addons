@@ -1,14 +1,13 @@
 package com.mineinabyss.geary.commons.events.configurable
 
-import com.mineinabyss.geary.autoscan.AutoScan
+import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.events.configurable.components.EventTriggers
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenSource
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenTarget
-import com.mineinabyss.geary.ecs.accessors.TargetScope
-import com.mineinabyss.geary.ecs.api.annotations.Handler
-import com.mineinabyss.geary.ecs.api.systems.GearyListener
-import com.mineinabyss.geary.ecs.api.systems.provideDelegate
-import com.mineinabyss.geary.ecs.serialization.parseEntity
+import com.mineinabyss.geary.serialization.parseEntity
+import com.mineinabyss.geary.systems.GearyListener
+import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class TriggersToRoles : GearyListener() {
