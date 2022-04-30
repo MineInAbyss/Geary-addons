@@ -1,11 +1,7 @@
-package com.mineinabyss.geary.papermc.events.bridge.components
+package com.mineinabyss.geary.commons.components.interaction
 
-import com.mineinabyss.looty.tracking.toGearyOrNull
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.bukkit.entity.Player
-
-val Player.heldLootyItem get() = inventory.itemInMainHand.toGearyOrNull(this)
 
 @Serializable
 @SerialName("geary:event.left_clicked")

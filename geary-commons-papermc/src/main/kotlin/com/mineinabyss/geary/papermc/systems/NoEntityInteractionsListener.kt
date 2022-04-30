@@ -14,7 +14,7 @@ import org.bukkit.entity.ArmorStand
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 
-object NoEntityInteractionsListener : Listener, GearyMCContext by GearyMCContextKoin() {
+class NoEntityInteractionsListener : Listener, GearyMCContext by GearyMCContextKoin() {
     @EventHandler
     fun EntityMoveEvent.cancelMovement() {
         if(!entity.toGeary().has<NoVanillaInteractions>()) return

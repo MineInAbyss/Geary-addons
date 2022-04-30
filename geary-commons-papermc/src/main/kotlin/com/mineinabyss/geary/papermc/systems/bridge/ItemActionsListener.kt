@@ -1,8 +1,9 @@
-package com.mineinabyss.geary.papermc.events.bridge
+package com.mineinabyss.geary.papermc.systems.bridge
 
+import com.mineinabyss.geary.commons.components.interaction.*
 import com.mineinabyss.geary.datatypes.GearyEntity
 import com.mineinabyss.geary.papermc.access.toGeary
-import com.mineinabyss.geary.papermc.events.bridge.components.*
+import com.mineinabyss.geary.papermc.helpers.heldLootyItem
 import com.mineinabyss.idofront.entities.leftClicked
 import com.mineinabyss.idofront.entities.rightClicked
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap

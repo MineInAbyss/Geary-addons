@@ -2,7 +2,7 @@
     DoubleRangeSerializer::class
 )
 
-package com.mineinabyss.geary.papermc.conditions
+package com.mineinabyss.geary.papermc.events.conditions
 
 import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.annotations.Handler

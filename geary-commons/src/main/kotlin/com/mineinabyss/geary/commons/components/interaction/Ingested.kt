@@ -1,4 +1,4 @@
-package com.mineinabyss.geary.papermc.events.bridge.components
+package com.mineinabyss.geary.commons.components.interaction
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

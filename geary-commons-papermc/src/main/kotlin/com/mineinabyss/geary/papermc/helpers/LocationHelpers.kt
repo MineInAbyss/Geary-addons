@@ -1,4 +1,4 @@
-package com.mineinabyss.geary.papermc.events.components.location
+package com.mineinabyss.geary.papermc.helpers
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -1,12 +1,13 @@
 package com.mineinabyss.geary.papermc
 
-import com.mineinabyss.geary.api.addon.autoscan
+import com.mineinabyss.geary.addon.autoscan
 import com.mineinabyss.geary.papermc.dsl.gearyAddon
-import com.mineinabyss.geary.papermc.events.bridge.ItemActionsListener
-import com.mineinabyss.geary.papermc.events.bridge.MobActionsListener
+import com.mineinabyss.geary.papermc.systems.bridge.ItemActionsListener
+import com.mineinabyss.geary.papermc.systems.bridge.MobActionsListener
 import com.mineinabyss.geary.papermc.systems.DeathMessageListener
 import com.mineinabyss.geary.papermc.systems.NoEntityInteractionsListener
 import com.mineinabyss.geary.papermc.systems.WearableItemListener
+import com.mineinabyss.geary.papermc.systems.bridge.DeadBridge
 import com.mineinabyss.idofront.platforms.IdofrontPlatforms
 import com.mineinabyss.idofront.plugin.registerEvents
 import org.bukkit.plugin.java.JavaPlugin
@@ -29,8 +30,9 @@ class GearyCommonsPlugin : JavaPlugin() {
             DeathMessageListener,
             WearableItemListener,
             ItemActionsListener,
-            MobActionsListener,
-            NoEntityInteractionsListener,
+            MobActionsListener(),
+            NoEntityInteractionsListener(),
+            DeadBridge()
         )
     }
 }
