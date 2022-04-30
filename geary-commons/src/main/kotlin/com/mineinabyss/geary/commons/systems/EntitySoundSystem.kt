@@ -6,15 +6,12 @@ import com.mineinabyss.geary.commons.components.Dead
 import com.mineinabyss.geary.commons.components.interaction.Attacked
 import com.mineinabyss.geary.commons.components.sound.Sounds
 import com.mineinabyss.geary.commons.components.sound.makeSound
-import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
-import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.TickingSystem
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
 import com.mineinabyss.geary.systems.accessors.get
 import com.mineinabyss.geary.systems.accessors.has
-import com.mineinabyss.idofront.typealiases.BukkitEntity
 import kotlin.random.Random
 
 class EntitySoundSystem {
@@ -31,8 +28,7 @@ class EntitySoundSystem {
     @AutoScan
     class DeathSound : GearyListener() {
         private val TargetScope.sounds by get<Sounds>()
-
-        private val EventScope.dead by has<Dead>()
+        private val TargetScope.dead by added<Dead>()
 
         @Handler
         fun TargetScope.dead() {
