@@ -13,6 +13,7 @@ import com.mineinabyss.looty.ecs.components.inventory.SlotType
 import net.kyori.adventure.text.Component
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
+import java.awt.Color
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -34,7 +35,7 @@ class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
 
                 buildString {
                     append("$key ")
-                    append(ChatColor.GREEN)
+                    append(Color.GREEN)
                     repeat(displayLength - squaresLeft) {
                         append(displayChar)
                     }
