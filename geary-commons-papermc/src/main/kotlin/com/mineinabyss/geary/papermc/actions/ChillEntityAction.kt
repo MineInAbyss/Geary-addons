@@ -1,10 +1,12 @@
 package com.mineinabyss.geary.papermc.actions
 
+import com.github.shynixn.mccoroutine.bukkit.launch
 import com.mineinabyss.geary.datatypes.GearyEntity
 import com.mineinabyss.geary.papermc.gearyCommonsPlugin
 import com.mineinabyss.idofront.time.inWholeTicks
+import com.mineinabyss.idofront.time.ticks
 import com.mineinabyss.idofront.typealiases.BukkitEntity
-import com.okkero.skedule.schedule
+import kotlinx.coroutines.delay
 import kotlin.time.Duration
 
 /**
@@ -17,13 +19,13 @@ fun GearyEntity.chill(
 ): Boolean {
     entity ?: return false
 
-    gearyCommonsPlugin.schedule {
+    gearyCommonsPlugin.launch {
         var timePassed = 0L
         val lastTime = System.currentTimeMillis()
         while (timePassed < length.inWholeTicks) {
             entity.freezeTicks = entity.maxFreezeTicks
             timePassed += System.currentTimeMillis() - lastTime
-            waitFor(1)
+            delay(1.ticks)
         }
     }
     return true

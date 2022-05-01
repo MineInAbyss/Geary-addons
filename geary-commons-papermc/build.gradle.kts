@@ -15,20 +15,20 @@ repositories {
 }
 
 dependencies {
+    api(project(":geary-commons"))
+
     // MineInAbyss platform
-    compileOnly(idoLibs.kotlin.stdlib)
-    compileOnly(idoLibs.kotlinx.serialization.json)
-    compileOnly(idoLibs.kotlinx.serialization.json)
-    compileOnly(idoLibs.kotlinx.serialization.kaml)
-    compileOnly(idoLibs.kotlinx.coroutines)
-    compileOnly(idoLibs.minecraft.skedule)
+    compileOnly(libs.kotlin.stdlib)
+    compileOnly(libs.kotlinx.serialization.json)
+    compileOnly(libs.kotlinx.serialization.json)
+    compileOnly(libs.kotlinx.serialization.kaml)
+    compileOnly(libs.kotlinx.coroutines)
+    compileOnly(libs.minecraft.mccoroutine)
 
     // Other plugins
-    compileOnly(libs.looty)
-    compileOnly(libs.mobzy)
+    compileOnly(gaddonlibs.looty)
+    compileOnly(gaddonlibs.mobzy)
+    compileOnly(gaddonlibs.geary.papermc.core)
 
-    api(project(":geary-commons"))
-    compileOnly(libs.geary.papermc.core)
-
-    implementation("com.mineinabyss:idofront:$idofrontVersion")
+    implementation(libs.idofront.core)
 }

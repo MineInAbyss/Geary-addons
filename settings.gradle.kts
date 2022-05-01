@@ -30,9 +30,8 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        create("idoLibs") {
-            from("com.mineinabyss:catalog:$idofrontVersion")
-        }
+        create("libs").from("com.mineinabyss:catalog:$idofrontVersion")
+        create("gaddonlibs").from(files("gradle/gaddonlibs.versions.toml"))
     }
 }
 

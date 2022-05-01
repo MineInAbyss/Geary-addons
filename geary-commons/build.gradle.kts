@@ -12,10 +12,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly(idoLibs.kotlinx.serialization.json)
+    compileOnly(libs.kotlinx.serialization.json)
 
-    implementation("com.mineinabyss:idofront:$idofrontVersion")
-    compileOnly(libs.geary.core)
-//    compileOnly("com.mineinabyss:geary-autoscan")
-    compileOnly(libs.geary.prefabs)
+    compileOnly(gaddonlibs.geary.core)
+    compileOnly(gaddonlibs.geary.prefabs)
+
+    implementation(libs.idofront.core)
 }

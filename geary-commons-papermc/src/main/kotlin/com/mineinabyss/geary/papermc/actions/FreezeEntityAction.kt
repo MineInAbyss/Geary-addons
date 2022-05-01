@@ -1,10 +1,12 @@
 package com.mineinabyss.geary.papermc.actions
 
+import com.github.shynixn.mccoroutine.bukkit.launch
 import com.mineinabyss.geary.datatypes.GearyEntity
 import com.mineinabyss.geary.papermc.gearyCommonsPlugin
 import com.mineinabyss.idofront.time.inWholeTicks
+import com.mineinabyss.idofront.time.ticks
 import com.mineinabyss.idofront.typealiases.BukkitEntity
-import com.okkero.skedule.schedule
+import kotlinx.coroutines.delay
 import org.bukkit.util.Vector
 import kotlin.time.Duration
 
@@ -20,7 +22,7 @@ fun GearyEntity.freeze(
     val initialLocation = entity.location
     var timePassed = 0L
     var lastTime = System.currentTimeMillis()
-    gearyCommonsPlugin.schedule {
+    gearyCommonsPlugin.launch {
         entity.teleport(initialLocation)
         entity.velocity = Vector(0, 0, 0)
         if (timePassed < length.inWholeTicks && entity.fireTicks == 0) {
@@ -28,7 +30,7 @@ fun GearyEntity.freeze(
             // probably work for now
             timePassed += System.currentTimeMillis() - lastTime
             lastTime = System.currentTimeMillis()
-            waitFor(1)
+            delay(1.ticks)
         }
     }
     return true
