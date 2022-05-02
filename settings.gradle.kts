@@ -12,6 +12,7 @@ pluginManagement {
     plugins {
         kotlin("jvm") version kotlinVersion
         kotlin("plugin.serialization") version kotlinVersion
+        id("org.jetbrains.dokka") version kotlinVersion
     }
 
     resolutionStrategy {
