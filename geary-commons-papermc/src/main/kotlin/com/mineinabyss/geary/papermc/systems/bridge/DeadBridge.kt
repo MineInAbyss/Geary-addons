@@ -10,5 +10,6 @@ class DeadBridge: Listener {
     @EventHandler
     fun EntityDeathEvent.addDeadComponent() {
         entity.toGeary().set(Dead())
+
     }
 }

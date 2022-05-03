@@ -6,18 +6,22 @@ import com.mineinabyss.geary.commons.components.Dead
 import com.mineinabyss.geary.commons.components.interaction.Attacked
 import com.mineinabyss.geary.commons.components.sound.Sounds
 import com.mineinabyss.geary.commons.components.sound.makeSound
+import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
+import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.not
+import com.mineinabyss.geary.datatypes.family.family
+import com.mineinabyss.geary.prefabs.configuration.components.Prefab
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.TickingSystem
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
 import com.mineinabyss.geary.systems.accessors.get
-import com.mineinabyss.geary.systems.accessors.has
 import kotlin.random.Random
 
 class EntitySoundSystem {
     @AutoScan
     class AmbientSounds : TickingSystem() {
         private val TargetScope.sounds by get<Sounds>()
+        private val TargetScope.noPrefabs by family { not { has<Prefab>() } }
 
         override fun TargetScope.tick() {
             if (Random.nextDouble() < sounds.ambientChance)
@@ -40,7 +44,7 @@ class EntitySoundSystem {
     class DamageSound : GearyListener() {
         private val TargetScope.sounds by get<Sounds>()
 
-        private val EventScope.damaged by has<Attacked>()
+        private val EventScope.damaged by family { has<Attacked>() }
 
         @Handler
         fun TargetScope.damaged() {
