@@ -8,9 +8,13 @@ import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
 import com.mineinabyss.geary.systems.accessors.get
+import com.mineinabyss.idofront.destructure.component1
+import com.mineinabyss.idofront.destructure.component2
+import com.mineinabyss.idofront.destructure.component3
 import com.mineinabyss.idofront.typealiases.BukkitEntity
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
+import org.bukkit.entity.Player
 
 class BukkitSoundsBridge {
     @AutoScan
@@ -33,15 +37,19 @@ class BukkitSoundsBridge {
 
         @Handler
         fun TargetScope.makeSound(event: EventScope) {
-            bukkit.world.playSound(
-                Sound.sound(
-                    Key.key(event.emit.sound),
-                    Sound.Source.AMBIENT,
-                    sounds.volume,
-                    sounds.adjustedPitch()
-                ),
-                bukkit
-            )
+            val (x, y, z) = bukkit.location
+            bukkit.getNearbyEntities(32.0, 32.0, 32.0).filterIsInstance<Player>().forEach {
+                val dist = bukkit.location.distance(it.location).toFloat()
+                val volume = sounds.volume * ((32F - dist).coerceAtLeast(0F) / 32F)
+                it.playSound(
+                    Sound.sound(
+                        Key.key(event.emit.sound),
+                        Sound.Source.AMBIENT,
+                        volume,
+                        sounds.adjustedPitch()
+                    ), x, y, z
+                )
+            }
         }
     }
 }

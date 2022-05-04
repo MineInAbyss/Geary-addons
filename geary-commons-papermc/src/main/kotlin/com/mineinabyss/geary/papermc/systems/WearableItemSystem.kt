@@ -1,7 +1,5 @@
 package com.mineinabyss.geary.papermc.systems
 
-import com.mineinabyss.geary.papermc.GearyMCContext
-import com.mineinabyss.geary.papermc.GearyMCContextKoin
 import com.mineinabyss.geary.papermc.components.Hat
 import com.mineinabyss.geary.papermc.store.hasComponentsEncoded
 import com.mineinabyss.idofront.entities.rightClicked
@@ -19,7 +17,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.EquipmentSlot
 
-object WearableItemListener : Listener, GearyMCContext by GearyMCContextKoin() {
+class WearableItemSystem : Listener {
     @EventHandler
     fun InventoryClickEvent.shiftClickToWear() {
         if (!click.isShiftClick) return

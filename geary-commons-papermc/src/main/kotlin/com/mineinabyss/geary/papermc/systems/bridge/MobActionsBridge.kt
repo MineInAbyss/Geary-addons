@@ -1,10 +1,11 @@
 package com.mineinabyss.geary.papermc.systems.bridge
 
 import com.destroystokyo.paper.event.entity.ProjectileCollideEvent
-import com.mineinabyss.geary.papermc.access.toGeary
 import com.mineinabyss.geary.commons.components.interaction.Attacked
 import com.mineinabyss.geary.commons.components.interaction.Landed
 import com.mineinabyss.geary.commons.components.interaction.Touched
+import com.mineinabyss.geary.papermc.access.toGeary
+import com.mineinabyss.geary.papermc.helpers.setBukkitEvent
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -12,7 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause.*
 import org.bukkit.event.entity.ProjectileHitEvent
 
-class MobActionsListener : Listener {
+class MobActionsBridge : Listener {
     @EventHandler(ignoreCancelled = true)
     fun ProjectileCollideEvent.onCollision() {
         collidedWith.toGeary().callEvent(source = entity.toGeary()) {

@@ -1,15 +1,14 @@
 package com.mineinabyss.geary.papermc.systems.bridge
 
 import com.mineinabyss.geary.commons.components.interaction.*
-import com.mineinabyss.geary.datatypes.GearyEntity
 import com.mineinabyss.geary.papermc.access.toGeary
 import com.mineinabyss.geary.papermc.helpers.heldLootyItem
+import com.mineinabyss.geary.papermc.helpers.setBukkitEvent
 import com.mineinabyss.idofront.entities.leftClicked
 import com.mineinabyss.idofront.entities.rightClicked
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
@@ -18,13 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerItemBreakEvent
 import org.bukkit.event.player.PlayerItemConsumeEvent
 
-fun GearyEntity.setBukkitEvent(event: Event) {
-    // Set both the direct class and generic Event
-    set(event, event::class)
-    set(event)
-}
-
-object ItemActionsListener : Listener {
+class ItemActionsBridge : Listener {
     private val rightClickCooldowns = Int2IntOpenHashMap()
 
     @EventHandler

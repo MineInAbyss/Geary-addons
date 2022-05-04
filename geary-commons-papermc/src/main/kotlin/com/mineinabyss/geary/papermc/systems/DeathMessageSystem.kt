@@ -10,7 +10,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.PlayerDeathEvent
 
-object DeathMessageListener : Listener {
+class DeathMessageSystem : Listener {
     @EventHandler
     fun PlayerDeathEvent.replaceMobName() {
         val damager = (player.lastDamageCause as? EntityDamageByEntityEvent)?.damager ?: return

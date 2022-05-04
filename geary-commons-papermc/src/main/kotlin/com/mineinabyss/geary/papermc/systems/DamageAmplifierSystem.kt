@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
 
-class DamageAmplifierListener : Listener {
+class DamageAmplifierSystem : Listener {
     @EventHandler(ignoreCancelled = true)
     fun EntityDamageEvent.onDamage() {
         val gearyEntity = entity.toGearyOrNull() ?: return
