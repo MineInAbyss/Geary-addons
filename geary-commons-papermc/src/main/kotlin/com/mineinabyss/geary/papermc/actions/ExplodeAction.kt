@@ -3,11 +3,9 @@ package com.mineinabyss.geary.papermc.actions
 import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.datatypes.family.family
-import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.get
 import com.mineinabyss.idofront.spawning.spawn
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -26,7 +24,7 @@ data class Explosion(
 class Explode
 
 @AutoScan
-class ExplosionSystem() : GearyListener() {
+class ExplosionSystem : GearyListener() {
     private val TargetScope.explosion by get<Explosion>()
 
     private val EventScope.location by get<Location>()

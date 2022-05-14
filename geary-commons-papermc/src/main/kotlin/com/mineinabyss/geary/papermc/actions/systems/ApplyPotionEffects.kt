@@ -7,8 +7,6 @@ import com.mineinabyss.geary.papermc.components.PotionEffects
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.get
-import com.mineinabyss.geary.systems.accessors.relation
 import com.mineinabyss.idofront.typealiases.BukkitEntity
 import org.bukkit.entity.LivingEntity
 
@@ -22,6 +20,6 @@ class ApplyPotionEffects : GearyListener() {
 
     @Handler
     fun TargetScope.applyPotions(event: EventScope) {
-        (bukkit as? LivingEntity)?.addPotionEffects(event.exposedEffects.key.effects)
+        (bukkit as? LivingEntity)?.addPotionEffects(event.exposedEffects.type.effects)
     }
 }

@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDeathEvent
 
-class DeathBridge: Listener {
+class DeathBridge : Listener {
     @EventHandler
     fun EntityDeathEvent.addDeadComponent() {
         entity.toGeary().set(Dead())

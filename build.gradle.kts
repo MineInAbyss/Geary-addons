@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 
-tasks{
+tasks {
     build {
         dependsOn(project("geary-commons-papermc").tasks.build)
     }

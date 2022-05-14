@@ -20,8 +20,8 @@ class ConditionsToRoles : GearyListener() {
                     ?: error("Expression needs to be formatted as 'cause -> condition -> effect'")
                 cause == "any" || error("Only 'any' is currently supported as a cause.")
                 entity.setRelation(
-                    entity.parseEntity(effect).id,
-                    EventCondition(entity = entity.parseEntity(condition).id)
+                    EventCondition(entity = entity.parseEntity(condition).id),
+                    entity.parseEntity(effect).id
                 )
             }
         } finally {

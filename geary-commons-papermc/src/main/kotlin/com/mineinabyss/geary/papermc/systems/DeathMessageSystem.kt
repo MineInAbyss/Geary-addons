@@ -16,7 +16,7 @@ class DeathMessageSystem : Listener {
         val message = (deathMessage() as TranslatableComponent)
         val args = message.args().toMutableList()
         val entityIndex = args.indexOfFirst { (it is TranslatableComponent) && it.key().startsWith("entity") }
-        if(entityIndex == -1) return
+        if (entityIndex == -1) return
         val entity = Bukkit.getEntity(UUID.fromString((args[entityIndex] as TranslatableComponent).insertion()))
         val name = entity?.toGeary()?.get<DisplayName>()?.name ?: return
         args[entityIndex] = name.miniMsg()

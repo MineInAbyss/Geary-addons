@@ -2,13 +2,11 @@ package com.mineinabyss.geary.papermc.systems
 
 import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.commons.components.CooldownManager
-import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
 import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.helpers.parent
 import com.mineinabyss.geary.helpers.with
 import com.mineinabyss.geary.systems.TickingSystem
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.get
 import com.mineinabyss.looty.ecs.components.inventory.SlotType
 import net.kyori.adventure.text.Component
 import org.bukkit.ChatColor

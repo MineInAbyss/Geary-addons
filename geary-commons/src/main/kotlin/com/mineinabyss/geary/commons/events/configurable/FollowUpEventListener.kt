@@ -24,8 +24,8 @@ class FollowUpEventListener : GearyListener() {
     fun tryFollowUpEvents(source: SourceScope, target: TargetScope, event: EventScope) {
         event.entity.type.forEach { comp: GearyComponentId ->
             fun Set<GearyEntityId>.runFollowUp(runAsSource: Boolean) {
-                val withSource = if(runAsSource) source else target
-                val withTarget = if(runAsSource) target else source
+                val withSource = if (runAsSource) source else target
+                val withTarget = if (runAsSource) target else source
                 map { it.toGeary() }.forEach { triggerEntity ->
                     val conditionEntity = withSource.entity.getRelation(triggerEntity.id, EventCondition::class)?.entity
                     if (conditionEntity == null ||

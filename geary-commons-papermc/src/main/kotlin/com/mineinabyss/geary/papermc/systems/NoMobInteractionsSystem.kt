@@ -17,12 +17,12 @@ import org.bukkit.event.Listener
 class NoMobInteractionsSystem : Listener, GearyMCContext by GearyMCContextKoin() {
     @EventHandler
     fun EntityMoveEvent.cancelMovement() {
-        if(!entity.toGeary().has<NoVanillaInteractions>()) return
+        if (!entity.toGeary().has<NoVanillaInteractions>()) return
         isCancelled = true
     }
 
     @AutoScan
-    class SetInvulnerable: GearyListener() {
+    class SetInvulnerable : GearyListener() {
         val TargetScope.bukkit by added<BukkitEntity>()
         val TargetScope.cancel by added<NoVanillaInteractions>()
 

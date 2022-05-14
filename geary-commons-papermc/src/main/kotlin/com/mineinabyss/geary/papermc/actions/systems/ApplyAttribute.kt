@@ -7,8 +7,6 @@ import com.mineinabyss.geary.papermc.actions.components.ApplicableAttribute
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.get
-import com.mineinabyss.geary.systems.accessors.relation
 import com.mineinabyss.idofront.typealiases.BukkitEntity
 import org.bukkit.entity.LivingEntity
 
@@ -23,7 +21,7 @@ class ApplyAttribute : GearyListener() {
     @Handler
     fun TargetScope.apply(event: EventScope) {
         val living: LivingEntity = bukkit as? LivingEntity ?: return
-        val (attribute, amplifier) = event.attribute.key
+        val (attribute, amplifier) = event.attribute.type
         living.getAttribute(attribute)?.baseValue = amplifier
     }
 }

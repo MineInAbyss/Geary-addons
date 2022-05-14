@@ -6,15 +6,12 @@ import com.mineinabyss.geary.commons.components.Dead
 import com.mineinabyss.geary.commons.components.interaction.Attacked
 import com.mineinabyss.geary.commons.components.sound.Sounds
 import com.mineinabyss.geary.commons.components.sound.makeSound
-import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
-import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.not
 import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.prefabs.configuration.components.Prefab
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.TickingSystem
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.get
 import kotlin.random.Random
 
 class EntitySoundSystem {

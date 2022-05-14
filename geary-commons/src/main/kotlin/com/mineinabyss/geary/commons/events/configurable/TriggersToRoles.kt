@@ -35,14 +35,14 @@ class TriggersToRoles : GearyListener() {
                         causeEntity,
                         existing.copy(entities = existing.entities.plus(effectEntities))
                     )
-                    else entity.setRelation(causeEntity, TriggerWhenSource(entities = effectEntities, runAsSource))
+                    else entity.setRelation(TriggerWhenSource(entities = effectEntities, runAsSource), causeEntity)
                 } else {
                     val existing = entity.getRelation(causeEntity, TriggerWhenTarget::class)
                     if (existing != null) entity.setRelation(
                         causeEntity,
                         existing.copy(entities = existing.entities.plus(effectEntities))
                     )
-                    else entity.setRelation(causeEntity, TriggerWhenTarget(entities = effectEntities, runAsSource))
+                    else entity.setRelation(TriggerWhenTarget(entities = effectEntities, runAsSource), causeEntity)
                 }
             }
         } finally {
