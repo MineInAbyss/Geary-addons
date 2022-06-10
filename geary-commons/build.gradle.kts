@@ -8,6 +8,7 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
     maven("https://repo.mineinabyss.com/releases")
 }
 

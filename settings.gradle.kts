@@ -6,7 +6,7 @@ pluginManagement {
         gradlePluginPortal()
         mavenLocal()
         maven("https://repo.mineinabyss.com/releases")
-        maven("https://papermc.io/repo/repository/maven-public/")
+        maven("https://repo.papermc.io/repository/maven-public/")
     }
 
     plugins {
@@ -28,6 +28,7 @@ dependencyResolutionManagement {
 
     repositories {
         maven("https://repo.mineinabyss.com/releases")
+        mavenLocal()
     }
 
     versionCatalogs {
