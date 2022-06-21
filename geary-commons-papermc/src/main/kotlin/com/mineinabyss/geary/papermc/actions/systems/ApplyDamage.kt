@@ -14,7 +14,7 @@ import org.bukkit.entity.LivingEntity
 @AutoScan
 class ApplyDamage : GearyListener() {
     val TargetScope.bukkit by get<BukkitEntity>()
-    val EventScope.damage by relation<Apply?, DealDamage>()
+    val EventScope.damage by getRelations<Apply?, DealDamage>()
 
     @Handler
     fun applyDamage(target: TargetScope, event: EventScope) {

@@ -12,7 +12,7 @@ import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class EventRunListener : GearyListener() {
-    val EventScope.run by relation<EventRun?, Any?>()
+    val EventScope.run by getRelations<EventRun?, Any?>()
 
     @Handler
     fun handle(source: SourceScope, target: TargetScope, event: EventScope) {

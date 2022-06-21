@@ -16,7 +16,7 @@ import org.bukkit.entity.LivingEntity
 @AutoScan
 class ApplyPotionEffects : GearyListener() {
     val TargetScope.bukkit by get<BukkitEntity>()
-    val EventScope.exposedEffects by relation<Apply?, PotionEffects>()
+    val EventScope.exposedEffects by getRelations<Apply?, PotionEffects>()
 
     @Handler
     fun TargetScope.applyPotions(event: EventScope) {

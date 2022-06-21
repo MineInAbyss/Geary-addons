@@ -16,7 +16,7 @@ import org.bukkit.entity.LivingEntity
 @AutoScan
 class ApplyAttribute : GearyListener() {
     val TargetScope.bukkit by get<BukkitEntity>()
-    val EventScope.attribute by relation<Apply?, ApplicableAttribute>()
+    val EventScope.attribute by getRelations<Apply?, ApplicableAttribute>()
 
     @Handler
     fun TargetScope.apply(event: EventScope) {
