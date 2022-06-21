@@ -1,6 +1,6 @@
 [versions]
 geary = "0.16.100"
-mobzy = "0.14.60"
+mobzy = "0.16.73"
 looty = "0.7.56"
 
 [libraries]
