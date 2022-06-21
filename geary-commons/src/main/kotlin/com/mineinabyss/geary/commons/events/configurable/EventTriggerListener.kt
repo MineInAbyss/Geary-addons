@@ -12,21 +12,21 @@ import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class EventRunListener : GearyListener() {
-    val EventScope.run by relation<Any?, EventRun>()
+    val EventScope.run by relation<EventRun?, Any?>()
 
     @Handler
     fun handle(source: SourceScope, target: TargetScope, event: EventScope) {
-        target.entity.callEvent(event.run.typeEntity, source = source.entity)
+        target.entity.callEvent(event.run.target, source = source.entity)
     }
 }
 
 @AutoScan
 class EventRunBuilderToRelation : GearyListener() {
-    val TargetScope.run by added<EventRunBuilder>()
+    val TargetScope.run by onSet<EventRunBuilder>()
 
     @Handler
     fun TargetScope.handle() {
-        entity.setRelation(EventRun, entity.parseEntity(run.expression).id)
+        entity.addRelation<EventRun>(entity.parseEntity(run.expression))
         entity.remove<EventRunBuilder>()
     }
 }

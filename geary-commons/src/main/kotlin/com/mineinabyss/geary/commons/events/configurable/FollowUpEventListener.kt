@@ -7,7 +7,6 @@ import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenS
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenTarget
 import com.mineinabyss.geary.components.RequestCheck
 import com.mineinabyss.geary.components.events.FailedCheck
-import com.mineinabyss.geary.datatypes.ENTITY_MASK
 import com.mineinabyss.geary.datatypes.GearyComponentId
 import com.mineinabyss.geary.datatypes.GearyEntity
 import com.mineinabyss.geary.datatypes.GearyEntityId
@@ -27,7 +26,7 @@ class FollowUpEventListener : GearyListener() {
                 val withSource = if (runAsSource) source else target
                 val withTarget = if (runAsSource) target else source
                 map { it.toGeary() }.forEach { triggerEntity ->
-                    val conditionEntity = withSource.entity.getRelation(triggerEntity.id, EventCondition::class)?.entity
+                    val conditionEntity = withSource.entity.getRelation<EventCondition>(triggerEntity)?.entity
                     if (conditionEntity == null ||
                         withTarget.entity.callCheck(source = source.entity) {
                             addPrefab(conditionEntity.toGeary())
@@ -38,11 +37,11 @@ class FollowUpEventListener : GearyListener() {
                 }
             }
 
-            val checkComp = comp and ENTITY_MASK
-            source.entity.getRelation(checkComp, TriggerWhenSource::class)?.apply {
+            val checkComp = comp.toGeary()
+            source.entity.getRelation<TriggerWhenSource>(checkComp)?.apply {
                 entities.runFollowUp(runAsSource)
             }
-            target.entity.getRelation(checkComp, TriggerWhenTarget::class)?.apply {
+            target.entity.getRelation<TriggerWhenTarget>(checkComp)?.apply {
                 // Use target as source if runAsSource is true.
                 entities.runFollowUp(!runAsSource)
             }

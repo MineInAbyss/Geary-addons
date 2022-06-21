@@ -29,7 +29,7 @@ class EntitySoundSystem {
     @AutoScan
     class DeathSound : GearyListener() {
         private val TargetScope.sounds by get<Sounds>()
-        private val TargetScope.dead by added<Dead>()
+        private val TargetScope.dead by onSet<Dead>()
 
         @Handler
         fun TargetScope.dead() {

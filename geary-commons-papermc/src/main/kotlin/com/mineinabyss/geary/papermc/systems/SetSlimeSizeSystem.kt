@@ -11,8 +11,8 @@ import org.bukkit.entity.Slime
 
 @AutoScan
 class SetSlimeSizeSystem : GearyListener() {
-    private val TargetScope.slimeSize by added<SlimeSize>()
-    private val TargetScope.bukkit by added<BukkitEntity>()
+    private val TargetScope.slimeSize by onSet<SlimeSize>()
+    private val TargetScope.bukkit by onSet<BukkitEntity>()
 
     @Handler
     fun TargetScope.apply() {

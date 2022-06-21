@@ -10,12 +10,12 @@ import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class ParseApply : GearyListener() {
-    private val TargetScope.apply by added<ApplyBuilder>()
+    private val TargetScope.apply by onSet<ApplyBuilder>()
 
     @Handler
     private fun TargetScope.convertToRelation() {
         try {
-            entity.setRelation(Apply, entity.parseEntity(apply.entityExpression).id)
+            entity.addRelation<Apply>(entity.parseEntity(apply.entityExpression))
         } finally {
             entity.remove<ApplyBuilder>()
         }

@@ -23,8 +23,8 @@ class NoMobInteractionsSystem : Listener, GearyMCContext by GearyMCContextKoin()
 
     @AutoScan
     class SetInvulnerable : GearyListener() {
-        val TargetScope.bukkit by added<BukkitEntity>()
-        val TargetScope.cancel by added<NoVanillaInteractions>()
+        val TargetScope.bukkit by onSet<BukkitEntity>()
+        val TargetScope.cancel by onSet<NoVanillaInteractions>()
 
         @Handler
         fun TargetScope.handle() {

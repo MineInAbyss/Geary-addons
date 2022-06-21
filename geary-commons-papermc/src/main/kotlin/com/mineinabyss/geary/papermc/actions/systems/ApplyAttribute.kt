@@ -16,12 +16,12 @@ import org.bukkit.entity.LivingEntity
 @AutoScan
 class ApplyAttribute : GearyListener() {
     val TargetScope.bukkit by get<BukkitEntity>()
-    val EventScope.attribute by relation<ApplicableAttribute, Apply>()
+    val EventScope.attribute by relation<Apply?, ApplicableAttribute>()
 
     @Handler
     fun TargetScope.apply(event: EventScope) {
         val living: LivingEntity = bukkit as? LivingEntity ?: return
-        val (attribute, amplifier) = event.attribute.type
+        val (attribute, amplifier) = event.attribute.targetData
         living.getAttribute(attribute)?.baseValue = amplifier
     }
 }

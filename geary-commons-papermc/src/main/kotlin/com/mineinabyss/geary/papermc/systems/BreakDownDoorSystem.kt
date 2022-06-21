@@ -10,8 +10,8 @@ import org.bukkit.entity.Zombie
 
 @AutoScan
 class BreakDownDoor : GearyListener() {
-    private val TargetScope.breakDoor by added<BreakDownDoor>()
-    private val TargetScope.bukkit by added<BukkitEntity>()
+    private val TargetScope.breakDoor by onSet<BreakDownDoor>()
+    private val TargetScope.bukkit by onSet<BukkitEntity>()
 
     @Handler
     fun TargetScope.apply() {

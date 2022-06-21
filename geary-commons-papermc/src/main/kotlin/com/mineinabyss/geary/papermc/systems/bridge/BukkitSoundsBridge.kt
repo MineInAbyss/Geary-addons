@@ -18,8 +18,8 @@ import org.bukkit.entity.Player
 class BukkitSoundsBridge {
     @AutoScan
     class SilenceVanilla : GearyListener() {
-        private val TargetScope.bukkit by added<BukkitEntity>()
-        private val TargetScope.sounds by added<Sounds>()
+        private val TargetScope.bukkit by onSet<BukkitEntity>()
+        private val TargetScope.sounds by onSet<Sounds>()
 
         @Handler
         fun TargetScope.removeSounds() {

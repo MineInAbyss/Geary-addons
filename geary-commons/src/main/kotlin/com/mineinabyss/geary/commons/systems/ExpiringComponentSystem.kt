@@ -10,11 +10,11 @@ import com.mineinabyss.geary.systems.accessors.TargetScope
  */
 @AutoScan
 class ExpiringComponentSystem : TickingSystem() {
-    private val TargetScope.expiry by relation<Any?, Expiry>()
+    private val TargetScope.expiry by relation<Expiry, Any?>()
 
     override fun TargetScope.tick() {
-        if (expiry.target.timeOver()) {
-            entity.remove(expiry.typeEntity.id)
+        if (expiry.data.timeOver()) {
+            entity.remove(expiry.kind.id)
             entity.remove(expiry.relation.id)
         }
     }

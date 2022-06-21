@@ -10,8 +10,8 @@ import org.bukkit.entity.LivingEntity
 
 @AutoScan
 class DontPickupItemSystem : GearyListener() {
-    private val TargetScope.pickup by added<DontPickupItems>()
-    private val TargetScope.bukkit by added<BukkitEntity>()
+    private val TargetScope.pickup by onSet<DontPickupItems>()
+    private val TargetScope.bukkit by onSet<BukkitEntity>()
 
     @Handler
     fun TargetScope.apply() {

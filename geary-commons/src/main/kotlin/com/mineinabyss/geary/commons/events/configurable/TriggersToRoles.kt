@@ -11,7 +11,7 @@ import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class TriggersToRoles : GearyListener() {
-    val TargetScope.conditions by added<EventTriggers>()
+    val TargetScope.conditions by onSet<EventTriggers>()
 
     @Handler
     fun TargetScope.convert() {
@@ -21,26 +21,27 @@ class TriggersToRoles : GearyListener() {
                     ?: error("Expression needs to be formatted as 'cause -> effect'")
                 fun String.isSource() = !endsWith(" this")
                 fun String.removeTarget() = removePrefix("this ").removeSuffix(" this")
+
                 val triggerWhenOnSource = cause.isSource()
                 val runAsSource = effect.isSource()
 
-                val causeEntity = entity.parseEntity(cause.removeTarget()).id
+                val causeEntity = entity.parseEntity(cause.removeTarget())
                 val effectEntities = effect.removeTarget()
                     .split(", ?".toRegex())
                     .mapTo(mutableSetOf()) { entity.parseEntity(it).id }
 
                 if (triggerWhenOnSource) {
-                    val existing = entity.getRelation(causeEntity, TriggerWhenSource::class)
+                    val existing = entity.getRelation<TriggerWhenSource>(causeEntity)
                     if (existing != null) entity.setRelation(
+                        existing.copy(entities = existing.entities.plus(effectEntities)),
                         causeEntity,
-                        existing.copy(entities = existing.entities.plus(effectEntities))
                     )
                     else entity.setRelation(TriggerWhenSource(entities = effectEntities, runAsSource), causeEntity)
                 } else {
-                    val existing = entity.getRelation(causeEntity, TriggerWhenTarget::class)
+                    val existing = entity.getRelation<TriggerWhenTarget>(causeEntity)
                     if (existing != null) entity.setRelation(
-                        causeEntity,
-                        existing.copy(entities = existing.entities.plus(effectEntities))
+                        existing.copy(entities = existing.entities.plus(effectEntities)),
+                        causeEntity
                     )
                     else entity.setRelation(TriggerWhenTarget(entities = effectEntities, runAsSource), causeEntity)
                 }

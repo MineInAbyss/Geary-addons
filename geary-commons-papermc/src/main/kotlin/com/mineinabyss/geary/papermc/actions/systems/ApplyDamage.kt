@@ -14,13 +14,13 @@ import org.bukkit.entity.LivingEntity
 @AutoScan
 class ApplyDamage : GearyListener() {
     val TargetScope.bukkit by get<BukkitEntity>()
-    val EventScope.damage by relation<DealDamage, Apply>()
+    val EventScope.damage by relation<Apply?, DealDamage>()
 
     @Handler
     fun applyDamage(target: TargetScope, event: EventScope) {
         val livingTarget = target.bukkit as? LivingEntity ?: return
 
-        with(event.damage.type) {
+        with(event.damage.targetData) {
             val chosenDamage = damage.randomOrMin()
             //if true, damage dealt ignores armor, otherwise factors armor into damage calc
             livingTarget.health = (livingTarget.health - chosenDamage).coerceAtLeast(minHealth)
