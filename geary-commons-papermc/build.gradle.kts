@@ -11,7 +11,6 @@ plugins {
 repositories {
     maven("https://repo.mineinabyss.com/releases")
     maven("https://jitpack.io")
-    mavenLocal()
 }
 
 dependencies {
