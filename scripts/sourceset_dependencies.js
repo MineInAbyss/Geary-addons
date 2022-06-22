@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":geary-commons-papermc:dokkaHtmlPartial/main":[],":geary-commons:dokkaHtmlPartial/main":[]}'
