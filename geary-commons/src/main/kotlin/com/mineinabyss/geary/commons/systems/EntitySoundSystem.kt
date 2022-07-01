@@ -3,7 +3,11 @@ package com.mineinabyss.geary.commons.systems
 import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.components.Dead
+import com.mineinabyss.geary.commons.components.Spawning
 import com.mineinabyss.geary.commons.components.interaction.Attacked
+import com.mineinabyss.geary.commons.components.interaction.Moved
+import com.mineinabyss.geary.commons.components.interaction.Splash
+import com.mineinabyss.geary.commons.components.interaction.Swam
 import com.mineinabyss.geary.commons.components.sound.Sounds
 import com.mineinabyss.geary.commons.components.sound.makeSound
 import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
@@ -30,6 +34,17 @@ class EntitySoundSystem {
     }
 
     @AutoScan
+    class SpawnSound : GearyListener() {
+        private val TargetScope.sounds by get<Sounds>()
+        private val EventScope.spawning by get<Spawning>()
+
+        @Handler
+        fun TargetScope.spawn() {
+            entity.makeSound(sounds.spawn)
+        }
+    }
+
+    @AutoScan
     class DeathSound : GearyListener() {
         private val TargetScope.sounds by get<Sounds>()
         private val TargetScope.dead by added<Dead>()
@@ -49,6 +64,39 @@ class EntitySoundSystem {
         @Handler
         fun TargetScope.damaged() {
             entity.makeSound(sounds.hurt)
+        }
+    }
+
+    @AutoScan
+    class StepSound : GearyListener() {
+        private val TargetScope.sounds by get<Sounds>()
+        private val EventScope.step by family { has<Moved>() }
+
+        @Handler
+        fun TargetScope.step() {
+            entity.makeSound(sounds.step)
+        }
+    }
+
+    @AutoScan
+    class SwimSound : GearyListener() {
+        private val TargetScope.sounds by get<Sounds>()
+        private val EventScope.swim by family { has<Swam>() }
+
+        @Handler
+        fun TargetScope.step() {
+            entity.makeSound(sounds.swim)
+        }
+    }
+
+    @AutoScan
+    class SplashSound : GearyListener() {
+        private val TargetScope.sounds by get<Sounds>()
+        private val EventScope.splash by family { has<Splash>() }
+
+        @Handler
+        fun TargetScope.step() {
+            entity.makeSound(sounds.splash)
         }
     }
 }

@@ -1,11 +1,12 @@
 package com.mineinabyss.geary.papermc.systems.bridge
 
 import com.destroystokyo.paper.event.entity.ProjectileCollideEvent
-import com.mineinabyss.geary.commons.components.interaction.Attacked
-import com.mineinabyss.geary.commons.components.interaction.Landed
-import com.mineinabyss.geary.commons.components.interaction.Touched
+import com.mineinabyss.geary.commons.components.Spawning
+import com.mineinabyss.geary.commons.components.interaction.*
 import com.mineinabyss.geary.papermc.access.toGeary
+import com.mineinabyss.geary.papermc.events.GearyMinecraftSpawnEvent
 import com.mineinabyss.geary.papermc.helpers.setBukkitEvent
+import io.papermc.paper.event.entity.EntityMoveEvent
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -38,6 +39,41 @@ class MobActionsBridge : Listener {
             if (this@onDamage.cause in setOf(CONTACT, ENTITY_ATTACK, ENTITY_SWEEP_ATTACK))
                 setAll(setOf(Touched(), Attacked()))
             setBukkitEvent(this@onDamage)
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    fun EntityMoveEvent.onMove() {
+        if (from.block == to.block || from.y != to.y || entity.isInWater) return
+        entity.toGeary().callEvent {
+            set(Moved())
+            setBukkitEvent(this@onMove)
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    fun EntityMoveEvent.onSwim() {
+        if (from.blockX == to.blockX || from.blockZ == to.blockZ || !entity.isInWater) return
+        entity.toGeary().callEvent {
+            set(Swam())
+            setBukkitEvent(this@onSwim)
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    fun EntityMoveEvent.onSplash() {
+        if (from.y <= to.y || !entity.isInWater) return
+        entity.toGeary().callEvent {
+            set(Splash())
+            setBukkitEvent(this@onSplash)
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    fun GearyMinecraftSpawnEvent.onSpawn() {
+        entity.callEvent {
+            set(Spawning())
+            setBukkitEvent(this@onSpawn)
         }
     }
 

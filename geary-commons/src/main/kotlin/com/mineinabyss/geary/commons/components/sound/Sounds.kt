@@ -29,6 +29,7 @@ class Sounds(
     val pitchRange: Double = 0.2,
     @Serializable(with=DurationSerializer::class)
     val ambientRate: Duration = 4.seconds,
+    val spawn: String? = null,
     val step: String? = null,
     val ambient: String? = null,
     val death: String? = null,
