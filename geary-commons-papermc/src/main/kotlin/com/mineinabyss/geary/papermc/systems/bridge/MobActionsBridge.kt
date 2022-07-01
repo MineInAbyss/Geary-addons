@@ -44,7 +44,7 @@ class MobActionsBridge : Listener {
 
     @EventHandler(ignoreCancelled = true)
     fun EntityMoveEvent.onMove() {
-        if (from.block == to.block || from.y != to.y || entity.isInWater) return
+        if (!hasChangedBlock() || from.y != to.y || entity.isInWater) return
         entity.toGeary().callEvent {
             set(Moved())
             setBukkitEvent(this@onMove)
@@ -53,7 +53,7 @@ class MobActionsBridge : Listener {
 
     @EventHandler(ignoreCancelled = true)
     fun EntityMoveEvent.onSwim() {
-        if (from.blockX == to.blockX || from.blockZ == to.blockZ || !entity.isInWater) return
+        if (!hasChangedBlock()|| !entity.isInWater) return
         entity.toGeary().callEvent {
             set(Swam())
             setBukkitEvent(this@onSwim)
@@ -62,7 +62,7 @@ class MobActionsBridge : Listener {
 
     @EventHandler(ignoreCancelled = true)
     fun EntityMoveEvent.onSplash() {
-        if (from.y <= to.y || !entity.isInWater) return
+        if (from.y <= to.y || from.block.isLiquid || !to.block.isLiquid) return
         entity.toGeary().callEvent {
             set(Splash())
             setBukkitEvent(this@onSplash)
