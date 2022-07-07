@@ -6,13 +6,14 @@ import com.mineinabyss.geary.commons.components.interaction.*
 import com.mineinabyss.geary.papermc.access.toGeary
 import com.mineinabyss.geary.papermc.events.GearyMinecraftSpawnEvent
 import com.mineinabyss.geary.papermc.helpers.setBukkitEvent
-import io.papermc.paper.event.entity.EntityMoveEvent
+import org.bukkit.GameEvent
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause.*
 import org.bukkit.event.entity.ProjectileHitEvent
+import org.bukkit.event.world.GenericGameEvent
 
 class MobActionsBridge : Listener {
     @EventHandler(ignoreCancelled = true)
@@ -43,27 +44,36 @@ class MobActionsBridge : Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    fun EntityMoveEvent.onMove() {
-        if (!hasChangedBlock() || from.y != to.y || entity.isInWater) return
-        entity.toGeary().callEvent {
+    fun GenericGameEvent.onMove() {
+        if (event != GameEvent.STEP) return
+        entity?.toGeary()?.callEvent {
             set(Moved())
             setBukkitEvent(this@onMove)
         }
     }
 
     @EventHandler(ignoreCancelled = true)
-    fun EntityMoveEvent.onSwim() {
-        if (!hasChangedBlock()|| !entity.isInWater) return
-        entity.toGeary().callEvent {
+    fun GenericGameEvent.onFall() {
+        if (event != GameEvent.HIT_GROUND) return
+        entity?.toGeary()?.callEvent {
+            set(Fell())
+            setBukkitEvent(this@onFall)
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    fun GenericGameEvent.onSwim() {
+        if (event != GameEvent.SWIM) return
+        entity?.toGeary()?.callEvent {
             set(Swam())
             setBukkitEvent(this@onSwim)
         }
     }
 
     @EventHandler(ignoreCancelled = true)
-    fun EntityMoveEvent.onSplash() {
-        if (from.y <= to.y || from.block.isLiquid || !to.block.isLiquid) return
-        entity.toGeary().callEvent {
+    fun GenericGameEvent.onSplash() {
+        if (event != GameEvent.SPLASH) return
+        entity?.toGeary()?.callEvent {
             set(Splash())
             setBukkitEvent(this@onSplash)
         }
