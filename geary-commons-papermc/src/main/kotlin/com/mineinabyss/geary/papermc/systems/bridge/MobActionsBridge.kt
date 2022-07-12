@@ -48,7 +48,7 @@ class MobActionsBridge : Listener {
         val comp: Any = when (event) {
             GameEvent.STEP -> Moved()
             GameEvent.SWIM -> Swam()
-            GameEvent.HIT_GROUND -> Landed()
+            GameEvent.HIT_GROUND -> Fell()
             GameEvent.SPLASH -> Splash()
             else -> return
         }
