@@ -45,37 +45,17 @@ class MobActionsBridge : Listener {
 
     @EventHandler(ignoreCancelled = true)
     fun GenericGameEvent.onMove() {
-        if (event != GameEvent.STEP) return
+        val comp: Any = when (event) {
+            GameEvent.STEP -> Moved()
+            GameEvent.SWIM -> Swam()
+            GameEvent.HIT_GROUND -> Landed()
+            GameEvent.SPLASH -> Splash()
+            else -> return
+        }
+
         entity?.toGeary()?.callEvent {
-            set(Moved())
+            set(comp)
             setBukkitEvent(this@onMove)
-        }
-    }
-
-    @EventHandler(ignoreCancelled = true)
-    fun GenericGameEvent.onFall() {
-        if (event != GameEvent.HIT_GROUND) return
-        entity?.toGeary()?.callEvent {
-            set(Fell())
-            setBukkitEvent(this@onFall)
-        }
-    }
-
-    @EventHandler(ignoreCancelled = true)
-    fun GenericGameEvent.onSwim() {
-        if (event != GameEvent.SWIM) return
-        entity?.toGeary()?.callEvent {
-            set(Swam())
-            setBukkitEvent(this@onSwim)
-        }
-    }
-
-    @EventHandler(ignoreCancelled = true)
-    fun GenericGameEvent.onSplash() {
-        if (event != GameEvent.SPLASH) return
-        entity?.toGeary()?.callEvent {
-            set(Splash())
-            setBukkitEvent(this@onSplash)
         }
     }
 
