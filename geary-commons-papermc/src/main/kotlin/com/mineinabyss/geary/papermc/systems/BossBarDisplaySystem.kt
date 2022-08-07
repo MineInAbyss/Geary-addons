@@ -4,14 +4,12 @@ import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.components.interaction.Attacked
 import com.mineinabyss.geary.components.events.EntityRemoved
-import com.mineinabyss.geary.datatypes.family.MutableFamilyOperations.Companion.has
 import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.papermc.components.DisplayBossBar
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.TickingSystem
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.get
 import com.mineinabyss.idofront.entities.toPlayer
 import com.mineinabyss.idofront.typealiases.BukkitEntity
 import org.bukkit.attribute.Attribute

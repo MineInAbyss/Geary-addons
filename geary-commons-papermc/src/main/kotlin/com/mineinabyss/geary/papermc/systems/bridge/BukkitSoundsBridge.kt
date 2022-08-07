@@ -7,7 +7,6 @@ import com.mineinabyss.geary.commons.components.sound.Sounds
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.get
 import com.mineinabyss.idofront.destructure.component1
 import com.mineinabyss.idofront.destructure.component2
 import com.mineinabyss.idofront.destructure.component3
@@ -19,8 +18,8 @@ import org.bukkit.entity.Player
 class BukkitSoundsBridge {
     @AutoScan
     class SilenceVanilla : GearyListener() {
-        private val TargetScope.bukkit by added<BukkitEntity>()
-        private val TargetScope.sounds by added<Sounds>()
+        private val TargetScope.bukkit by onSet<BukkitEntity>()
+        private val TargetScope.sounds by onSet<Sounds>()
 
         @Handler
         fun TargetScope.removeSounds() {

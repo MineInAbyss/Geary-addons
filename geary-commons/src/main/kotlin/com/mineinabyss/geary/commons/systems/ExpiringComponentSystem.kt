@@ -4,18 +4,17 @@ import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.commons.components.Expiry
 import com.mineinabyss.geary.systems.TickingSystem
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.geary.systems.accessors.relation
 
 /**
  * Handles removing components when an [Expiry] relation exists with another component.
  */
 @AutoScan
 class ExpiringComponentSystem : TickingSystem() {
-    private val TargetScope.expiry by relation<Any?, Expiry>()
+    private val TargetScope.expiry by getRelations<Expiry, Any?>()
 
     override fun TargetScope.tick() {
-        if (expiry.value.timeOver()) {
-            entity.remove(expiry.keyId)
+        if (expiry.data.timeOver()) {
+            entity.remove(expiry.kind.id)
             entity.remove(expiry.relation.id)
         }
     }

@@ -12,8 +12,8 @@ import org.bukkit.entity.Zombie
 
 @AutoScan
 class DontBurnInDaySystem : GearyListener() {
-    private val TargetScope.burn by added<DontBurnInDay>()
-    private val TargetScope.bukkit by added<BukkitEntity>()
+    private val TargetScope.burn by onSet<DontBurnInDay>()
+    private val TargetScope.bukkit by onSet<BukkitEntity>()
 
     @Handler
     fun TargetScope.apply() {

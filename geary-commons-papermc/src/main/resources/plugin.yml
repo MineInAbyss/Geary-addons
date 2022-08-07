@@ -3,7 +3,7 @@ version: ${plugin_version}
 author: Offz
 main: com.mineinabyss.geary.papermc.GearyCommonsPlugin
 api-version: 1.17
-depend: [Geary]
+depend: [ Geary, Looty, Mobzy ]
 
 prefix: Geary Commons
 description: Commonly used components for Geary

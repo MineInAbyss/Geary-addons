@@ -5,12 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("geary:apply_relation")
-public object Apply
+sealed class Apply
 
 @JvmInline
 @Serializable
 @SerialName("geary:apply")
-public value class ApplyBuilder(public val entityExpression: String)
+value class ApplyBuilder(val entityExpression: String)
 
 
 

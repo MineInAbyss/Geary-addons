@@ -5,44 +5,50 @@ import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.events.configurable.components.EventTriggers
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenSource
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenTarget
+import com.mineinabyss.geary.datatypes.GearyType
 import com.mineinabyss.geary.serialization.parseEntity
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class TriggersToRoles : GearyListener() {
-    val TargetScope.conditions by added<EventTriggers>()
+    val TargetScope.conditions by onFirstSet<EventTriggers>()
 
     @Handler
     fun TargetScope.convert() {
         try {
             conditions.expressions.forEach { expression ->
                 val (cause, effect) = expression.split(" ?-> ?".toRegex()).takeIf { it.size == 2 }
-                    ?: error("Expression needs to be formatted as 'cause -> effect'")
-                fun String.isSource() = !endsWith(" this")
-                fun String.removeTarget() = removePrefix("this ").removeSuffix(" this")
+                    ?: error("Expression $expression needs to be formatted as 'cause -> effect'")
+                fun String.action() = replace(" ?(other|this) ?".toRegex(), "")
+                fun String.isSource() =
+                    matches("this \\S+( other)?".toRegex()).also {
+                        if (!it && !matches("(other )?\\S+ this".toRegex()))
+                            error("$this should be formatted 'this action other', or 'other action this'")
+                    }
+
                 val triggerWhenOnSource = cause.isSource()
                 val runAsSource = effect.isSource()
 
-                val causeEntity = entity.parseEntity(cause.removeTarget()).id
-                val effectEntities = effect.removeTarget()
+                val causeEntity = entity.parseEntity(cause.action())
+                val effectEntities = GearyType(effect.action()
                     .split(", ?".toRegex())
-                    .mapTo(mutableSetOf()) { entity.parseEntity(it).id }
+                    .mapTo(mutableSetOf()) { entity.parseEntity(it).id })
 
                 if (triggerWhenOnSource) {
-                    val existing = entity.getRelation(causeEntity, TriggerWhenSource::class)
+                    val existing = entity.getRelation<TriggerWhenSource>(causeEntity)
                     if (existing != null) entity.setRelation(
+                        existing.copy(runEvents = existing.runEvents.plus(effectEntities)),
                         causeEntity,
-                        existing.copy(entities = existing.entities.plus(effectEntities))
                     )
-                    else entity.setRelation(causeEntity, TriggerWhenSource(entities = effectEntities, runAsSource))
+                    else entity.setRelation(TriggerWhenSource(runEvents = effectEntities, runAsSource), causeEntity)
                 } else {
-                    val existing = entity.getRelation(causeEntity, TriggerWhenTarget::class)
+                    val existing = entity.getRelation<TriggerWhenTarget>(causeEntity)
                     if (existing != null) entity.setRelation(
-                        causeEntity,
-                        existing.copy(entities = existing.entities.plus(effectEntities))
+                        existing.copy(runEvents = existing.runEvents.plus(effectEntities)),
+                        causeEntity
                     )
-                    else entity.setRelation(causeEntity, TriggerWhenTarget(entities = effectEntities, runAsSource))
+                    else entity.setRelation(TriggerWhenTarget(runEvents = effectEntities, runAsSource), causeEntity)
                 }
             }
         } finally {

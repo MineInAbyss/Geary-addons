@@ -10,7 +10,7 @@ import com.mineinabyss.geary.systems.accessors.TargetScope
 
 @AutoScan
 class ConditionsToRoles : GearyListener() {
-    val TargetScope.triggers by added<EventConditions>()
+    val TargetScope.triggers by onSet<EventConditions>()
 
     @Handler
     fun TargetScope.convert() {
@@ -20,8 +20,8 @@ class ConditionsToRoles : GearyListener() {
                     ?: error("Expression needs to be formatted as 'cause -> condition -> effect'")
                 cause == "any" || error("Only 'any' is currently supported as a cause.")
                 entity.setRelation(
-                    entity.parseEntity(effect).id,
-                    EventCondition(entity = entity.parseEntity(condition).id)
+                    EventCondition(entity = entity.parseEntity(condition).id),
+                    entity.parseEntity(effect)
                 )
             }
         } finally {

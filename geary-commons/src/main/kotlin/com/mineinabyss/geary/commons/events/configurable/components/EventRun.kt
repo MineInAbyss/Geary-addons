@@ -10,4 +10,4 @@ value class EventRunBuilder(val expression: String)
 
 @Serializable
 @SerialName("geary:event.run_relation")
-object EventRun
+sealed class EventRun
