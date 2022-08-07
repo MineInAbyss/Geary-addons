@@ -1,7 +1,7 @@
 [versions]
-geary = "0.17.101"
-mobzy = "0.16.73"
-looty = "0.7.56"
+geary = "0.18.105"
+mobzy = "0.17.77"
+looty = "0.7.57"
 
 [libraries]
 geary-core = { module = "com.mineinabyss:geary-core", version.ref = "geary" }
