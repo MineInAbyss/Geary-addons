@@ -5,7 +5,7 @@ import com.mineinabyss.geary.commons.components.CooldownManager
 import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.helpers.parent
 import com.mineinabyss.geary.helpers.with
-import com.mineinabyss.geary.systems.TickingSystem
+import com.mineinabyss.geary.systems.RepeatingSystem
 import com.mineinabyss.geary.systems.accessors.TargetScope
 import com.mineinabyss.looty.ecs.components.inventory.SlotType
 import net.kyori.adventure.text.Component
@@ -19,7 +19,7 @@ import kotlin.time.Duration.Companion.seconds
 private val INTERVAL = 1.seconds
 
 @AutoScan
-class CooldownDisplaySystem : TickingSystem(interval = INTERVAL) {
+class CooldownDisplaySystem : RepeatingSystem(interval = INTERVAL) {
     private val TargetScope.cooldownManager by get<CooldownManager>()
     private val TargetScope.held by family { has<SlotType.Held>() }
 

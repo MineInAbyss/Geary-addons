@@ -8,7 +8,7 @@ import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenT
 import com.mineinabyss.geary.components.RequestCheck
 import com.mineinabyss.geary.components.events.FailedCheck
 import com.mineinabyss.geary.datatypes.GearyEntity
-import com.mineinabyss.geary.datatypes.GearyType
+import com.mineinabyss.geary.datatypes.GearyEntityType
 import com.mineinabyss.geary.helpers.toGeary
 import com.mineinabyss.geary.prefabs.helpers.addPrefab
 import com.mineinabyss.geary.systems.GearyListener
@@ -16,7 +16,7 @@ import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.SourceScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
 
-fun GearyType.runFollowUp(runAsSource: Boolean, current: GearyEntity, other: GearyEntity) {
+fun GearyEntityType.runFollowUp(runAsSource: Boolean, current: GearyEntity, other: GearyEntity) {
     val withSource = if (runAsSource) current else other
     val withTarget = if (runAsSource) other else current
     forEach {

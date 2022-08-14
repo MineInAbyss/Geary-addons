@@ -1,13 +1,13 @@
 package com.mineinabyss.geary.commons.events.configurable.components
 
-import com.mineinabyss.geary.datatypes.GearyType
+import com.mineinabyss.geary.datatypes.GearyEntityType
 
 data class TriggerWhenSource(
-    val runEvents: GearyType,
+    val runEvents: GearyEntityType,
     val runAsSource: Boolean,
 )
 
 data class TriggerWhenTarget(
-    val runEvents: GearyType,
+    val runEvents: GearyEntityType,
     val runAsSource: Boolean,
 )
