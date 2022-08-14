@@ -25,9 +25,9 @@ dependencies {
     compileOnly(libs.minecraft.mccoroutine)
 
     // Other plugins
-    compileOnly(gaddonlibs.looty)
-    compileOnly(gaddonlibs.mobzy)
-    compileOnly(gaddonlibs.geary.papermc.core)
+    compileOnly(gaddonLibs.looty)
+    compileOnly(gaddonLibs.mobzy)
+    compileOnly(gaddonLibs.geary.papermc.core)
 
     implementation(libs.idofront.core)
 }

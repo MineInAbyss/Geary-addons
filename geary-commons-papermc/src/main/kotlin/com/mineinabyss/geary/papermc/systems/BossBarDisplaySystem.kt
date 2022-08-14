@@ -7,7 +7,7 @@ import com.mineinabyss.geary.components.events.EntityRemoved
 import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.papermc.components.DisplayBossBar
 import com.mineinabyss.geary.systems.GearyListener
-import com.mineinabyss.geary.systems.TickingSystem
+import com.mineinabyss.geary.systems.RepeatingSystem
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
 import com.mineinabyss.idofront.entities.toPlayer
@@ -23,7 +23,7 @@ import kotlin.time.Duration.Companion.seconds
  * Uses values from the DisplayBossBar component.
  */
 @AutoScan
-class BossBarDisplaySystem : TickingSystem(interval = 0.5.seconds), Listener {
+class BossBarDisplaySystem : RepeatingSystem(interval = 0.5.seconds), Listener {
     private val TargetScope.bossbar by get<DisplayBossBar>()
     private val TargetScope.bukkitentity by get<BukkitEntity>()
 

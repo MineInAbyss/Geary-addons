@@ -9,14 +9,14 @@ import com.mineinabyss.geary.commons.components.sound.makeSound
 import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.prefabs.configuration.components.Prefab
 import com.mineinabyss.geary.systems.GearyListener
-import com.mineinabyss.geary.systems.TickingSystem
+import com.mineinabyss.geary.systems.RepeatingSystem
 import com.mineinabyss.geary.systems.accessors.EventScope
 import com.mineinabyss.geary.systems.accessors.TargetScope
 import kotlin.random.Random
 
 class EntitySoundSystem {
     @AutoScan
-    class AmbientSounds : TickingSystem() {
+    class AmbientSounds : RepeatingSystem() {
         private val TargetScope.sounds by get<Sounds>()
         private val TargetScope.noPrefabs by family { not { has<Prefab>() } }
 

@@ -5,7 +5,7 @@ import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.events.configurable.components.EventTriggers
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenSource
 import com.mineinabyss.geary.commons.events.configurable.components.TriggerWhenTarget
-import com.mineinabyss.geary.datatypes.GearyType
+import com.mineinabyss.geary.datatypes.GearyEntityType
 import com.mineinabyss.geary.serialization.parseEntity
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.TargetScope
@@ -31,7 +31,7 @@ class TriggersToRoles : GearyListener() {
                 val runAsSource = effect.isSource()
 
                 val causeEntity = entity.parseEntity(cause.action())
-                val effectEntities = GearyType(effect.action()
+                val effectEntities = GearyEntityType(effect.action()
                     .split(", ?".toRegex())
                     .mapTo(mutableSetOf()) { entity.parseEntity(it).id })
 

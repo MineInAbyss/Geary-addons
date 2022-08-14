@@ -14,8 +14,8 @@ repositories {
 dependencies {
     compileOnly(libs.kotlinx.serialization.json)
 
-    compileOnly(gaddonlibs.geary.core)
-    compileOnly(gaddonlibs.geary.prefabs)
+    compileOnly(gaddonLibs.geary.core)
+    compileOnly(gaddonLibs.geary.prefabs)
 
     implementation(libs.idofront.core)
 }
