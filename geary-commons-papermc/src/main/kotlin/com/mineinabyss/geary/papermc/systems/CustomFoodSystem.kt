@@ -21,20 +21,24 @@ class CustomFoodSystem : Listener {
         }
         val item = if (hand == EquipmentSlot.HAND) inv.itemInMainHand else inv.itemInOffHand
         val gearyFood = item.toGearyOrNull(player)?.get<Food>() ?: return
-
+        val replacement = gearyFood.replacement?.toItemStack()
         isCancelled = true // Cancel vanilla behaviour
 
         if (player.gameMode != GameMode.CREATIVE) {
-            if (gearyFood.replacement != null)
-                if (hand == EquipmentSlot.HAND) inv.setItemInMainHand(gearyFood.replacement.toItemStack())
-                else inv.setItemInOffHand(gearyFood.replacement.toItemStack())
-            else item.subtract()
+            if (replacement != null) {
+                if (item.amount > 1) {
+                    if (player.inventory.firstEmpty() != -1) inv.addItem(replacement)
+                    else player.world.dropItemNaturally(player.location, replacement)
+                    item.subtract()
+                }
+                else inv.setItem(hand, replacement)
+            } else item.subtract()
 
             if (gearyFood.effectList.isNotEmpty() && Random.nextDouble(0.0, 1.0) <= gearyFood.effectChance)
-                gearyFood.effectList.forEach { effect -> player.addPotionEffect(effect) }
-
-            player.foodLevel += minOf(gearyFood.hunger, 20)
-            player.saturation += minOf(gearyFood.saturation, 20)
+                player.addPotionEffects(gearyFood.effectList)
         }
+
+        player.foodLevel += minOf(gearyFood.hunger, 20)
+        player.saturation += minOf(gearyFood.saturation, 20)
     }
 }
