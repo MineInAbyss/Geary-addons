@@ -6,7 +6,6 @@ import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerItemConsumeEvent
-import org.bukkit.inventory.EquipmentSlot
 import kotlin.random.Random
 
 class CustomFoodSystem : Listener {
@@ -14,25 +13,17 @@ class CustomFoodSystem : Listener {
     @EventHandler
     fun PlayerItemConsumeEvent.onConsumeFood() {
         val inv = player.inventory
-        val hand = when {
-            inv.itemInMainHand.isSimilar(item) -> EquipmentSlot.HAND
-            inv.itemInOffHand.isSimilar(item) -> EquipmentSlot.OFF_HAND
-            else -> return
-        }
-        val item = if (hand == EquipmentSlot.HAND) inv.itemInMainHand else inv.itemInOffHand
+        val item = if (inv.itemInMainHand.isSimilar(item)) inv.itemInMainHand else inv.itemInOffHand
         val gearyFood = item.toGearyOrNull(player)?.get<Food>() ?: return
         val replacement = gearyFood.replacement?.toItemStack()
         isCancelled = true // Cancel vanilla behaviour
 
         if (player.gameMode != GameMode.CREATIVE) {
             if (replacement != null) {
-                if (item.amount > 1) {
-                    if (player.inventory.firstEmpty() != -1) inv.addItem(replacement)
-                    else player.world.dropItemNaturally(player.location, replacement)
-                    item.subtract()
-                }
-                else inv.setItem(hand, replacement)
-            } else item.subtract()
+                if (player.inventory.firstEmpty() != -1) inv.addItem(replacement)
+                else player.world.dropItemNaturally(player.location, replacement)
+            }
+            item.subtract()
 
             if (gearyFood.effectList.isNotEmpty() && Random.nextDouble(0.0, 1.0) <= gearyFood.effectChance)
                 player.addPotionEffects(gearyFood.effectList)
