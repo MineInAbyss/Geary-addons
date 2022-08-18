@@ -13,6 +13,8 @@ import org.bukkit.potion.PotionEffect
  * @param hunger The amount of hunger this item restores.
  * @param saturation The amount of saturation this item gives.
  * @param replacement The item to replace with after consuming. If null it will subtract one from the stack.
+ * @param effectChance The chance of effects being applied.
+ * @param effectList The effects this item can give.
  */
 @Serializable
 @SerialName("geary:food")
