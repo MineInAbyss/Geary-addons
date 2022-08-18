@@ -2,10 +2,7 @@ package com.mineinabyss.geary.papermc
 
 import com.mineinabyss.geary.addon.autoscan
 import com.mineinabyss.geary.papermc.dsl.gearyAddon
-import com.mineinabyss.geary.papermc.systems.DeathMessageSystem
-import com.mineinabyss.geary.papermc.systems.NoBreedingSystem
-import com.mineinabyss.geary.papermc.systems.NoMobInteractionsSystem
-import com.mineinabyss.geary.papermc.systems.WearableItemSystem
+import com.mineinabyss.geary.papermc.systems.*
 import com.mineinabyss.geary.papermc.systems.bridge.DeathBridge
 import com.mineinabyss.geary.papermc.systems.bridge.ItemActionsBridge
 import com.mineinabyss.geary.papermc.systems.bridge.MobActionsBridge
@@ -30,6 +27,7 @@ class GearyCommonsPlugin : JavaPlugin() {
         registerEvents(
             DeathMessageSystem(),
             WearableItemSystem(),
+            CustomFoodSystem(),
             ItemActionsBridge(),
             MobActionsBridge(),
             NoMobInteractionsSystem(),
