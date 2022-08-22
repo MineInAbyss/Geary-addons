@@ -22,6 +22,6 @@ class Food(
     val hunger: Int,
     val saturation: Int,
     val replacement: SerializableItemStack? = null,
-    val effectChance: Double = 0.0,
+    val effectChance: Double = 1.0,
     val effectList: List<@Serializable(with = PotionEffectSerializer::class) PotionEffect> = emptyList(),
 )
