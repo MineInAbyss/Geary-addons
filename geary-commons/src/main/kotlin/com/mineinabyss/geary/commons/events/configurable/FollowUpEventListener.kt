@@ -62,7 +62,7 @@ inline fun GearyEntity.callCheck(
 ): Boolean = callEvent(
     init = {
         init()
-        set(RequestCheck)
+        add<RequestCheck>()
     },
     source = source,
     result = { !it.has<FailedCheck>() }
