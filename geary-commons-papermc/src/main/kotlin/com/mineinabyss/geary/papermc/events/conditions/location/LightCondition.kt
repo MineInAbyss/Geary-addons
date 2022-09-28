@@ -9,6 +9,7 @@ import com.mineinabyss.idofront.serialization.IntRangeSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.bukkit.Location
+import org.bukkit.block.BlockFace
 
 @Serializable
 @SerialName("geary:check.light")
@@ -27,8 +28,7 @@ class LightConditionChecker : GearyListener() {
         val block = event.location.block
         // Check the current block's light level or the one above if this block is solid
         val check =
-            if (block.isSolid)
-                event.location.clone().add(0.0, 1.0, 0.0).block
+            if (block.isSolid) block.getRelative(BlockFace.UP)
             else block
         return check.lightLevel in condition.range
     }
