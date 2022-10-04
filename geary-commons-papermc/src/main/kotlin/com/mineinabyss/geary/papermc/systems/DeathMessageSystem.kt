@@ -2,7 +2,7 @@ package com.mineinabyss.geary.papermc.systems
 
 import com.mineinabyss.geary.papermc.access.toGeary
 import com.mineinabyss.geary.papermc.components.DisplayName
-import com.mineinabyss.idofront.messaging.miniMsg
+import com.mineinabyss.idofront.textcomponents.miniMsg
 import net.kyori.adventure.text.TranslatableComponent
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler

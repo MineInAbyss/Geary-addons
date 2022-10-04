@@ -17,5 +17,5 @@ dependencies {
     compileOnly(gaddonLibs.geary.core)
     compileOnly(gaddonLibs.geary.prefabs)
 
-    implementation(libs.idofront.core)
+    implementation(libs.bundles.idofront.core)
 }
