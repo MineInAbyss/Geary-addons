@@ -29,5 +29,5 @@ dependencies {
     compileOnly(gaddonLibs.mobzy)
     compileOnly(gaddonLibs.geary.papermc.core)
 
-    implementation(libs.idofront.core)
+    implementation(libs.bundles.idofront.core)
 }
