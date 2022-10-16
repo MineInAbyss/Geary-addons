@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>EntityConditions</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>geary-addons</span>            </a>    </div>
+    <div>0.8.48
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="geary-commons-papermc::com.mineinabyss.geary.papermc.events.conditions/EntityConditions///PointingToDeclaration//-829590048">
+  <div class="breadcrumbs"><a href="../../index.html">geary-commons-papermc</a><span class="delimiter">/</span><a href="../index.html">com.mineinabyss.geary.papermc.events.conditions</a><span class="delimiter">/</span><a href="index.html">EntityConditions</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Entity</span><wbr><span><span>Conditions</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">EntityConditions</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isSleeping<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isSwimming<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isClimbing<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isJumping<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInLava<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInWater<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInBubbleColumn<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInRain<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isOnGround<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isGliding<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isFrozen<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInPowderedSnow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInCobweb<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInsideVehicle<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isRiptiding<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInvisible<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isGlowing<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isInvurnerable<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isSilent<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>isLeashed<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Conditions that can be checked against a <span data-unresolved-link="org.bukkit.entity/LivingEntity///PointingToDeclaration/">LivingEntity</span>.</p><p class="paragraph">This does not count <span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span>, for that use PlayerConditions.kt</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-879216848%2FConstructors%2F-829590048" anchor-label="EntityConditions" id="-879216848%2FConstructors%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-entity-conditions.html"><span>Entity</span><wbr><span><span>Conditions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-879216848%2FConstructors%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-entity-conditions.html"><span class="token function">EntityConditions</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isSleeping<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isSwimming<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isClimbing<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isJumping<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInLava<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInWater<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInBubbleColumn<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInRain<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isOnGround<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isGliding<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isFrozen<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInPowderedSnow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInCobweb<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInsideVehicle<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isRiptiding<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInvisible<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isGlowing<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isInvurnerable<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isSilent<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;isLeashed<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="-1539434945%2FProperties%2F-829590048" anchor-label="isClimbing" id="-1539434945%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-climbing.html"><span>is</span><wbr><span><span>Climbing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1539434945%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-1539434945%2FProperties%2F-829590048" anchor-label="isClimbing" id="-1539434945%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-climbing.html">isClimbing</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1240475596%2FProperties%2F-829590048" anchor-label="isFrozen" id="1240475596%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-frozen.html"><span>is</span><wbr><span><span>Frozen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1240475596%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="1240475596%2FProperties%2F-829590048" anchor-label="isFrozen" id="1240475596%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-frozen.html">isFrozen</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2018907660%2FProperties%2F-829590048" anchor-label="isGliding" id="2018907660%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-gliding.html"><span>is</span><wbr><span><span>Gliding</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2018907660%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="2018907660%2FProperties%2F-829590048" anchor-label="isGliding" id="2018907660%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-gliding.html">isGliding</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1924132519%2FProperties%2F-829590048" anchor-label="isGlowing" id="-1924132519%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-glowing.html"><span>is</span><wbr><span><span>Glowing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1924132519%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-1924132519%2FProperties%2F-829590048" anchor-label="isGlowing" id="-1924132519%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-glowing.html">isGlowing</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-81962875%2FProperties%2F-829590048" anchor-label="isInBubbleColumn" id="-81962875%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-in-bubble-column.html"><span>is</span><wbr><span>In</span><wbr><span>Bubble</span><wbr><span><span>Column</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-81962875%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-81962875%2FProperties%2F-829590048" anchor-label="isInBubbleColumn" id="-81962875%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-in-bubble-column.html">isInBubbleColumn</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1395733399%2FProperties%2F-829590048" anchor-label="isInCobweb" id="-1395733399%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-in-cobweb.html"><span>is</span><wbr><span>In</span><wbr><span><span>Cobweb</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1395733399%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-1395733399%2FProperties%2F-829590048" anchor-label="isInCobweb" id="-1395733399%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-in-cobweb.html">isInCobweb</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="301645927%2FProperties%2F-829590048" anchor-label="isInLava" id="301645927%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-in-lava.html"><span>is</span><wbr><span>In</span><wbr><span><span>Lava</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="301645927%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="301645927%2FProperties%2F-829590048" anchor-label="isInLava" id="301645927%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-in-lava.html">isInLava</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1554298604%2FProperties%2F-829590048" anchor-label="isInPowderedSnow" id="1554298604%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-in-powdered-snow.html"><span>is</span><wbr><span>In</span><wbr><span>Powdered</span><wbr><span><span>Snow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1554298604%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="1554298604%2FProperties%2F-829590048" anchor-label="isInPowderedSnow" id="1554298604%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-in-powdered-snow.html">isInPowderedSnow</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="952465971%2FProperties%2F-829590048" anchor-label="isInRain" id="952465971%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-in-rain.html"><span>is</span><wbr><span>In</span><wbr><span><span>Rain</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="952465971%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="952465971%2FProperties%2F-829590048" anchor-label="isInRain" id="952465971%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-in-rain.html">isInRain</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1242377374%2FProperties%2F-829590048" anchor-label="isInsideVehicle" id="1242377374%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-inside-vehicle.html"><span>is</span><wbr><span>Inside</span><wbr><span><span>Vehicle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1242377374%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="1242377374%2FProperties%2F-829590048" anchor-label="isInsideVehicle" id="1242377374%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-inside-vehicle.html">isInsideVehicle</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="142334881%2FProperties%2F-829590048" anchor-label="isInvisible" id="142334881%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-invisible.html"><span>is</span><wbr><span><span>Invisible</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="142334881%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="142334881%2FProperties%2F-829590048" anchor-label="isInvisible" id="142334881%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-invisible.html">isInvisible</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1630462373%2FProperties%2F-829590048" anchor-label="isInvurnerable" id="1630462373%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-invurnerable.html"><span>is</span><wbr><span><span>Invurnerable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1630462373%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="1630462373%2FProperties%2F-829590048" anchor-label="isInvurnerable" id="1630462373%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-invurnerable.html">isInvurnerable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1813203908%2FProperties%2F-829590048" anchor-label="isInWater" id="-1813203908%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-in-water.html"><span>is</span><wbr><span>In</span><wbr><span><span>Water</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1813203908%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-1813203908%2FProperties%2F-829590048" anchor-label="isInWater" id="-1813203908%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-in-water.html">isInWater</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1081654150%2FProperties%2F-829590048" anchor-label="isJumping" id="-1081654150%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-jumping.html"><span>is</span><wbr><span><span>Jumping</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1081654150%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-1081654150%2FProperties%2F-829590048" anchor-label="isJumping" id="-1081654150%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-jumping.html">isJumping</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-84129102%2FProperties%2F-829590048" anchor-label="isLeashed" id="-84129102%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-leashed.html"><span>is</span><wbr><span><span>Leashed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-84129102%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-84129102%2FProperties%2F-829590048" anchor-label="isLeashed" id="-84129102%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-leashed.html">isLeashed</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="880746790%2FProperties%2F-829590048" anchor-label="isOnGround" id="880746790%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-on-ground.html"><span>is</span><wbr><span>On</span><wbr><span><span>Ground</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="880746790%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="880746790%2FProperties%2F-829590048" anchor-label="isOnGround" id="880746790%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-on-ground.html">isOnGround</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1526726430%2FProperties%2F-829590048" anchor-label="isRiptiding" id="-1526726430%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-riptiding.html"><span>is</span><wbr><span><span>Riptiding</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1526726430%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-1526726430%2FProperties%2F-829590048" anchor-label="isRiptiding" id="-1526726430%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-riptiding.html">isRiptiding</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="629967799%2FProperties%2F-829590048" anchor-label="isSilent" id="629967799%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-silent.html"><span>is</span><wbr><span><span>Silent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="629967799%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="629967799%2FProperties%2F-829590048" anchor-label="isSilent" id="629967799%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-silent.html">isSilent</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1796200289%2FProperties%2F-829590048" anchor-label="isSleeping" id="1796200289%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-sleeping.html"><span>is</span><wbr><span><span>Sleeping</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1796200289%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="1796200289%2FProperties%2F-829590048" anchor-label="isSleeping" id="1796200289%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-sleeping.html">isSleeping</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="574318191%2FProperties%2F-829590048" anchor-label="isSwimming" id="574318191%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-swimming.html"><span>is</span><wbr><span><span>Swimming</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="574318191%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="574318191%2FProperties%2F-829590048" anchor-label="isSwimming" id="574318191%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="is-swimming.html">isSwimming</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+
+</body></html>
+

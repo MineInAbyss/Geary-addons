@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Food</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>geary-addons</span>            </a>    </div>
+    <div>0.8.48
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="geary-commons-papermc::com.mineinabyss.geary.papermc.components/Food///PointingToDeclaration//-829590048">
+  <div class="breadcrumbs"><a href="../../index.html">geary-commons-papermc</a><span class="delimiter">/</span><a href="../index.html">com.mineinabyss.geary.papermc.components</a><span class="delimiter">/</span><a href="index.html">Food</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Food</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Food</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>hunger<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>saturation<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>replacement<span class="token operator">: </span><span data-unresolved-link="com.mineinabyss.idofront.serialization/SerializableItemStack///PointingToDeclaration/">SerializableItemStack</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>effectChance<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">1.0</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>effectList<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="org.bukkit.potion/PotionEffect///PointingToDeclaration/">PotionEffect</span><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyList()</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph"><code class="lang-kotlin">geary:food</code> Lets an item have custom food properties.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Parameters</h2>
+      <div data-togglable="Parameters">
+        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>hunger</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The amount of hunger this item restores.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>saturation</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The amount of saturation this item gives.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>replacement</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The item to replace with after consuming. If null it will subtract one from the stack.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>effect</span><wbr><span><span>Chance</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The chance of effects being applied.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>effect</span><wbr><span><span>List</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The effects this item can give.</p></div></div></div></div></div></div></div></div></div>
+      </div>
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-245905892%2FConstructors%2F-829590048" anchor-label="Food" id="-245905892%2FConstructors%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-food.html"><span><span>Food</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-245905892%2FConstructors%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-food.html"><span class="token function">Food</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;hunger<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;saturation<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;replacement<span class="token operator">: </span><span data-unresolved-link="com.mineinabyss.idofront.serialization/SerializableItemStack///PointingToDeclaration/">SerializableItemStack</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;effectChance<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">1.0</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;effectList<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="org.bukkit.potion/PotionEffect///PointingToDeclaration/">PotionEffect</span><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyList()</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="901174741%2FProperties%2F-829590048" anchor-label="effectChance" id="901174741%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="effect-chance.html"><span>effect</span><wbr><span><span>Chance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="901174741%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="901174741%2FProperties%2F-829590048" anchor-label="effectChance" id="901174741%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="effect-chance.html">effectChance</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">1.0</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1146321237%2FProperties%2F-829590048" anchor-label="effectList" id="-1146321237%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="effect-list.html"><span>effect</span><wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1146321237%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="-1146321237%2FProperties%2F-829590048" anchor-label="effectList" id="-1146321237%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="effect-list.html">effectList</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="org.bukkit.potion/PotionEffect///PointingToDeclaration/">PotionEffect</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1334666439%2FProperties%2F-829590048" anchor-label="hunger" id="1334666439%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="hunger.html"><span><span>hunger</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1334666439%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="1334666439%2FProperties%2F-829590048" anchor-label="hunger" id="1334666439%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="hunger.html">hunger</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="747335598%2FProperties%2F-829590048" anchor-label="replacement" id="747335598%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="replacement.html"><span><span>replacement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="747335598%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="747335598%2FProperties%2F-829590048" anchor-label="replacement" id="747335598%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="replacement.html">replacement</a><span class="token operator">: </span><span data-unresolved-link="com.mineinabyss.idofront.serialization/SerializableItemStack///PointingToDeclaration/">SerializableItemStack</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1068167688%2FProperties%2F-829590048" anchor-label="saturation" id="1068167688%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":geary-commons-papermc:dokkaHtmlPartial/main" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="saturation.html"><span><span>saturation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1068167688%2FProperties%2F-829590048"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":geary-commons-papermc:dokkaHtmlPartial/main"><a data-name="1068167688%2FProperties%2F-829590048" anchor-label="saturation" id="1068167688%2FProperties%2F-829590048" data-filterable-set=":geary-commons-papermc:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="saturation.html">saturation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+
+</body></html>
+
