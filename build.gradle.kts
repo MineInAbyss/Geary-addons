@@ -4,6 +4,7 @@ plugins {
     `java-library`
     kotlin("jvm")
     id("com.mineinabyss.conventions.kotlin")
+    id("com.mineinabyss.conventions.autoversion")
     id("org.jetbrains.dokka")
 }
 
