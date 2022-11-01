@@ -24,8 +24,3 @@ subprojects {
         }
     }
 }
-
-allprojects {
-    val runNumber: String? = System.getenv("GITHUB_RUN_NUMBER")
-    if (runNumber != null) version = "$version.$runNumber"
-}
