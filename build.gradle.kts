@@ -1,30 +1,30 @@
 val idofrontVersion: String by project
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    `java-library`
-    kotlin("jvm")
-    id("com.mineinabyss.conventions.kotlin")
-    id("org.jetbrains.dokka")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.mia.autoversion)
 }
 
-repositories {
-    mavenCentral()
-}
-
-tasks {
-    build {
-        dependsOn(project("geary-commons-papermc").tasks.build)
+allprojects {
+    repositories {
+        mavenCentral()
+        maven("https://repo.mineinabyss.com/releases")
+        maven("https://raw.githubusercontent.com/TheBlackEntity/PlugMan/repository/")
+        maven("https://jitpack.io")
     }
 }
+
+//tasks {
+//    build {
+//        dependsOn(project("geary-commons-papermc").tasks.build)
+//    }
+//}
 
 subprojects {
     tasks {
         withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         }
     }
-}
-
-allprojects {
-    val runNumber: String? = System.getenv("GITHUB_RUN_NUMBER")
-    if (runNumber != null) version = "$version.$runNumber"
 }
