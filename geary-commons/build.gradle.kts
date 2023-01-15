@@ -1,21 +1,17 @@
 val idofrontVersion: String by project
 val gearyVersion: String by project
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.mineinabyss.conventions.kotlin")
-    id("com.mineinabyss.conventions.publication")
-    kotlin("plugin.serialization")
-}
-
-repositories {
-    maven("https://repo.mineinabyss.com/releases")
+    id(libs.plugins.mia.kotlin.jvm.get().pluginId)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 dependencies {
     compileOnly(libs.kotlinx.serialization.json)
 
-    compileOnly(gaddonLibs.geary.core)
-    compileOnly(gaddonLibs.geary.prefabs)
+    compileOnly(gearyLibs.core)
+    compileOnly(gearyLibs.prefabs)
 
-    implementation(libs.bundles.idofront.core)
+//    implementation(libs.idofront.core)
 }

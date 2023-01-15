@@ -1,16 +1,11 @@
 val idofrontVersion: String by project
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.mineinabyss.conventions.kotlin")
-    id("com.mineinabyss.conventions.papermc")
-    id("com.mineinabyss.conventions.copyjar")
-    id("com.mineinabyss.conventions.publication")
-    kotlin("plugin.serialization")
-}
-
-repositories {
-    maven("https://repo.mineinabyss.com/releases")
-    maven("https://jitpack.io")
+    id(libs.plugins.mia.kotlin.jvm.get().pluginId)
+    id(libs.plugins.mia.papermc.get().pluginId)
+    id(libs.plugins.mia.copyjar.get().pluginId)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 dependencies {
@@ -25,9 +20,7 @@ dependencies {
     compileOnly(libs.minecraft.mccoroutine)
 
     // Other plugins
-    compileOnly(gaddonLibs.looty)
-    compileOnly(gaddonLibs.mobzy)
-    compileOnly(gaddonLibs.geary.papermc.core)
+    compileOnly(myLibs.geary.papermc)
 
     implementation(libs.bundles.idofront.core)
 }

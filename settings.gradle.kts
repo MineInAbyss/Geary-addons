@@ -1,29 +1,14 @@
 pluginManagement {
-    val kotlinVersion: String by settings
-    val idofrontVersion: String by settings
-
     repositories {
         gradlePluginPortal()
         maven("https://repo.mineinabyss.com/releases")
         maven("https://repo.papermc.io/repository/maven-public/")
     }
-
-    plugins {
-        kotlin("jvm") version kotlinVersion
-        kotlin("plugin.serialization") version kotlinVersion
-        id("org.jetbrains.dokka") version kotlinVersion
-    }
-
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.id.startsWith("com.mineinabyss.conventions"))
-                useVersion(idofrontVersion)
-        }
-    }
 }
 
 dependencyResolutionManagement {
     val idofrontVersion: String by settings
+    val gearyVersion: String by settings
 
     repositories {
         maven("https://repo.mineinabyss.com/releases")
@@ -31,7 +16,8 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs").from("com.mineinabyss:catalog:$idofrontVersion")
-        create("gaddonLibs").from(files("gradle/gaddonLibs.versions.toml"))
+        create("myLibs").from(files("gradle/myLibs.versions.toml"))
+        create("gearyLibs").from("com.mineinabyss:geary-catalog:$gearyVersion")
     }
 }
 
@@ -40,5 +26,4 @@ rootProject.name = "geary-addons"
 include(
     "geary-commons",
     "geary-commons-papermc",
-//    "geary-platform",
 )

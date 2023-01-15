@@ -1,26 +1,24 @@
 val idofrontVersion: String by project
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    `java-library`
-    kotlin("jvm")
-    id("com.mineinabyss.conventions.kotlin")
-    id("com.mineinabyss.conventions.autoversion")
-    id("org.jetbrains.dokka")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.mia.autoversion)
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        mavenCentral()
+        maven("https://repo.mineinabyss.com/releases")
+        maven("https://raw.githubusercontent.com/TheBlackEntity/PlugMan/repository/")
+        maven("https://jitpack.io")
+    }
 }
 
 tasks {
     build {
+        // Build plugin in composite builds
         dependsOn(project("geary-commons-papermc").tasks.build)
-    }
-}
-
-subprojects {
-    tasks {
-        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        }
     }
 }
