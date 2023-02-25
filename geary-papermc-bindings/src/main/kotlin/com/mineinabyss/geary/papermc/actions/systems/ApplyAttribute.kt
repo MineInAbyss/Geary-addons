@@ -1,7 +1,7 @@
 package com.mineinabyss.geary.papermc.actions.systems
 
-import com.mineinabyss.geary.annotations.AutoScan
 import com.mineinabyss.geary.annotations.Handler
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.commons.events.configurable.components.Apply
 import com.mineinabyss.geary.papermc.actions.components.ApplicableAttribute
 import com.mineinabyss.geary.systems.GearyListener

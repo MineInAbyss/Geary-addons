@@ -11,7 +11,9 @@ plugins {
 }
 
 dependencies {
-    compileOnly(myLibs.geary.core)
+    compileOnly(project(":geary-commons"))
+    compileOnly(myLibs.geary.papermc)
+    compileOnly(gearyLibs.autoscan)
 
     // MineInAbyss platform
     compileOnly(libs.kotlin.stdlib)
@@ -22,8 +24,6 @@ dependencies {
     compileOnly(libs.minecraft.mccoroutine)
 
     // Other plugins
-    compileOnly(myLibs.looty)
-    compileOnly(myLibs.mobzy)
 
     implementation(libs.bundles.idofront.core)
 }

@@ -1,6 +1,6 @@
 package com.mineinabyss.geary.papermc.events.conditions.location
 
-import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.accessors.EventScope

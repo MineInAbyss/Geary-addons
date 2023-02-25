@@ -1,9 +1,11 @@
-package com.mineinabyss.geary.papermc.systems
+package com.mineinabyss.geary.papermc.features.bucketing
 
-import com.mineinabyss.geary.annotations.AutoScan
-import com.mineinabyss.geary.papermc.access.toGeary
-import com.mineinabyss.geary.papermc.components.Bucketable
+import com.mineinabyss.geary.autoscan.AutoScan
+import com.mineinabyss.geary.helpers.entity
 import com.mineinabyss.geary.papermc.helpers.spawnFromPrefab
+import com.mineinabyss.geary.papermc.tracking.entities.toGeary
+import com.mineinabyss.geary.papermc.tracking.items.gearyItemInMainHand
+import com.mineinabyss.geary.prefabs.helpers.addPrefab
 import com.mineinabyss.looty.tracking.toGearyOrNull
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
@@ -25,15 +27,16 @@ class BucketableSystem : Listener {
 
     @EventHandler(ignoreCancelled = true)
     fun PlayerInteractEntityEvent.onPickupMob() {
-        val mob = rightClicked.toGeary().get<Bucketable>() ?: return
-        val requiredBucket = Material.valueOf(mob.bucketLiquidRequired.toString() + "_BUCKET")
-        val item = mob.bucketItem.toItemStack()
+        val clickedEntity = rightClicked.toGeary()
+        val bucketable = clickedEntity.get<Bucketable>() ?: return
+        val requiredBucket = Material.valueOf(bucketable.bucketLiquidRequired.toString() + "_BUCKET")
 
         if (!Material.values().contains(requiredBucket)) return
         if (player.inventory.getItem(hand).type != requiredBucket) return
 
-        player.inventory.setItemInMainHand(item)
-        item.toGearyOrNull(player)?.getOrSetPersisting { mob } ?: return
+        val bucketItem = bucketable.bucketItem.toItemStack()
+        player.inventory.setItemInMainHand(bucketItem)
+        player.gearyItemInMainHand?.getOrSetPersisting { bucketable } ?: return
         rightClicked.remove()
         isCancelled = true // Cancel vanilla behaviour
     }
@@ -41,10 +44,15 @@ class BucketableSystem : Listener {
     @EventHandler(ignoreCancelled = true) // Fires after the onPickupMob thus it places it aswell
     fun PlayerInteractEvent.onEmptyMobzyBucket() {
         if (action != Action.RIGHT_CLICK_BLOCK || hand != EquipmentSlot.HAND) return
-        val bucket = player.inventory.itemInMainHand.toGearyOrNull(player)?.get<Bucketable>() ?: return
+
+        val bucket = player.gearyItemInMainHand?.get<Bucketable>() ?: return
         val block = clickedBlock?.getRelative(blockFace) ?: return
 
         block.type = bucket.bucketLiquidRequired
+        entity {
+            addPrefab(bucket.bucketMob.toEntity())
+            set(AttemptSpawn)
+        }
         block.location.toCenterLocation().spawnFromPrefab(bucket.bucketMob)
         player.inventory.setItemInMainHand(ItemStack(Material.BUCKET))
         isCancelled = true // Cancel vanilla behaviour

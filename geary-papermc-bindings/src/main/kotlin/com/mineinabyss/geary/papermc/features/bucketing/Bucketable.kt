@@ -1,4 +1,4 @@
-package com.mineinabyss.geary.papermc.components
+package com.mineinabyss.geary.papermc.features.bucketing
 
 import com.mineinabyss.geary.prefabs.PrefabKey
 import com.mineinabyss.idofront.serialization.SerializableItemStack

@@ -1,6 +1,6 @@
 package com.mineinabyss.geary.papermc.systems.bridge
 
-import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.components.sound.EmitSound
 import com.mineinabyss.geary.commons.components.sound.Sounds

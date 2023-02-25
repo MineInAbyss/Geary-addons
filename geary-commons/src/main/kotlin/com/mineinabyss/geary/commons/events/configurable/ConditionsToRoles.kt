@@ -1,6 +1,6 @@
 package com.mineinabyss.geary.commons.events.configurable
 
-import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.events.configurable.components.EventCondition
 import com.mineinabyss.geary.commons.events.configurable.components.EventConditions

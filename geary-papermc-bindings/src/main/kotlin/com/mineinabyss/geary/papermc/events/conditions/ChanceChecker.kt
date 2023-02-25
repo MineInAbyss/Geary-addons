@@ -1,6 +1,6 @@
 package com.mineinabyss.geary.papermc.events.conditions
 
-import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.papermc.components.events.Chance
 import com.mineinabyss.geary.systems.GearyListener

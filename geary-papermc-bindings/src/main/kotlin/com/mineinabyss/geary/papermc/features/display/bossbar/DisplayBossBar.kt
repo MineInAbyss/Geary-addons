@@ -1,4 +1,4 @@
-package com.mineinabyss.geary.papermc.components
+package com.mineinabyss.geary.papermc.features.display.bossbar
 
 import com.mineinabyss.idofront.serialization.MiniMessageSerializer
 import kotlinx.serialization.SerialName
@@ -6,6 +6,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.Component
+import org.bukkit.attribute.Attribute
+import org.bukkit.entity.LivingEntity
 import java.util.*
 
 /**
@@ -27,4 +29,11 @@ class DisplayBossBar(
 
     @Transient
     val playersInRange: MutableSet<UUID> = mutableSetOf()
+
+
+    fun setProgressToHealthOf(bukkit: LivingEntity) {
+        bossBar.progress(
+            (bukkit.health / (bukkit.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.value ?: 20.0)).toFloat()
+        )
+    }
 }

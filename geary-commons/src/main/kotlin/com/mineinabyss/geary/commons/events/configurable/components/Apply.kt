@@ -11,6 +11,3 @@ sealed class Apply
 @Serializable
 @SerialName("geary:apply")
 value class ApplyBuilder(val entityExpression: String)
-
-
-

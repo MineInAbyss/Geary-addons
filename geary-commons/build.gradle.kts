@@ -10,8 +10,6 @@ plugins {
 dependencies {
     compileOnly(libs.kotlinx.serialization.json)
 
-    compileOnly(myLibs.geary.core)
-    compileOnly(myLibs.geary.prefabs)
-
-//    implementation(libs.idofront.core)
+    compileOnly(gearyLibs.core)
+    compileOnly(gearyLibs.prefabs)
 }

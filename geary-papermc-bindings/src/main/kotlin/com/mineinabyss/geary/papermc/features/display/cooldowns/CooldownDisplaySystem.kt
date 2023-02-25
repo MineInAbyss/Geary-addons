@@ -1,13 +1,13 @@
-package com.mineinabyss.geary.papermc.systems
+package com.mineinabyss.geary.papermc.features.display.cooldowns
 
-import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.commons.components.CooldownManager
 import com.mineinabyss.geary.datatypes.family.family
 import com.mineinabyss.geary.helpers.parent
 import com.mineinabyss.geary.helpers.with
+import com.mineinabyss.geary.papermc.tracking.items.components.SlotType
 import com.mineinabyss.geary.systems.RepeatingSystem
 import com.mineinabyss.geary.systems.accessors.TargetScope
-import com.mineinabyss.looty.ecs.components.inventory.SlotType
 import net.kyori.adventure.text.Component
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
@@ -15,8 +15,6 @@ import java.awt.Color
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
-
-private val INTERVAL = 1.seconds
 
 @AutoScan
 class CooldownDisplaySystem : RepeatingSystem(interval = INTERVAL) {
@@ -53,5 +51,6 @@ class CooldownDisplaySystem : RepeatingSystem(interval = INTERVAL) {
     companion object {
         private const val displayLength = 10
         private const val displayChar = '■'
+        private val INTERVAL = 1.seconds
     }
 }

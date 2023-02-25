@@ -1,6 +1,6 @@
 package com.mineinabyss.geary.papermc.systems
 
-import com.mineinabyss.geary.annotations.AutoScan
+import com.mineinabyss.geary.autoscan.AutoScan
 import com.mineinabyss.geary.annotations.Handler
 import com.mineinabyss.geary.commons.components.Dead
 import com.mineinabyss.geary.commons.components.interaction.Attacked
@@ -11,6 +11,7 @@ import com.mineinabyss.geary.game.components.Dead
 import com.mineinabyss.geary.game.components.interaction.Attacked
 import com.mineinabyss.geary.game.components.sound.Sounds
 import com.mineinabyss.geary.game.components.sound.makeSound
+import com.mineinabyss.geary.papermc.components.sound.Sounds
 import com.mineinabyss.geary.prefabs.configuration.components.Prefab
 import com.mineinabyss.geary.systems.GearyListener
 import com.mineinabyss.geary.systems.RepeatingSystem

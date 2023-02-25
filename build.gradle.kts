@@ -15,16 +15,3 @@ allprojects {
         maven("https://jitpack.io")
     }
 }
-
-//tasks {
-//    build {
-//        dependsOn(project("geary-commons-papermc").tasks.build)
-//    }
-//}
-
-subprojects {
-    tasks {
-        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        }
-    }
-}
